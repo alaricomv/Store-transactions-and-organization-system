@@ -1,0 +1,17 @@
+<ul>
+    <h1>Last Transactions</h1>
+    <li *ngFor="let lasttransactions of lasttransactions">
+        <p>{{lasttransactions.id}}</p>
+        <p>{{lasttransactions.user}}</p>
+        <p>{{lasttransactions.date | date:'fullDate'}} {{ lasttransactions.date | date:'shortTime' }}</p>
+        <p>{{lasttransactions.total}}</p>
+    </li>
+
+    <h1>All Transactions</h1>
+    <li *ngFor="let transaction of transactions">
+        <p>{{transaction.id}}</p>
+        <p>{{transaction.user}}</p>
+        <p>{{transaction.date | date:'fullDate'}} {{ transaction.date | date:'shortTime' }}</p>
+        <p>{{transaction.total}}</p>
+    </li>
+</ul>

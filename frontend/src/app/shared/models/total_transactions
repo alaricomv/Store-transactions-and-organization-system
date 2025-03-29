@@ -1,0 +1,7 @@
+export class Total_transaction{
+    id! : number;
+    user! : number;
+    date! : Date;
+    total! : number;
+    number_transactions! : number;
+}
