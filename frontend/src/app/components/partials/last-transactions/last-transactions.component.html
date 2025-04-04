@@ -1,0 +1,11 @@
+<div class="last-transactions-container">
+    <h1>Ultimos Cobros</h1>
+    <ul>
+      <li *ngFor="let lasttransactions of lasttransactions">
+        <p><strong>ID:</strong> {{ lasttransactions.id }}</p>
+        <p><strong>User:</strong> {{ lasttransactions.user }}</p>
+        <p><strong>Date:</strong> {{ lasttransactions.date | date:'fullDate' }} {{ lasttransactions.date | date:'shortTime' }}</p>
+        <p><strong>Total:</strong> ${{ lasttransactions.total }}</p>
+      </li>
+    </ul>
+  </div>
