@@ -18,4 +18,8 @@ export class TransactionService {
       .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()) // Sort by date descending
       .slice(0, 3); // Get the last 3 transactions
   }
+
+  getTransactionById(id: number):Transaction {
+    return this.getAll().find(transaction => transaction.id == id) ?? new Transaction();
+  }
 }

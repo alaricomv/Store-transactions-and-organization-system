@@ -1,0 +1,80 @@
+/* Container for the entire page */
+.home-container {
+    display: flex;
+    justify-content: space-between; /* Space between the calculator and transactions */
+    align-items: flex-start; /* Align items at the top */
+    padding: 20px;
+    gap: 20px;
+  }
+  
+  /* Calculator Section */
+  .calculator-container {
+    flex: 1 1 65%; /* Takes 65% of the width */
+    min-width: 500px; /* Ensure it's usable on larger screens */
+    display: flex;
+    justify-content: center; /* Center the calculator horizontally */
+  }
+  
+  .calculator-container app-calculator {
+    width: 100%;
+    height: auto;
+  }
+  
+  /* Transactions Section */
+  .transactions-container {
+    flex: 1 1 30%; /* Takes 30% of the width */
+    max-width: 400px;
+    min-width: 300px;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Transaction List Styling */
+  .transactions-container h1 {
+    font-size: 1.5rem;
+    color: #333;
+    margin-bottom: 10px;
+    text-align: center;
+  }
+  
+  .transactions-container ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .transactions-container li {
+    background-color: #ffffff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    padding: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .transactions-container li p {
+    margin: 5px 0;
+    font-size: 1rem;
+    color: #555;
+  }
+  
+  .transactions-container li p strong {
+    color: #333;
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .home-container {
+      flex-direction: column; /* Stack the sections vertically */
+      align-items: center;
+    }
+  
+    .calculator-container,
+    .transactions-container {
+      flex: 1 1 100%; /* Take up full width */
+      max-width: 100%;
+    }
+  }

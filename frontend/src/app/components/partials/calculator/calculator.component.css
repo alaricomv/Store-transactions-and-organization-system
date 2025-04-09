@@ -3,7 +3,7 @@
   display: flex;
   justify-content: center; /* Center the calculator horizontally */
   align-items: center; /* Center the calculator vertically */
-  min-height: 100vh;
+  min-height: 50vh;
   background-color: #f4f4f9;
 }
 
@@ -97,7 +97,7 @@ button:hover {
 @media (max-width: 576px) {
   .jumbotron {
     padding: 20px; /* Adjusted padding for smaller screens */
-    max-width: 90%; /* Allow it to scale down on smaller screens */
+    width: 90%; /* Set the width to 90% of the screen */
   }
 
   button {
