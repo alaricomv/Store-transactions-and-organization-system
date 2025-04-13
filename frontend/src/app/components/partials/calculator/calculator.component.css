@@ -5,6 +5,8 @@
   align-items: center; /* Center the calculator vertically */
   min-height: 50vh;
   background-color: #f4f4f9;
+  padding-top: 10px;
+      padding-bottom: 10px;
 }
 
 /* Calculator styling */
@@ -103,4 +105,5 @@ button:hover {
   button {
     font-size: 1.2rem; /* Adjusted button size for smaller screens */
   }
+
 }

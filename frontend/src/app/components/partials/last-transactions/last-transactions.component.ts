@@ -5,6 +5,7 @@ import { registerLocaleData } from '@angular/common';
 import localeEs from '@angular/common/locales/es';
 import { LOCALE_ID } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { RouterLink } from '@angular/router';
 
 
 registerLocaleData(localeEs); // Register Spanish locale
@@ -12,7 +13,7 @@ registerLocaleData(localeEs); // Register Spanish locale
 @Component({
   selector: 'app-last-transactions',
   standalone: true,
-  imports: [CommonModule],
+  imports: [RouterLink, CommonModule],
   templateUrl: './last-transactions.component.html',
   styleUrl: './last-transactions.component.css',
   providers: [{ provide: LOCALE_ID, useValue: 'es' }]
