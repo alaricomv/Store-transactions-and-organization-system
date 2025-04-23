@@ -27,5 +27,5 @@ export async function createUser(company_name, branch_name, password, email) {
     return getUserById(id); // Return the newly created user
 }
 
-const result = await createUser('test company', 'test branch', 'password', 'testmail@mail.com'); // Call the function to get users
+const result = await getUsers(); // Call the function to get users
 console.log(result); // Output the result of the query
