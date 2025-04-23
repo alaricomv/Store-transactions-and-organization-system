@@ -38,6 +38,14 @@ export async function getTransactions() {
     return rows;
 }
 
+export async function getLastTransactions(user_id) {
+    const [rows] = await pool.query(
+        'SELECT * FROM transactions WHERE user_id = ? ORDER BY date DESC LIMIT 3',
+        [user_id]
+    );
+    return rows; // Return all 3 rows, not just the first one
+}
+
 export async function getTransactionById(id) {
     const [rows] = await pool.query('SELECT * FROM transactions WHERE id = ?', [id]);
     return rows[0];

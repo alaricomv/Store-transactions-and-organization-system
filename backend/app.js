@@ -1,5 +1,5 @@
 import express from 'express';
-import { getUsers,getUserById, createUser, getTransactions, getTransactionById, getTransactionByDate, createTransaction,deleteTransaction, createTotalTransactions, getTotalTransactionsbyId } from './database.js';
+import { getUsers,getUserById, createUser, getTransactions, getLastTransactions, getTransactionById, getTransactionByDate, createTransaction,deleteTransaction, createTotalTransactions, getTotalTransactionsbyId } from './database.js';
 
 const app = express();
 
@@ -68,6 +68,16 @@ app.get('/transactions/date/:date', async (req, res) => {
         res.send(transactions);
     } else {
         res.status(404).send('No transactions found for this date');
+    }
+})
+
+app.get('/lasttransactions/:id', async (req, res) => {
+    const id = req.params.id;
+    const transactions = await getLastTransactions(id);
+    if (transactions.length > 0) {
+        res.send(transactions);
+    } else {
+        res.status(404).send('No transactions found for this user');
     }
 })
 
