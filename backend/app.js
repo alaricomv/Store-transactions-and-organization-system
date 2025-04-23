@@ -1,9 +1,12 @@
 import express from 'express';
 import { getUsers,getUserById, createUser, getTransactions, getLastTransactions, getTransactionById, getTransactionByDate, createTransaction,deleteTransaction, createTotalTransactions, getTotalTransactionsbyId } from './database.js';
+import cors from 'cors';
 
 const app = express();
 
 app.use(express.json()); // Middleware to parse JSON bodies
+
+app.use(cors({origin: 'http://localhost:4200'})); // Enable CORS for your frontend app
 
 
 // User routes

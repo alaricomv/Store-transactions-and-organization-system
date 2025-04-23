@@ -6,6 +6,7 @@ import localeEs from '@angular/common/locales/es';
 import { LOCALE_ID } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
+import { Observable } from 'rxjs';
 
 
 registerLocaleData(localeEs); // Register Spanish locale
@@ -19,12 +20,17 @@ registerLocaleData(localeEs); // Register Spanish locale
   providers: [{ provide: LOCALE_ID, useValue: 'es' }]
 })
 export class LastTransactionsComponent {
+  lasttransactions: Transaction[] = [];
 
-    lasttransactions:Transaction[] = [];
-  
-    constructor(private transactionService:TransactionService) {
-      this.lasttransactions = transactionService.getLastthree();
-  
-    }
-
+  constructor(private transactionService: TransactionService) {
+    this.transactionService.getLastthree().subscribe({
+      next: (transactions) => {
+        console.log('Received transactions:', transactions); // Log the JSON response
+        this.lasttransactions = transactions; // Assign the response to the component property
+      },
+      error: (err) => {
+        console.error('Error fetching transactions:', err); // Log any errors
+      }
+    });
+  }
 }

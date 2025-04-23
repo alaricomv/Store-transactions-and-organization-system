@@ -1,7 +1,7 @@
 const BASE_URL = 'http://localhost:8080';
 
 export const TRANSACTIONS_URL = `${BASE_URL}/transactions`;
-export const LAST_TRANSACTIONS_URL = TRANSACTIONS_URL + '/lasttransactions';
+export const LAST_TRANSACTIONS_URL = BASE_URL + '/lasttransactions';
 export const TRANSACTION_BY_ID_URL = TRANSACTIONS_URL + '/';
 export const TRANSACTION_BY_DATE_URL = TRANSACTIONS_URL + '/date/';
 export const TOTAL_TRANSACTIONS_URL = BASE_URL + '/totaltransactions';
