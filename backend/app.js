@@ -44,6 +44,7 @@ app.post('/users', express.json(), async (req, res) => {
     }
 })
 
+// Check if user exists and password is correct
 app.post('/users/login', express.json(), async (req, res) => {
     const { email, password } = req.body;
     if (!email || !password) {
