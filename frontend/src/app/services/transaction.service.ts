@@ -17,7 +17,9 @@ export class TransactionService {
   }
 
   getLastthree():Observable<Transaction[]>{
-    const url = LAST_TRANSACTIONS_URL + '/2'; // Construct the full URL
+    const user = JSON.parse(localStorage.getItem('User') || '{}');
+    const userId = user.id; // Get the user ID from local storage
+    const url = `${LAST_TRANSACTIONS_URL}/${userId}`; // Construct the full URL
     console.log('HTTP Request URL:', url); // Log the URL to the console
     return this.http.get<Transaction[]>(url);
   }
