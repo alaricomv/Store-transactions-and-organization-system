@@ -23,6 +23,14 @@ export async function getUserById(id) {
     return rows[0];
 }
 
+export async function getUserVerification(email,password) {
+    const [rows] = await pool.query('SELECT * FROM users WHERE email = ?', [email]);
+    if(bcrypt.compareSync(password, rows[0].password)) {
+        return rows[0]; // Return the user if password matches
+    }
+    return null; // Return null if password does not match
+}
+
 export async function createUser(company_name, branch_name, password, email) {
     const hashedPassword = await bcrypt.hash(password, 10); // Hash the password
     const [result] = await pool.query('INSERT INTO users (company_name, branch_name, password, email) VALUES (?, ?, ?, ?)', [company_name, branch_name, hashedPassword, email]);

@@ -1,6 +1,7 @@
 import express from 'express';
-import { getUsers,getUserById, createUser, getTransactions, getLastTransactions, getTransactionById, getTransactionByDate, createTransaction,deleteTransaction, createTotalTransactions, getTotalTransactionsbyId } from './database.js';
+import { getUsers,getUserById, createUser, getTransactions, getLastTransactions, getTransactionById, getTransactionByDate, createTransaction,deleteTransaction, createTotalTransactions, getTotalTransactionsbyId, getUserVerification } from './database.js';
 import cors from 'cors';
+import jwt from 'jsonwebtoken';
 
 const app = express();
 
@@ -42,6 +43,24 @@ app.post('/users', express.json(), async (req, res) => {
         res.status(500).send('Error creating user');
     }
 })
+
+app.post('/users/login', express.json(), async (req, res) => {
+    const { email, password } = req.body;
+    if (!email || !password) {
+        return res.status(400).send('All fields are required');
+    }
+    try {
+        const user = await getUserVerification(email, password);
+        if (user) {
+            res.status(200).send(generateTokenResponse(user));
+        } else {
+            res.status(401).send('Invalid credentials');
+        }
+    } catch (error) {
+        console.error(error);
+        res.status(500).send('Error logging in user');
+    }
+});
 
 
 // Transactions routes
@@ -139,6 +158,14 @@ app.get('/totaltransactions/:user_id', async (req, res) => {
         res.status(404).send('No total transactions found for this user');
     }
 })
+
+const generateTokenResponse = (user) => {
+    const token = jwt.sign({ 
+        email: user.email, isAdmin: user.isAdmin
+    }, 'RandomSecret', { expiresIn: '1h' });
+    user.token = token;
+    return user;
+}
 
 app.use((err, req, res, next) => {
   console.error(err.stack);
