@@ -4,6 +4,8 @@ import { HeaderComponent } from "./components/partials/header/header.component";
 import { HomeComponent } from "./components/pages/home/home.component";
 import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
+import { ToastrModule } from 'ngx-toastr';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @Component({
   selector: 'app-root',

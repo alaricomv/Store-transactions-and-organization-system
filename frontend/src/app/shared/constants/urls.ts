@@ -8,3 +8,4 @@ export const TOTAL_TRANSACTIONS_URL = BASE_URL + '/totaltransactions';
 export const TOTAL_TRANSACTIONS_BY_ID_URL = TOTAL_TRANSACTIONS_URL + '/';
 export const USERS_URL = BASE_URL + '/users';
 export const USER_BY_ID_URL = USERS_URL + '/';
+export const USER_LOGIN_URL = BASE_URL + '/users/login';
