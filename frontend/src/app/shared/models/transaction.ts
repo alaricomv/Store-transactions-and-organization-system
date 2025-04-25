@@ -1,6 +1,6 @@
 export class Transaction{
     id! : number;
-    user! : number;
+    user_id! : number;
     date! : Date;
     total! : number;
 }

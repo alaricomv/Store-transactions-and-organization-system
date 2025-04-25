@@ -1,7 +1,9 @@
 export class User{
     id! : number;
-    first_name! : string;
-    last_name! : string;
+    company_name! : string;
+    branch_name! : string;
     email! : string;
     password! : string;
+    token! : string;
+    isAdmin! : boolean;
 }

@@ -7,6 +7,7 @@ import localeEs from '@angular/common/locales/es';
 import { LOCALE_ID } from '@angular/core';
 import { CalculatorComponent } from "../../partials/calculator/calculator.component";
 import { LastTransactionsComponent } from "../../partials/last-transactions/last-transactions.component";
+import { Observable } from 'rxjs';
 
 registerLocaleData(localeEs); // Register Spanish locale
 
@@ -24,7 +25,9 @@ export class CalculatorPageComponent {
 
   transactions:Transaction[] = [];
   constructor(private transactionService:TransactionService) {
-    this.lasttransactions = transactionService.getLastthree();
+    let transactionsObservable:Observable<Transaction[]>;
+
+    transactionsObservable = transactionService.getLastthree();
 
     this.transactions = transactionService.getAll();
   }

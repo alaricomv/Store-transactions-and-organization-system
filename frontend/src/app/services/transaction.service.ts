@@ -1,25 +1,30 @@
 import { Injectable } from '@angular/core';
 import { Transaction } from '../shared/models/transaction';
 import { sample_transactions } from '../../data';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { LAST_TRANSACTIONS_URL, TRANSACTION_BY_ID_URL } from '../shared/constants/urls';
 
 @Injectable({
   providedIn: 'root'
 })
 export class TransactionService {
 
-  constructor() { }
+  constructor(private http:HttpClient) { }
 
   getAll():Transaction[]{
     return sample_transactions;
   }
 
-  getLastthree():Transaction[]{
-    return sample_transactions
-      .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()) // Sort by date descending
-      .slice(0, 3); // Get the last 3 transactions
+  getLastthree():Observable<Transaction[]>{
+    const user = JSON.parse(localStorage.getItem('User') || '{}');
+    const userId = user.id; // Get the user ID from local storage
+    const url = `${LAST_TRANSACTIONS_URL}/${userId}`; // Construct the full URL
+    console.log('HTTP Request URL:', url); // Log the URL to the console
+    return this.http.get<Transaction[]>(url);
   }
 
-  getTransactionById(id: number):Transaction {
-    return this.getAll().find(transaction => transaction.id == id) ?? new Transaction();
+  getTransactionById(id: number): Observable<Transaction> {
+    return this.http.get<Transaction>(TRANSACTION_BY_ID_URL + id);
   }
 }

@@ -1,18 +1,19 @@
 <header>
-    <div class="container">
+    <div class="header-container">
         <a routerLink="/" class="logo"> De Moda</a>
         <nav>
             <ul>
-                <li>
+                <li *ngIf="user.token">
+                    <p>{{user.company_name}}</p>
+                </li>
+                <li *ngIf="!user.token">
                     <a routerLink="/login">Login</a>
                 </li>
-                <li class="menu-container">
-                    <a routerLink="/dashboard">John</a>
-                    <div class="menu">
-                        <a routerLink="/profile">Profile</a>
-                        <a routerLink="/orders">Orders</a>
-                        <a routerLink="/logout">Logout</a>
-                    </div>
+                <li *ngIf="user.token">
+                    <a (click)="logout()">Logout</a>
+                </li>
+                <li *ngIf="user.token">
+                    <a routerLink="/calculator">Calculadora</a>
                 </li>
             </ul>
         </nav>
