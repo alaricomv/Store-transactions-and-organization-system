@@ -11,6 +11,7 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
 export const appConfig: ApplicationConfig = {
   providers: [provideRouter(routes),
     provideHttpClient(),
+    {provide: Window, useValue: window}, // Provide the global window object
     BrowserModule,
     importProvidersFrom(BrowserAnimationsModule),
     importProvidersFrom(ToastrModule.forRoot({
@@ -20,6 +21,6 @@ export const appConfig: ApplicationConfig = {
       closeButton: true,
       progressBar: true,
       progressAnimation: 'increasing',
-    })), provideAnimationsAsync()
+    })), provideAnimationsAsync(),
   ]
 };
