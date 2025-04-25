@@ -1,1 +1,11 @@
-<p>transaction-page works!</p>
+<div>
+    <h1>Detalles de la transacción</h1>
+    <div *ngIf="transaction">
+        <p><strong>ID:</strong> {{ transaction.id }}</p>
+        <p><strong>User:</strong> {{ transaction.user_id }}</p>
+        <p><strong>Date:</strong> {{ transaction.date | date:'fullDate' }} {{ transaction.date | date:'shortTime' }}</p>
+        <p><strong>Total:</strong> ${{ transaction.total }}</p>
+        <button mat-button (click)="closedDialog()">Volver</button>
+        <button mat-button (click)="printPage()">Imprimir</button>
+    </div>
+</div>

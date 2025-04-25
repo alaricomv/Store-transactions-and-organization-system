@@ -6,6 +6,7 @@ import { provideHttpClient } from '@angular/common/http';
 import { provideToastr, ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule, NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { BrowserModule } from '@angular/platform-browser';
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 
 export const appConfig: ApplicationConfig = {
   providers: [provideRouter(routes),
@@ -19,6 +20,6 @@ export const appConfig: ApplicationConfig = {
       closeButton: true,
       progressBar: true,
       progressAnimation: 'increasing',
-    }))
+    })), provideAnimationsAsync()
   ]
 };

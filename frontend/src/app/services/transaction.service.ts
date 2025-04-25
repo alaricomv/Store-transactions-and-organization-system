@@ -3,7 +3,7 @@ import { Transaction } from '../shared/models/transaction';
 import { sample_transactions } from '../../data';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { LAST_TRANSACTIONS_URL } from '../shared/constants/urls';
+import { LAST_TRANSACTIONS_URL, TRANSACTION_BY_ID_URL } from '../shared/constants/urls';
 
 @Injectable({
   providedIn: 'root'
@@ -24,7 +24,7 @@ export class TransactionService {
     return this.http.get<Transaction[]>(url);
   }
 
-  getTransactionById(id: number):Transaction {
-    return this.getAll().find(transaction => transaction.id == id) ?? new Transaction();
+  getTransactionById(id: number): Observable<Transaction> {
+    return this.http.get<Transaction>(TRANSACTION_BY_ID_URL + id);
   }
 }

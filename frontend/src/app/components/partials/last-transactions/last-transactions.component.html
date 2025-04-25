@@ -6,7 +6,7 @@
         <p><strong>User:</strong> {{ lasttransactions.user_id }}</p>
         <p><strong>Date:</strong> {{ lasttransactions.date | date:'fullDate' }} {{ lasttransactions.date | date:'shortTime' }}</p>
         <p><strong>Total:</strong> ${{ lasttransactions.total }}</p>
-        <a routerLink="/transaction/{{ lasttransactions.id }}">Detalles</a>
+        <button mat-button (click)="openTransactionDialog(lasttransactions)">Detalles</button>
       </li>
     </ul>
   </div>

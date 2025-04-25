@@ -9,6 +9,8 @@ import { RouterLink } from '@angular/router';
 import { Observable } from 'rxjs';
 import { User } from '../../../shared/models/user';
 import { UserService } from '../../../services/user.service';
+import { MatDialog, MatDialogModule } from '@angular/material/dialog';
+import { TransactionPageComponent } from '../../pages/transaction-page/transaction-page.component';
 
 
 registerLocaleData(localeEs); // Register Spanish locale
@@ -16,7 +18,7 @@ registerLocaleData(localeEs); // Register Spanish locale
 @Component({
   selector: 'app-last-transactions',
   standalone: true,
-  imports: [RouterLink, CommonModule],
+  imports: [RouterLink, CommonModule, MatDialogModule],
   templateUrl: './last-transactions.component.html',
   styleUrl: './last-transactions.component.css',
   providers: [{ provide: LOCALE_ID, useValue: 'es' }]
@@ -26,7 +28,7 @@ export class LastTransactionsComponent {
 
   user!: User;
 
-  constructor(private transactionService: TransactionService, userService: UserService) {
+  constructor(private transactionService: TransactionService, userService: UserService, private dialog: MatDialog) {
     this.transactionService.getLastthree().subscribe({
       next: (transactions) => {
         console.log('Received transactions:', transactions); // Log the JSON response
@@ -39,6 +41,13 @@ export class LastTransactionsComponent {
 
     userService.userObservable.subscribe((newUser) => {
       this.user = newUser;
+    });
+  }
+
+  openTransactionDialog(transaction: Transaction): void {
+    this.dialog.open(TransactionPageComponent, {
+      data: transaction,
+      width: '400px'
     });
   }
 }
