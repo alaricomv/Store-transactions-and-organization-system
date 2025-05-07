@@ -40,6 +40,8 @@ export class TransactionPageComponent {
   closedDialog(): void{
     this.dialogRef.close();
   }
+
+  // Function to print the page, includes a small html call to css file to format the print page.
   printPage(): void {
     const printContent = document.getElementById('printable-section');
     if (printContent) {
@@ -70,6 +72,16 @@ export class TransactionPageComponent {
         }
       }
     }
+  }
+
+  deleteTransaction(id: number): void {
+    this.transactionService.deleteTransaction(id).subscribe(() => {
+      console.log('Transaction deleted successfully');
+      this.dialogRef.close();
+      window.location.reload();
+    }, error => {
+      console.error('Error deleting transaction:', error);
+    });
   }
 
 }

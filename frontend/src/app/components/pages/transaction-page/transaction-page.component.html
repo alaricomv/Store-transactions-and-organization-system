@@ -12,5 +12,6 @@
     <div class="non-printable">
         <button mat-button (click)="closedDialog()">Volver</button>
         <button mat-button (click)="printPage()">Imprimir</button>
+        <button mat-button *ngIf="transaction?.id !== undefined" (click)="deleteTransaction(transaction.id!)">Eliminar</button>
     </div>
 </div>

@@ -3,7 +3,7 @@ import { Transaction } from '../shared/models/transaction';
 import { sample_transactions } from '../../data';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { LAST_TRANSACTIONS_URL, TRANSACTION_BY_ID_URL } from '../shared/constants/urls';
+import { LAST_TRANSACTIONS_URL, TRANSACTION_BY_ID_URL, TRANSACTIONS_URL } from '../shared/constants/urls';
 
 @Injectable({
   providedIn: 'root'
@@ -27,4 +27,18 @@ export class TransactionService {
   getTransactionById(id: number): Observable<Transaction> {
     return this.http.get<Transaction>(TRANSACTION_BY_ID_URL + id);
   }
+
+  deleteTransaction(id: number): Observable<any> {
+    const url = `${TRANSACTION_BY_ID_URL}${id}`; // Construct the full URL
+    console.log('HTTP Request URL:', url); // Log the URL to the console
+    return this.http.delete(url);
+  }
+
+  createTransaction(transaction: Transaction): Observable<Transaction> {
+    const url = TRANSACTIONS_URL; // Construct the full URL
+    console.log('HTTP Request URL:', url); // Log the URL to the console
+    return this.http.post<Transaction>(url, transaction);
+  }
+
+
 }

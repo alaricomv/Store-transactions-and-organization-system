@@ -106,6 +106,7 @@ app.get('/lasttransactions/:id', async (req, res) => {
 
 // Create transaction
 app.post('/transactions', express.json(), async (req, res) => {
+    console.log(req.body);
     const { user_id, total } = req.body;
     if (!user_id || !total) {
         return res.status(400).send('All fields are required');
