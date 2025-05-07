@@ -1,5 +1,5 @@
 import express from 'express';
-import { getUsers,getUserById, createUser, getTransactions, getLastTransactions, getTransactionById, getTransactionByDate, createTransaction,deleteTransaction, createTotalTransactions, getTotalTransactionsbyId,getLastTotalTransactions, getUserVerification } from './database.js';
+import { getUsers,getUserById, createUser, getTransactions, getLastTransactions, getTransactionById, getTransactionByDate, createTransaction,deleteTransaction, createTotalTransactions, getTotalTransactionsbyId, getTotalTransactionsbyUserId, getLastTotalTransactions, getUserVerification } from './database.js';
 import cors from 'cors';
 import jwt from 'jsonwebtoken';
 
@@ -139,6 +139,18 @@ app.delete('/transactions/:id', async (req, res) => {
 
 // Total transactions routes
 
+// Total transactions by ID
+app.get('/totaltransactions/:id', async (req, res) => {
+    const id = req.params.id;
+    const transaction = await getTotalTransactionsbyId(id);
+    if (transaction) {
+        res.send(transaction);
+    } else {
+        res.status(404).send('Transaction not found');
+    }
+})
+
+
 // Total transactions by user ID and date
 app.post('/totaltransactions/:user_id/:date', async (req, res) => {
     const user_id = req.params.user_id;
@@ -152,9 +164,10 @@ app.post('/totaltransactions/:user_id/:date', async (req, res) => {
     }
 })
 
-app.get('/totaltransactions/:user_id', async (req, res) => {
+// Total transactions by user ID
+app.get('/totaltransactions/user/:user_id', async (req, res) => {
     const user_id = req.params.user_id;
-    const totalTransactions = await getTotalTransactionsbyId(user_id);
+    const totalTransactions = await getTotalTransactionsbyUserId(user_id);
     if (totalTransactions.length > 0) {
         res.send(totalTransactions);
     } else {
@@ -162,9 +175,10 @@ app.get('/totaltransactions/:user_id', async (req, res) => {
     }
 })
 
-app.get('/lasttotaltransactions/:id', async (req, res) => {
-    const id = req.params.id;
-    const transactions = await getLastTotalTransactions(id);
+
+app.get('/lasttotaltransactions/:user_id', async (req, res) => {
+    const user_id = req.params.user_id;
+    const transactions = await getLastTotalTransactions(user_id);
     if (transactions.length > 0) {
         res.send(transactions);
     } else {

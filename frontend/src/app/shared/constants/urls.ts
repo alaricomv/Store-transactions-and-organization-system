@@ -6,6 +6,7 @@ export const TRANSACTION_BY_ID_URL = TRANSACTIONS_URL + '/';
 export const TRANSACTION_BY_DATE_URL = TRANSACTIONS_URL + '/date/';
 export const TOTAL_TRANSACTIONS_URL = BASE_URL + '/totaltransactions';
 export const TOTAL_TRANSACTIONS_BY_ID_URL = TOTAL_TRANSACTIONS_URL + '/';
+export const TOTAL_TRANSACTIONS_BY_USER_ID_URL = TOTAL_TRANSACTIONS_URL + '/user/';
 export const LAST_TOTAL_TRANSACTIONS_URL = BASE_URL + '/lasttotaltransactions';
 export const USERS_URL = BASE_URL + '/users';
 export const USER_BY_ID_URL = USERS_URL + '/';
