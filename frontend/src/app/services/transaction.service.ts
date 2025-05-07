@@ -3,7 +3,8 @@ import { Transaction } from '../shared/models/transaction';
 import { sample_transactions } from '../../data';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { LAST_TRANSACTIONS_URL, TRANSACTION_BY_ID_URL, TRANSACTIONS_URL } from '../shared/constants/urls';
+import { LAST_TRANSACTIONS_URL, TOTAL_TRANSACTIONS_URL, TRANSACTION_BY_ID_URL, TRANSACTIONS_URL } from '../shared/constants/urls';
+import { Total_transaction } from '../shared/models/total_transactions';
 
 @Injectable({
   providedIn: 'root'
@@ -38,6 +39,20 @@ export class TransactionService {
     const url = TRANSACTIONS_URL; // Construct the full URL
     console.log('HTTP Request URL:', url); // Log the URL to the console
     return this.http.post<Transaction>(url, transaction);
+  }
+
+  createTotalTransaction(transaction: Transaction): Observable<Total_transaction> {
+    const url = TOTAL_TRANSACTIONS_URL; // Construct the full URL
+    console.log('HTTP Request URL:', url); // Log the URL to the console
+    return this.http.post<Total_transaction>(url, transaction); 
+  }
+
+  getLastTotalTransactions(): Observable<Total_transaction[]> {
+    const user = JSON.parse(localStorage.getItem('User') || '{}');
+    const userId = user.id; // Get the user ID from local storage
+    const url = `${TOTAL_TRANSACTIONS_URL}/${userId}`; // Construct the full URL
+    console.log('HTTP Request URL:', url); // Log the URL to the console
+    return this.http.get<Total_transaction[]>(url);
   }
 
 

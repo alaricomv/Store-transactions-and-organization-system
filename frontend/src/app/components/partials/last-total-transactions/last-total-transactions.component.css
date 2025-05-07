@@ -1,0 +1,60 @@
+/* Container for the last transactions list */
+.last-transactions-container {
+    background-color: #ffffff;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 400px;
+    margin: 0 auto;
+  }
+  
+  /* Header styling */
+  .last-transactions-container h1 {
+    font-size: 1.5rem;
+    color: #333;
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  /* List styling */
+  .last-transactions-container ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  /* Individual transaction items */
+  .last-transactions-container li {
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    margin-bottom: 15px;
+    padding: 15px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Paragraph styling inside list items */
+  .last-transactions-container li p {
+    margin: 5px 0;
+    font-size: 1rem;
+    color: #555;
+  }
+  
+  /* Highlight for strong text */
+  .last-transactions-container li p strong {
+    color: #333;
+    font-weight: bold;
+  }
+  
+  /* Responsive design for smaller screens */
+  @media (max-width: 768px) {
+    .last-transactions-container {
+      max-width: 100%;
+      padding: 15px;
+    }
+  
+    .last-transactions-container li {
+      padding: 10px;
+    }
+  }
