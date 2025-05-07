@@ -1,5 +1,5 @@
 import express from 'express';
-import { getUsers,getUserById, createUser, getTransactions, getLastTransactions, getTransactionById, getTransactionByDate, createTransaction,deleteTransaction, createTotalTransactions, getTotalTransactionsbyId, getUserVerification } from './database.js';
+import { getUsers,getUserById, createUser, getTransactions, getLastTransactions, getTransactionById, getTransactionByDate, createTransaction,deleteTransaction, createTotalTransactions, getTotalTransactionsbyId,getLastTotalTransactions, getUserVerification } from './database.js';
 import cors from 'cors';
 import jwt from 'jsonwebtoken';
 
@@ -94,6 +94,7 @@ app.get('/transactions/date/:date', async (req, res) => {
     }
 })
 
+//Last 3 transactions by user ID
 app.get('/lasttransactions/:id', async (req, res) => {
     const id = req.params.id;
     const transactions = await getLastTransactions(id);
@@ -156,6 +157,16 @@ app.get('/totaltransactions/:user_id', async (req, res) => {
     const totalTransactions = await getTotalTransactionsbyId(user_id);
     if (totalTransactions.length > 0) {
         res.send(totalTransactions);
+    } else {
+        res.status(404).send('No total transactions found for this user');
+    }
+})
+
+app.get('/lasttotaltransactions/:id', async (req, res) => {
+    const id = req.params.id;
+    const transactions = await getLastTotalTransactions(id);
+    if (transactions.length > 0) {
+        res.send(transactions);
     } else {
         res.status(404).send('No total transactions found for this user');
     }

@@ -114,5 +114,13 @@ export async function createTotalTransactions(user_id, date) {
 }
 
 
+export async function getLastTotalTransactions(user_id) {
+    const [rows] = await pool.query(
+        'SELECT * FROM total_transactions WHERE user_id = ? ORDER BY date DESC LIMIT 3',
+        [user_id]
+    );
+    return rows; // Return all 3 rows, not just the first one
+}
+
 const result = await getUsers(); // Call the function to get users
 console.log(result); // Output the result of the query
