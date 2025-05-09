@@ -134,5 +134,10 @@ export async function getLastTotalTransactions(user_id) {
     return rows; // Return all 3 rows, not just the first one
 }
 
+export async function deleteTotalTransaction(id) {
+    const [result] = await pool.query('DELETE FROM total_transactions WHERE id = ?', [id]);
+    return result.affectedRows > 0; // Return true if a row was deleted
+}
+
 const result = await getUsers(); // Call the function to get users
 console.log(result); // Output the result of the query

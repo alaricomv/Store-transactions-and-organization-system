@@ -1,5 +1,5 @@
 import express from 'express';
-import { getUsers,getUserById, createUser, getTransactions, getLastTransactions, getTransactionById, getTransactionByDate, createTransaction,deleteTransaction, createTotalTransactions, getTotalTransactionsbyId, getTotalTransactionsbyUserId, getLastTotalTransactions, getUserVerification } from './database.js';
+import { getUsers,getUserById, createUser, getTransactions, getLastTransactions, getTransactionById, getTransactionByDate, createTransaction,deleteTransaction, createTotalTransactions, getTotalTransactionsbyId, getTotalTransactionsbyUserId, getLastTotalTransactions, getUserVerification, deleteTotalTransaction } from './database.js';
 import cors from 'cors';
 import jwt from 'jsonwebtoken';
 
@@ -185,6 +185,21 @@ app.get('/lasttotaltransactions/:user_id', async (req, res) => {
         res.send(transactions);
     } else {
         res.status(404).send('No total transactions found for this user');
+    }
+})
+
+app.delete('/totaltransactions/:id', async (req, res) => {
+    const id = req.params.id;
+    try {
+        const result = await deleteTotalTransaction(id);
+        if (result) {
+            res.status(204).send("Deleted correctly"); // No content to send back
+        } else {
+            res.status(404).send('Transaction not found');
+        }
+    } catch (error) {
+        console.error(error);
+        res.status(500).send('Error deleting transaction');
     }
 })
 
