@@ -61,5 +61,11 @@ export class TransactionService {
     return this.http.get<Total_transaction>(TOTAL_TRANSACTIONS_BY_ID_URL + id);
   }
 
+  deleteTotalTransaction(id: number): Observable<any> {
+    const url = `${TOTAL_TRANSACTIONS_BY_ID_URL}${id}`; // Construct the full URL
+    console.log('HTTP Request URL:', url); // Log the URL to the console
+    return this.http.delete(url);
+  }
+
 
 }
