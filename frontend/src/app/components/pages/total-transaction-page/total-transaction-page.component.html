@@ -1,1 +1,18 @@
-<p>total-transaction-page works!</p>
+<div>
+    <div class="printable" id="printable-section">
+        <h1 class="only-printable">{{user.company_name}}</h1>
+        <h1 class="non-printable">Detalles de la transacción</h1>
+        <div *ngIf="totaltransaction">
+            <p><strong>ID:</strong> {{ totaltransaction.id }}</p>
+            <p><strong>User:</strong> {{ totaltransaction.user_id }}</p>
+            <p><strong>Date:</strong> {{ totaltransaction.date | date:'fullDate' }} {{ totaltransaction.date | date:'shortTime' }}</p>
+            <p><strong>Total:</strong> ${{ totaltransaction.total }}</p>
+            <p><strong>Numero de Personas:</strong> {{ totaltransaction.number_transactions }}</p>
+        </div>
+    </div>
+    <div class="non-printable">
+        <button mat-button (click)="closedDialog()">Volver</button>
+        <!-- <button mat-button (click)="printPage()">Imprimir</button> -->
+        <!-- <button mat-button *ngIf="totaltransaction?.id !== undefined" (click)="deleteTransaction(totaltransaction.id!)">Eliminar</button> -->
+    </div>
+</div>

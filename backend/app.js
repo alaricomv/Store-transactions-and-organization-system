@@ -152,15 +152,17 @@ app.get('/totaltransactions/:id', async (req, res) => {
 
 
 // Total transactions by user ID and date
-app.post('/totaltransactions/:user_id/:date', async (req, res) => {
-    const user_id = req.params.user_id;
-    const date = req.params.date;
+app.post('/totaltransactions', async (req, res) => {
+    const { user_id, date } = req.body;
+    if (!user_id || !date) {
+        return res.status(400).send('All fields are required');
+    }
     try {
-        const totalTransactions = await createTotalTransactions(user_id, date);
-        res.status(201).send(totalTransactions);
+        const newTransaction = await createTotalTransactions(user_id, date);
+        res.status(201).send(newTransaction);
     } catch (error) {
         console.error(error);
-        res.status(500).send('Error creating total transactions');
+        res.status(500).send('Error creating total transaction');
     }
 })
 

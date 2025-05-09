@@ -101,11 +101,14 @@ export async function getTotalTransactionsbyUserId(user_id) {
 //Total transactions by date and user ID
 export async function createTotalTransactions(user_id, date) {
     // Query to calculate the total and count of transactions for the given user and date
+    const formattedDate = new Date(date).toISOString().split('T')[0];
+
+    
     const [rows] = await pool.query(
         `SELECT SUM(total) AS total, COUNT(*) AS number_transactions 
          FROM transactions 
          WHERE user_id = ? AND DATE(date) = ?`,
-        [user_id, date]
+        [user_id, formattedDate]
     );
 
     const total = rows[0].total || 0; // Default to 0 if no transactions
