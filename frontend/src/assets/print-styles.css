@@ -1,0 +1,38 @@
+/*Styles for print only*/
+
+body {
+    font-family: Arial, sans-serif;
+    color: #333;
+    margin: 20px;
+    padding: 20px;
+  }
+  
+  h1 {
+    font-size: 28px;
+    text-align: center;
+    margin-bottom: 20px;
+    color: black;
+    border-bottom: 2px solid #ddd;
+    padding-bottom: 10px;
+  }
+  
+  p {
+    font-size: 18px;
+    line-height: 1.6;
+    margin: 10px 0;
+  }
+  
+  p strong {
+    font-weight: bold;
+    color: #222;
+  }
+
+  /* Will not appear in the print*/
+  .non-printable {
+    display: none;
+  }
+
+  /* Will only appear in the print*/
+  .only-printable {
+    display: block;
+  }

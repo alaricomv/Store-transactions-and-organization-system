@@ -1,4 +1,7 @@
 import { Component } from '@angular/core';
+import { TransactionService } from '../../../services/transaction.service';
+import { User } from '../../../shared/models/user';
+import { UserService } from '../../../services/user.service';
 
 @Component({
   selector: 'app-calculator',
@@ -10,6 +13,16 @@ import { Component } from '@angular/core';
 export class CalculatorComponent {
   input:string = '';
   result:string = '';
+  user!: User;
+
+  constructor(
+    private transactionService:TransactionService,
+    private userService: UserService
+  ){
+    userService.userObservable.subscribe((newUser) => {
+      this.user = newUser;
+    });
+  }
   
  
   pressNum(num: string) {
@@ -100,6 +113,42 @@ export class CalculatorComponent {
     this.calcAnswer();
     this.input = this.result;
     if (this.input=="0") this.input="";
+  }
+
+  addTransaction() {
+    const totalvalue = Number(this.result);
+    const transaction = {
+      user_id: this.user.id,
+      total: totalvalue
+    };
+    this.transactionService.createTransaction(transaction).subscribe((response) => {
+      console.log('Transaction added successfully:', response);
+      window.location.reload();
+    }
+    , (error) => {
+      console.error('Error adding transaction:', error);
+    }
+    );
+  }
+
+  addTotalTransaction() {
+    const now = new Date();
+  const datetoday: Date = new Date(now.getFullYear(), now.getMonth(), now.getDate()); // Create a Date object in YYYY-MM-DD format
+
+    const totaltransaction = {
+      user_id: this.user.id,
+      date: datetoday
+    }
+
+    console.log(totaltransaction);
+    this.transactionService.createTotalTransaction(totaltransaction).subscribe((response) => {
+      console.log('Total Transaction added successfully:', response);
+      window.location.reload();
+    }
+    , (error) => {
+      console.error('Error adding Total Transaction:', error);
+    }
+    );
   }
 
 }

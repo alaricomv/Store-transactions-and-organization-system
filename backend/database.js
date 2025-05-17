@@ -86,18 +86,29 @@ export async function deleteTransaction(id) {
 
 // Total transactions functions
 
-export async function getTotalTransactionsbyId(user_id) {
+
+export async function getTotalTransactionsbyId(id) {
+    const [rows] = await pool.query('SELECT * FROM total_transactions WHERE id = ?', [id]);
+    return rows[0];
+}
+
+//Total transactions by user ID
+export async function getTotalTransactionsbyUserId(user_id) {
     const [rows] = await pool.query('SELECT * FROM total_transactions WHERE user_id = ?',[user_id]);
     return rows;
 }
 
+//Total transactions by date and user ID
 export async function createTotalTransactions(user_id, date) {
     // Query to calculate the total and count of transactions for the given user and date
+    const formattedDate = new Date(date).toISOString().split('T')[0];
+
+    
     const [rows] = await pool.query(
         `SELECT SUM(total) AS total, COUNT(*) AS number_transactions 
          FROM transactions 
          WHERE user_id = ? AND DATE(date) = ?`,
-        [user_id, date]
+        [user_id, formattedDate]
     );
 
     const total = rows[0].total || 0; // Default to 0 if no transactions
@@ -113,6 +124,20 @@ export async function createTotalTransactions(user_id, date) {
     return getTotalTransactionsbyId(id); // Return the newly created record
 }
 
+
+// Get the last 3 total transactions for a user
+export async function getLastTotalTransactions(user_id) {
+    const [rows] = await pool.query(
+        'SELECT * FROM total_transactions WHERE user_id = ? ORDER BY date DESC LIMIT 3',
+        [user_id]
+    );
+    return rows; // Return all 3 rows, not just the first one
+}
+
+export async function deleteTotalTransaction(id) {
+    const [result] = await pool.query('DELETE FROM total_transactions WHERE id = ?', [id]);
+    return result.affectedRows > 0; // Return true if a row was deleted
+}
 
 const result = await getUsers(); // Call the function to get users
 console.log(result); // Output the result of the query

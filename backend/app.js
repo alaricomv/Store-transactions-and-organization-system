@@ -1,5 +1,5 @@
 import express from 'express';
-import { getUsers,getUserById, createUser, getTransactions, getLastTransactions, getTransactionById, getTransactionByDate, createTransaction,deleteTransaction, createTotalTransactions, getTotalTransactionsbyId, getUserVerification } from './database.js';
+import { getUsers,getUserById, createUser, getTransactions, getLastTransactions, getTransactionById, getTransactionByDate, createTransaction,deleteTransaction, createTotalTransactions, getTotalTransactionsbyId, getTotalTransactionsbyUserId, getLastTotalTransactions, getUserVerification, deleteTotalTransaction } from './database.js';
 import cors from 'cors';
 import jwt from 'jsonwebtoken';
 
@@ -94,6 +94,7 @@ app.get('/transactions/date/:date', async (req, res) => {
     }
 })
 
+//Last 3 transactions by user ID
 app.get('/lasttransactions/:id', async (req, res) => {
     const id = req.params.id;
     const transactions = await getLastTransactions(id);
@@ -106,6 +107,7 @@ app.get('/lasttransactions/:id', async (req, res) => {
 
 // Create transaction
 app.post('/transactions', express.json(), async (req, res) => {
+    console.log(req.body);
     const { user_id, total } = req.body;
     if (!user_id || !total) {
         return res.status(400).send('All fields are required');
@@ -137,26 +139,67 @@ app.delete('/transactions/:id', async (req, res) => {
 
 // Total transactions routes
 
-// Total transactions by user ID and date
-app.post('/totaltransactions/:user_id/:date', async (req, res) => {
-    const user_id = req.params.user_id;
-    const date = req.params.date;
-    try {
-        const totalTransactions = await createTotalTransactions(user_id, date);
-        res.status(201).send(totalTransactions);
-    } catch (error) {
-        console.error(error);
-        res.status(500).send('Error creating total transactions');
+// Total transactions by ID
+app.get('/totaltransactions/:id', async (req, res) => {
+    const id = req.params.id;
+    const transaction = await getTotalTransactionsbyId(id);
+    if (transaction) {
+        res.send(transaction);
+    } else {
+        res.status(404).send('Transaction not found');
     }
 })
 
-app.get('/totaltransactions/:user_id', async (req, res) => {
+
+// Total transactions by user ID and date
+app.post('/totaltransactions', async (req, res) => {
+    const { user_id, date } = req.body;
+    if (!user_id || !date) {
+        return res.status(400).send('All fields are required');
+    }
+    try {
+        const newTransaction = await createTotalTransactions(user_id, date);
+        res.status(201).send(newTransaction);
+    } catch (error) {
+        console.error(error);
+        res.status(500).send('Error creating total transaction');
+    }
+})
+
+// Total transactions by user ID
+app.get('/totaltransactions/user/:user_id', async (req, res) => {
     const user_id = req.params.user_id;
-    const totalTransactions = await getTotalTransactionsbyId(user_id);
+    const totalTransactions = await getTotalTransactionsbyUserId(user_id);
     if (totalTransactions.length > 0) {
         res.send(totalTransactions);
     } else {
         res.status(404).send('No total transactions found for this user');
+    }
+})
+
+
+app.get('/lasttotaltransactions/:user_id', async (req, res) => {
+    const user_id = req.params.user_id;
+    const transactions = await getLastTotalTransactions(user_id);
+    if (transactions.length > 0) {
+        res.send(transactions);
+    } else {
+        res.status(404).send('No total transactions found for this user');
+    }
+})
+
+app.delete('/totaltransactions/:id', async (req, res) => {
+    const id = req.params.id;
+    try {
+        const result = await deleteTotalTransaction(id);
+        if (result) {
+            res.status(204).send("Deleted correctly"); // No content to send back
+        } else {
+            res.status(404).send('Transaction not found');
+        }
+    } catch (error) {
+        console.error(error);
+        res.status(500).send('Error deleting transaction');
     }
 })
 
