@@ -70,10 +70,10 @@ export async function getTransactionByUserId(user_id) {
     return rows;
 }
 
-export async function getTransactionByDate(date) {
+export async function getTransactionByDate(date,id) {
     const [rows] = await pool.query(
-        'SELECT * FROM transactions WHERE date BETWEEN ? AND ?',
-        [`${date} 00:00:00`, `${date} 23:59:59`]
+        'SELECT * FROM transactions WHERE date BETWEEN ? AND ? AND user_id = ?',
+        [`${date} 00:00:00`, `${date} 23:59:59`, id]
     );
     return rows;
 }

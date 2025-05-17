@@ -84,9 +84,10 @@ app.get('/transactions/:id', async (req, res) => {
 })
 
 // Transaction by date
-app.get('/transactions/date/:date', async (req, res) => {
+app.get('/transactions/date/:date/:user_id', async (req, res) => {
     const date = req.params.date;
-    const transactions = await getTransactionByDate(date);
+    const user_id = req.params.user_id;
+    const transactions = await getTransactionByDate(date,user_id);
     if (transactions.length > 0) {
         res.send(transactions);
     } else {
