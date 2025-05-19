@@ -1,0 +1,40 @@
+
+<mat-form-field>
+  <mat-label>Elige una fecha</mat-label>
+  <input matInput [matDatepicker]="picker" [formControl]="date">
+  <mat-hint>MM/DD/YYYY</mat-hint>
+  <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+  <mat-datepicker #picker></mat-datepicker>
+</mat-form-field>
+
+<mat-paginator
+  [length]="transactions.length"
+  [pageSize]="pageSize"
+  [pageIndex]="pageIndex"
+  [pageSizeOptions]="[5, 10, 25, 100]"
+  (page)="onPageChange($event)"
+  aria-label="Select page">
+</mat-paginator>
+
+<!-- Transactions Table -->
+<table *ngIf="paginatedTransactions.length > 0" class="transactions-table">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>User</th>
+      <th>Date</th>
+      <th>Total</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let transaction of paginatedTransactions">
+      <td>{{ transaction.id }}</td>
+      <td>{{ transaction.user_id }}</td>
+      <td>{{ transaction.date | date:'yyyy-MM-dd HH:mm:ss' }}</td>
+      <td>${{ transaction.total }}</td>
+    </tr>
+  </tbody>
+</table>
+<div *ngIf="paginatedTransactions.length === 0">
+  No hay transacciones para esta fecha.
+</div>
