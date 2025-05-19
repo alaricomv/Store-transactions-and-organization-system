@@ -51,4 +51,19 @@ export class UserService {
     }
     return new User();
    }
+
+   register(user:User):Observable<User>{
+    return this.http.post<User>(USER_LOGIN_URL, user).pipe(
+      tap({
+        next: (user) => {
+          this.setUserToLocalStorage(user);
+          this.userSubject.next(user);
+          this.toastrService.success('Registration successful', 'Success');
+        },
+        error: (errorResponse) => {
+          this.toastrService.error(errorResponse.error, 'Registration Failed');
+        }
+      })
+    );
+   }
 }

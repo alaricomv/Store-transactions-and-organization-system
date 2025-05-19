@@ -98,6 +98,16 @@ export async function getTotalTransactionsbyUserId(user_id) {
     return rows;
 }
 
+
+// Get transactions by date and user ID
+export async function getTotalTransactionByDate(date,id) {
+    const [rows] = await pool.query(
+        'SELECT * FROM total_transactions WHERE date BETWEEN ? AND ? AND user_id = ?',
+        [`${date} 00:00:00`, `${date} 23:59:59`, id]
+    );
+    return rows;
+}
+
 //Total transactions by date and user ID
 export async function createTotalTransactions(user_id, date) {
     // Query to calculate the total and count of transactions for the given user and date
@@ -116,8 +126,8 @@ export async function createTotalTransactions(user_id, date) {
 
     // Insert the calculated values into the total_transactions table
     const [result] = await pool.query(
-        'INSERT INTO total_transactions (user_id, total, number_transactions) VALUES (?, ?, ?)',
-        [user_id, total, number_transactions]
+        'INSERT INTO total_transactions (user_id, total, date, number_transactions) VALUES (?, ?, ?,?)',
+        [user_id, total, date, number_transactions]
     );
 
     const id = result.insertId; // Get the ID of the newly created record

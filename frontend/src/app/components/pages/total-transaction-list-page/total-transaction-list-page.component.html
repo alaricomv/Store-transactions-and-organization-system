@@ -7,6 +7,8 @@
   <mat-datepicker #picker></mat-datepicker>
 </mat-form-field>
 
+<button mat-button (click)="createTotalTransaction()">Crear Corte en esta fecha</button>
+
 <mat-paginator
   [length]="transactions.length"
   [pageSize]="pageSize"
@@ -23,6 +25,7 @@
       <th>ID</th>
       <th>User</th>
       <th>Date</th>
+      <th>Numero de Personas</th>
       <th>Total</th>
     </tr>
   </thead>
@@ -30,11 +33,12 @@
     <tr *ngFor="let transaction of paginatedTransactions">
       <td>{{ transaction.id }}</td>
       <td>{{ transaction.user_id }}</td>
-      <td>{{ transaction.date | date:'yyyy-MM-dd HH:mm:ss' }}</td>
+      <td>{{ transaction.date | date:'yyyy-MM-dd' }}</td>
+      <td>{{ transaction.number_transactions }}</td>
       <td>${{ transaction.total }}</td>
     </tr>
   </tbody>
 </table>
 <div *ngIf="paginatedTransactions.length === 0">
-  No hay transacciones para esta fecha.
+  No hay cortes para esta fecha.
 </div>
