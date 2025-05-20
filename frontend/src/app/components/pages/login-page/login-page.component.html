@@ -16,6 +16,10 @@
                 <div *ngIf="fc['password'].errors['required']">Password is required</div>
             </div>
         </div>
+         <label>
+  <input type="checkbox" formControlName="rememberMe" />
+  Remember Me
+</label>
         <button type="submit">Login</button>
       </form>
     </div>

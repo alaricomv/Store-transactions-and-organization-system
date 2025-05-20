@@ -46,14 +46,18 @@ app.post('/users', express.json(), async (req, res) => {
 
 // Check if user exists and password is correct
 app.post('/users/login', express.json(), async (req, res) => {
-    const { email, password } = req.body;
+    const { email, password, rememberMe } = req.body;
     if (!email || !password) {
         return res.status(400).send('All fields are required');
     }
     try {
         const user = await getUserVerification(email, password);
         if (user) {
-            res.status(200).send(generateTokenResponse(user));
+            if (rememberMe) {
+                res.status(200).send(generateRememberMeTokenResponse(user));
+            } else {
+                res.status(200).send(generateTokenResponse(user));
+            }
         } else {
             res.status(401).send('Invalid credentials');
         }
@@ -221,6 +225,14 @@ const generateTokenResponse = (user) => {
     const token = jwt.sign({ 
         email: user.email, isAdmin: user.isAdmin
     }, 'RandomSecret', { expiresIn: '1h' });
+    user.token = token;
+    return user;
+}
+
+const generateRememberMeTokenResponse = (user) => {
+    const token = jwt.sign({ 
+        email: user.email, isAdmin: user.isAdmin
+    }, 'RandomSecret');
     user.token = token;
     return user;
 }

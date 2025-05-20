@@ -6,4 +6,5 @@ export class User{
     password! : string;
     token! : string;
     isAdmin! : boolean;
+    rememberMe? : boolean;
 }
