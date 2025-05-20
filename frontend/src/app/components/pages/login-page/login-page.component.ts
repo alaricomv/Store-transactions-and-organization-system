@@ -24,7 +24,8 @@ export class LoginPageComponent implements OnInit {
   ngOnInit(): void {
     this.loginForm = this.formBuilder.group({
       email: ['', [Validators.required, Validators.email]],
-      password: ['', Validators.required]
+      password: ['', Validators.required],
+      rememberMe: [false]
     });
 
     this.returnUrl = this.activatedRoute.snapshot.queryParams['returnUrl'] || '/home'; // Default to home if no return URL is provided
@@ -39,7 +40,7 @@ export class LoginPageComponent implements OnInit {
     if(this.loginForm.invalid){
       return;
     }
-    this.userService.login({email: this.fc['email'].value, password:this.fc['password'].value}).subscribe(()=>{
+    this.userService.login({email: this.fc['email'].value, password:this.fc['password'].value, rememberMe: this.fc['rememberMe'].value}).subscribe(()=>{
       this.router.navigate([this.returnUrl]); // Navigate to the return URL after successful login
     });
   }

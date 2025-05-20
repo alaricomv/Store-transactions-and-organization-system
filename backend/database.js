@@ -32,12 +32,21 @@ export async function getUserVerification(email,password) {
 }
 
 export async function createUser(company_name, branch_name, password, email) {
+    // Check if the email already exists
+    const [existing] = await pool.query('SELECT id FROM users WHERE email = ?', [email]);
+    if (existing.length > 0) {
+        // Email already in use
+        throw new Error('Email already in use');
+    }
+
     const hashedPassword = await bcrypt.hash(password, 10); // Hash the password
-    const [result] = await pool.query('INSERT INTO users (company_name, branch_name, password, email) VALUES (?, ?, ?, ?)', [company_name, branch_name, hashedPassword, email]);
+    const [result] = await pool.query(
+        'INSERT INTO users (company_name, branch_name, password, email) VALUES (?, ?, ?, ?)',
+        [company_name, branch_name, hashedPassword, email]
+    );
     const id = result.insertId; // Get the ID of the newly created user
     return getUserById(id); // Return the newly created user
 }
-
 
 
 // Transactions functions

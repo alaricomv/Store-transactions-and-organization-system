@@ -9,6 +9,9 @@
                 <li *ngIf="!user.token">
                     <a routerLink="/login">Login</a>
                 </li>
+                <li *ngIf="!user.token">
+                    <a routerLink="/register">Register</a>
+                </li>
                 <li *ngIf="user.token">
                     <a (click)="logout()">Logout</a>
                 </li>

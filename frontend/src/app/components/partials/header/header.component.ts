@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router, NavigationEnd, RouterLink } from '@angular/router';
 import { UserService } from '../../../services/user.service';
 import { User } from '../../../shared/models/user';
@@ -11,7 +11,7 @@ import { CommonModule } from '@angular/common';
   templateUrl: './header.component.html',
   styleUrl: './header.component.css'
 })
-export class HeaderComponent {
+export class HeaderComponent implements OnInit {
 
   user!:User;
 
@@ -25,6 +25,13 @@ export class HeaderComponent {
     userService.userObservable.subscribe((newUser) => {
       this.user = newUser;
     });
+  }
+
+  ngOnInit() {
+    this.userService.userObservable.subscribe(user => {
+      this.user = user;
+    });
+    this.userService.checkTokenValidity(); // Check on load
   }
 
   logout() {
