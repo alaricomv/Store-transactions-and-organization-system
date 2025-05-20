@@ -37,10 +37,10 @@ app.post('/users', express.json(), async (req, res) => {
     }
     try {
         const newUser = await createUser(company_name, branch_name, password, email);
-        res.status(201).send(newUser);
+        res.status(201).send(generateTokenResponse(newUser));
     } catch (error) {
         console.error(error);
-        res.status(500).send('Error creating user');
+        res.status(500).send(error.message);
     }
 })
 
