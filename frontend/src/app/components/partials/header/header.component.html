@@ -1,4 +1,4 @@
-<header>
+<!-- <header>
     <div class="header-container">
         <a routerLink="/" class="logo"> De Moda</a>
         <nav>
@@ -27,4 +27,62 @@
             </ul>
         </nav>
     </div>
-</header>
+</header> -->
+
+<header>
+    <div class="px-3 py-2 text-bg-dark border-bottom">
+        <div class="container">
+            <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+                <a href="/" class="d-flex align-items-center my-2 my-lg-0 me-lg-auto text-white text-decoration-none">
+                    <i class="bi bi-bootstrap me-2" style="font-size: 2rem;"></i>
+                </a>
+                <ul class="nav col-12 col-lg-auto my-2 justify-content-center my-md-0 text-small">
+                    <li>
+                        <a href="/" class="nav-link text-secondary">
+                            <i class="bi bi-house"></i>
+                            Home
+                        </a>
+                    </li>
+                    <li>
+                        <a *ngIf="user.token" href="/calculator" class="nav-link text-white">
+                            <i class="bi bi-calculator"></i>
+                            Calculadora
+                        </a>
+                    </li>
+                    <li>
+                        <a *ngIf="user.token" href="/transactions" class="nav-link text-white">
+                            <i class="bi bi-table"></i>
+                            Transacciones
+                        </a>
+                    </li>
+                    <li>
+                        <a *ngIf="user.token" href="/totaltransactions" class="nav-link text-white">
+                            <i class="bi bi-grid"></i>
+                            Cortes
+                        </a>
+                    </li>
+
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="px-3 py-2 border-bottom mb-3">
+        <div class="container d-flex flex-wrap justify-content-center">
+            <form class="col-12 col-lg-auto mb-2 mb-lg-0 me-lg-auto" role="search">
+                <div *ngIf="user.token" class="fs-4 mb-3">
+                    <i xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person"
+                        viewBox="0 0 16 16">
+                    </i>
+                    {{user.company_name}}
+                </div>
+                <p *ngIf="!user.token" class="h4"></p>
+            </form>
+            <div class="text-end">
+                <button *ngIf="!user.token" routerLink="/login" type="button"
+                    class="btn btn-light text-dark me-2">Login</button>
+                <button *ngIf="!user.token" routerLink="/register" type="button" class="btn btn-primary">Sign-up</button>
+                <button *ngIf="user.token" (click)="logout()" type="button" class="btn btn-primary">Cerrar sesion</button>
+            </div>
+        </div>
+    </div>
+    </header>
