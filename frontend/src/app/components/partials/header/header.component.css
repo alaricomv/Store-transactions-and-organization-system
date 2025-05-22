@@ -1,4 +1,11 @@
+header {
+  background: #f3f8ff;
+}
 
+.px-3.py-2.text-bg-dark.border-bottom {
+  background: #a7d3ff !important;
+  color: #fff !important;
+}
 
 a:hover{
     background: #4da0fff3;
@@ -9,4 +16,24 @@ a:hover{
 ul a{
     padding: 1rem;
     display: inline-block;
+}
+
+a.header-logo-img-link,
+a.header-logo-img-link:hover,
+a.header-logo-img-link:focus,
+a.header-logo-img-link:active {
+  cursor: pointer !important;
+  background: none !important;
+  color: inherit !important;
+}
+
+.header-logo-img {
+  transition: none !important;
+  filter: none !important;
+}
+.header-logo-img:hover, .header-logo-img:focus, .header-logo-img:active {
+  filter: none !important;
+  opacity: 1 !important;
+  box-shadow: none !important;
+  outline: none !important;
 }

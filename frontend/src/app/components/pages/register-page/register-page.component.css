@@ -1,0 +1,58 @@
+.register-bg-container {
+  display: flex;
+  min-height: 100vh;
+}
+
+.register-bg-image {
+  flex: 1 1 50%;
+  min-height: 100vh;
+  background-image: url('/assets/shared/images/register.jpeg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  display: block;
+}
+
+.register-contents {
+  flex: 1 1 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+}
+
+.register-rectangle {
+  background: #fff;
+  border-radius: 1.5rem;
+  box-shadow: 0 6px 32px 0 rgba(80, 120, 200, 0.10), 0 1.5px 6px 0 rgba(80, 120, 200, 0.08);
+  border: 1.5px solid #e3f0ff;
+  padding: 3.5rem 2.5rem;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+  max-width: 540px;
+  width: 100%;
+  transition: box-shadow 0.2s;
+}
+.register-rectangle:hover, .register-rectangle:focus-within {
+  box-shadow: 0 10px 40px 0 rgba(80, 120, 200, 0.18), 0 2px 8px 0 rgba(80, 120, 200, 0.12);
+  border-color: #a7d3ff;
+}
+
+@media (max-width: 767.98px) {
+  .register-bg-container {
+    flex-direction: column;
+  }
+  .register-bg-image {
+    min-height: 200px;
+    height: 200px;
+    width: 100%;
+  }
+  .register-rectangle {
+    padding: 2rem 0.5rem;
+    max-width: 100%;
+  }
+}
+
+.full-width {
+  width: 100%;
+}
