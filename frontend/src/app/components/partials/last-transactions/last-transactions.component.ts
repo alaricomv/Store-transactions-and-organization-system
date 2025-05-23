@@ -16,12 +16,11 @@ import { TransactionPageComponent } from '../../pages/transaction-page/transacti
 registerLocaleData(localeEs); // Register Spanish locale
 
 @Component({
-  selector: 'app-last-transactions',
-  standalone: true,
-  imports: [RouterLink, CommonModule, MatDialogModule],
-  templateUrl: './last-transactions.component.html',
-  styleUrl: './last-transactions.component.css',
-  providers: [{ provide: LOCALE_ID, useValue: 'es' }]
+    selector: 'app-last-transactions',
+    imports: [RouterLink, CommonModule, MatDialogModule],
+    templateUrl: './last-transactions.component.html',
+    styleUrl: './last-transactions.component.css',
+    providers: [{ provide: LOCALE_ID, useValue: 'es' }]
 })
 export class LastTransactionsComponent {
   lasttransactions: Transaction[] = [];

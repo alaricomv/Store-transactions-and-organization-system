@@ -14,21 +14,21 @@ import { PageEvent } from '@angular/material/paginator';
 import { Total_transaction } from '../../../shared/models/total_transactions';
 
 @Component({
-  selector: 'app-total-transaction-list-page',
-  standalone: true,
-  providers: [provideNativeDateAdapter()],
-  imports: [
-    CommonModule,
-    MatPaginatorModule, 
-    MatDatepickerModule, 
-    MatInputModule, 
-    MatFormFieldModule,
-    MatFormFieldModule,
-    FormsModule,
-    ReactiveFormsModule,],
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  templateUrl: './total-transaction-list-page.component.html',
-  styleUrl: './total-transaction-list-page.component.css'
+    selector: 'app-total-transaction-list-page',
+    providers: [provideNativeDateAdapter()],
+    imports: [
+        CommonModule,
+        MatPaginatorModule,
+        MatDatepickerModule,
+        MatInputModule,
+        MatFormFieldModule,
+        MatFormFieldModule,
+        FormsModule,
+        ReactiveFormsModule,
+    ],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    templateUrl: './total-transaction-list-page.component.html',
+    styleUrl: './total-transaction-list-page.component.css'
 })
 export class TotalTransactionListPageComponent {
   transactions: Total_transaction[] = [];

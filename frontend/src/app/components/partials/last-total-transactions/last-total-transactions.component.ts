@@ -12,12 +12,11 @@ import { RouterLink } from '@angular/router';
 
 registerLocaleData(localeEs); // Register Spanish locale
 @Component({
-  selector: 'app-last-total-transactions',
-  standalone: true,
-  imports: [RouterLink, CommonModule, MatDialogModule],
-  templateUrl: './last-total-transactions.component.html',
-  styleUrl: './last-total-transactions.component.css',
-  providers: [{ provide: LOCALE_ID, useValue: 'es' }]
+    selector: 'app-last-total-transactions',
+    imports: [RouterLink, CommonModule, MatDialogModule],
+    templateUrl: './last-total-transactions.component.html',
+    styleUrl: './last-total-transactions.component.css',
+    providers: [{ provide: LOCALE_ID, useValue: 'es' }]
 })
 export class LastTotalTransactionsComponent {
     lasttransactions: Total_transaction[] = [];

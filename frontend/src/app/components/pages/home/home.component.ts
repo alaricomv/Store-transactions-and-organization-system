@@ -12,12 +12,11 @@ import { Observable } from 'rxjs';
 registerLocaleData(localeEs); // Register Spanish locale
 
 @Component({
-  selector: 'app-home',
-  standalone: true,
-  imports: [CommonModule, CalculatorComponent, LastTransactionsComponent],
-  templateUrl: './home.component.html',
-  styleUrl: './home.component.css',
-  providers: [{ provide: LOCALE_ID, useValue: 'es' }] // Set locale to Spanish
+    selector: 'app-home',
+    imports: [CommonModule, CalculatorComponent, LastTransactionsComponent],
+    templateUrl: './home.component.html',
+    styleUrl: './home.component.css',
+    providers: [{ provide: LOCALE_ID, useValue: 'es' }] // Set locale to Spanish
 })
 export class HomeComponent {
 

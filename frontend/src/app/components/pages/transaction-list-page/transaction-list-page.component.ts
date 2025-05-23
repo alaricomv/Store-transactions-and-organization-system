@@ -13,21 +13,21 @@ import { ChangeDetectorRef, OnInit } from '@angular/core';
 import { PageEvent } from '@angular/material/paginator';
 
 @Component({
-  selector: 'app-transaction-list-page',
-  standalone: true,
-  providers: [provideNativeDateAdapter()],
-  imports: [
-    CommonModule,
-    MatPaginatorModule, 
-    MatDatepickerModule, 
-    MatInputModule, 
-    MatFormFieldModule,
-    MatFormFieldModule,
-    FormsModule,
-    ReactiveFormsModule,],
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  templateUrl: './transaction-list-page.component.html',
-  styleUrl: './transaction-list-page.component.css'
+    selector: 'app-transaction-list-page',
+    providers: [provideNativeDateAdapter()],
+    imports: [
+        CommonModule,
+        MatPaginatorModule,
+        MatDatepickerModule,
+        MatInputModule,
+        MatFormFieldModule,
+        MatFormFieldModule,
+        FormsModule,
+        ReactiveFormsModule,
+    ],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    templateUrl: './transaction-list-page.component.html',
+    styleUrl: './transaction-list-page.component.css'
 })
 export class TransactionListPageComponent {
   transactions: Transaction[] = [];

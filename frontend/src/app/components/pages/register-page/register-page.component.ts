@@ -7,11 +7,10 @@ import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 
 @Component({
-  selector: 'app-register-page',
-  standalone: true,
-  imports: [ReactiveFormsModule, CommonModule, MatFormFieldModule, MatInputModule, MatButtonModule, FormsModule],
-  templateUrl: './register-page.component.html',
-  styleUrl: './register-page.component.css'
+    selector: 'app-register-page',
+    imports: [ReactiveFormsModule, CommonModule, MatFormFieldModule, MatInputModule, MatButtonModule, FormsModule],
+    templateUrl: './register-page.component.html',
+    styleUrl: './register-page.component.css'
 })
 export class RegisterPageComponent {
 

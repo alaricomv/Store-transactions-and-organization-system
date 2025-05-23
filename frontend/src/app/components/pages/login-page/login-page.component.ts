@@ -5,11 +5,10 @@ import { UserService } from '../../../services/user.service';
 import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
-  selector: 'app-login-page',
-  standalone: true,
-  imports: [ReactiveFormsModule, CommonModule],
-  templateUrl: './login-page.component.html',
-  styleUrl: './login-page.component.css'
+    selector: 'app-login-page',
+    imports: [ReactiveFormsModule, CommonModule],
+    templateUrl: './login-page.component.html',
+    styleUrl: './login-page.component.css'
 })
 export class LoginPageComponent implements OnInit {
   loginForm!: FormGroup;

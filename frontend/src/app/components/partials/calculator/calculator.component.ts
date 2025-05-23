@@ -4,11 +4,10 @@ import { User } from '../../../shared/models/user';
 import { UserService } from '../../../services/user.service';
 
 @Component({
-  selector: 'app-calculator',
-  standalone: true,
-  imports: [],
-  templateUrl: './calculator.component.html',
-  styleUrl: './calculator.component.css'
+    selector: 'app-calculator',
+    imports: [],
+    templateUrl: './calculator.component.html',
+    styleUrl: './calculator.component.css'
 })
 export class CalculatorComponent {
   input:string = '';

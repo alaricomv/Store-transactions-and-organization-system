@@ -8,11 +8,10 @@ import { UserService } from '../../../services/user.service';
 import { User } from '../../../shared/models/user';
 
 @Component({
-  selector: 'app-transaction-page',
-  standalone: true,
-  imports: [CommonModule],
-  templateUrl: './transaction-page.component.html',
-  styleUrl: './transaction-page.component.css'
+    selector: 'app-transaction-page',
+    imports: [CommonModule],
+    templateUrl: './transaction-page.component.html',
+    styleUrl: './transaction-page.component.css'
 })
 export class TransactionPageComponent {
 

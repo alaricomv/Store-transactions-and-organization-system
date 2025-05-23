@@ -13,12 +13,11 @@ import { LastTotalTransactionsComponent } from '../../partials/last-total-transa
 registerLocaleData(localeEs); // Register Spanish locale
 
 @Component({
-  selector: 'app-calculator-page',
-  standalone: true,
-  imports: [CommonModule, CalculatorComponent, LastTransactionsComponent, LastTotalTransactionsComponent],
-  templateUrl: './calculator-page.component.html',
-  styleUrl: './calculator-page.component.css',
-  providers: [{ provide: LOCALE_ID, useValue: 'es' }] 
+    selector: 'app-calculator-page',
+    imports: [CommonModule, CalculatorComponent, LastTransactionsComponent, LastTotalTransactionsComponent],
+    templateUrl: './calculator-page.component.html',
+    styleUrl: './calculator-page.component.css',
+    providers: [{ provide: LOCALE_ID, useValue: 'es' }]
 })
 export class CalculatorPageComponent {
 
