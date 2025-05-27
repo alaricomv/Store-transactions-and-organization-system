@@ -6,6 +6,7 @@ import { provideToastr } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BrowserModule } from '@angular/platform-browser';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
+import { providePrimeNG } from 'primeng/config';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -23,5 +24,6 @@ export const appConfig: ApplicationConfig = {
       progressAnimation: 'increasing',
     }),
     provideAnimationsAsync(),
+    providePrimeNG()
   ]
 };

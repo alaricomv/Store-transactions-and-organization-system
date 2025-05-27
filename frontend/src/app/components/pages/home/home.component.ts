@@ -10,18 +10,26 @@ import { LastTransactionsComponent } from "../../partials/last-transactions/last
 import { Observable } from 'rxjs';
 import { register } from 'swiper/element/bundle';
 import { Swiper } from 'swiper/types';
+import { AnimateOnScrollModule } from 'primeng/animateonscroll';
+import { ButtonModule } from 'primeng/button';
+import AOS from "aos";
+
 
 registerLocaleData(localeEs); // Register Spanish locale
 
 @Component({
     selector: 'app-home',
-    imports: [CommonModule, CalculatorComponent, LastTransactionsComponent],
+    imports: [CommonModule, CalculatorComponent, LastTransactionsComponent, AnimateOnScrollModule, ButtonModule],
     templateUrl: './home.component.html',
     styleUrl: './home.component.css',
     providers: [{ provide: LOCALE_ID, useValue: 'es' }],// Set locale to Spanish
     schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
-export class HomeComponent {
+export class HomeComponent{
+
+  ngOnInit() {
+    AOS.init();
+  }
 
   lasttransactions:Transaction[] = [];
 

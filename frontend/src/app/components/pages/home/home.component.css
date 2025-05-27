@@ -65,6 +65,12 @@
   color: #333;
 }
 
+.container-marketing {
+  padding-top: 20px;
+}	
+
+
+
 /* Responsive Design */
 @media (max-width: 768px) {
   .home-container {

@@ -26,3 +26,11 @@ a{
 }
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+:root {
+  --red: #e63946;
+  --offwhite: #f1faee;
+  --teal: #a8dadc;
+  --blue: #457b9d;
+  --navy: #1d3557;
+}
