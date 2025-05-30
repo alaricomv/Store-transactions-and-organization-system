@@ -1,0 +1,101 @@
+.flashy-corte-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  background: var(--offwhite, #f1faee);
+  box-shadow: 0 4px 24px rgba(69,123,157,0.13);
+  border-radius: 18px;
+  overflow: hidden;
+  margin-top: 2rem;
+  font-size: 1.1rem;
+  animation: fadeIn 0.7s;
+}
+.flashy-corte-table th {
+  background: linear-gradient(90deg, #457b9d 0%, #a8dadc 100%);
+  color: #fff;
+  font-weight: 700;
+  padding: 1rem;
+  border-bottom: 2px solid #a8dadc;
+  letter-spacing: 1px;
+}
+.flashy-corte-table td {
+  padding: 0.9rem 1rem;
+  border-bottom: 1px solid #e0e0e0;
+  text-align: center;
+  transition: background 0.2s;
+}
+.flashy-corte-table tr:hover td {
+  background: #a8dadc22;
+  color: #1d3557;
+  cursor: pointer;
+}
+.amount-corte {
+  font-weight: bold;
+  color: #457b9d;
+  background: #e0fbfc;
+  padding: 0.2em 0.7em;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(69,123,157,0.08);
+  transition: background 0.2s, color 0.2s;
+}
+.no-corte-msg {
+  margin: 2rem 0;
+  text-align: center;
+  color: #457b9d;
+  font-weight: 600;
+  font-size: 1.2rem;
+  letter-spacing: 1px;
+  animation: fadeIn 0.7s;
+}
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px);}
+  to { opacity: 1; transform: translateY(0);}
+}
+
+@media (max-width: 993px) {
+  .transaction-table-responsive,
+  .transaction-table-responsive thead,
+  .transaction-table-responsive tbody,
+  .transaction-table-responsive th,
+  .transaction-table-responsive td,
+  .transaction-table-responsive tr {
+    display: block;
+    width: 100%;
+  }
+  .transaction-table-responsive thead {
+    display: none;
+  }
+  .transaction-table-responsive tr {
+    margin-bottom: 1.2rem;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(69,123,157,0.10);
+    background: #fff;
+    padding: 1rem 0.5rem;
+  }
+  .transaction-table-responsive td {
+    position: relative;
+    padding-left: 50%;
+    text-align: left;
+    border: none;
+    border-bottom: 1px solid #eee;
+    min-height: 40px;
+    font-size: 1rem;
+    background: none;
+    padding-top: 10px;
+  }
+  .transaction-table-responsive td:before {
+    position: absolute;
+    top: 0;
+    left: 0.75rem;
+    width: 45%;
+    white-space: nowrap;
+    font-weight: bold;
+    color: black;
+    content: attr(data-label);
+    padding-top: 10px;
+  }
+
+  .datepicker-mobile-center {
+    justify-content: center;
+  }
+}

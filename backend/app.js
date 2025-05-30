@@ -127,7 +127,7 @@ app.post('/transactions', express.json(), async (req, res) => {
 })
 
 // Delete transaction
-app.delete('/transactions/:id', async (req, res) => {
+app.put('/transactions/:id', async (req, res) => {
     const id = req.params.id;
     try {
         const result = await deleteTransaction(id);

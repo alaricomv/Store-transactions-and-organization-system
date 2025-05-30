@@ -36,4 +36,22 @@ export class HeaderComponent implements OnInit {
   logout() {
     this.userService.logout();
   }
+
+  // Add to your header.component.ts
+openSidebar() {
+  const sidebar = document.getElementById('userSidebar');
+  if (sidebar) {
+    // Bootstrap 5 Offcanvas
+    // @ts-ignore
+    new bootstrap.Offcanvas(sidebar).show();
+  }
+}
+closeSidebar() {
+  const sidebar = document.getElementById('userSidebar');
+  if (sidebar) {
+    // Bootstrap 5 Offcanvas
+    // @ts-ignore
+    new bootstrap.Offcanvas(sidebar).hide();
+  }
+}
 }

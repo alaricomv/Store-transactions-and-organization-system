@@ -1,12 +1,53 @@
 
-<mat-form-field>
-  <mat-label>Elige una fecha</mat-label>
-  <input matInput [matDatepicker]="picker" [formControl]="date">
-  <mat-hint>MM/DD/YYYY</mat-hint>
-  <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
-  <mat-datepicker #picker></mat-datepicker>
-</mat-form-field>
 
+<div style="display: flex; justify-content: center; width: 100%; margin-top: 2rem;">
+  <div style="width: 100%; max-width: 90%; overflow-x: auto;">
+    <div class="datepicker-mobile-center">
+      <mat-form-field style="margin-bottom: 1.5rem; width: 300px;">
+        <mat-label>Elige una fecha</mat-label>
+        <input matInput [matDatepicker]="picker" [formControl]="date">
+        <mat-hint>MM/DD/YYYY</mat-hint>
+        <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+    </div>
+
+    <table class="table table-striped transaction-table-responsive fade-in-table" *ngIf="paginatedTransactions.length > 0"
+           style="width: 100%; min-width: 300px; font-size: 1.1rem;">
+      <thead>
+        <tr>
+          <th scope="col">Numero Transaccion</th>
+          <th scope="col">Usuario</th>
+          <th scope="col">Fecha</th>
+          <th scope="col">Total</th>
+          <th scope="col">Estado</th>
+        </tr>
+      </thead>
+      <tbody>
+  <tr *ngFor="let transaction of paginatedTransactions"
+      [ngClass]="transaction.deleted === 0 ? '' : 'status-row-eliminado'">
+    <td data-label="Numero Transaccion">{{ transaction.id }}</td>
+    <td data-label="Usuario">{{ transaction.user_id }}</td>
+    <td data-label="Fecha">{{ transaction.date | date:'yyyy-MM-dd HH:mm:ss' }}</td>
+    <td data-label="Total">
+      <span class="amount">${{ transaction.total }}</span>
+    </td>
+    <td data-label="Estado">
+      <span 
+        class="status"
+        [ngClass]="transaction.deleted === 0 ? 'status-activo' : 'status-eliminado'">
+        {{ transaction.deleted === 0 ? 'Activo' : 'Eliminado' }}
+      </span>
+    </td>
+  </tr>
+</tbody>
+    </table>
+  </div>
+</div>
+
+<div *ngIf="paginatedTransactions.length === 0" class="no-transactions-msg centered-bold">
+  No hay transacciones para esta fecha.
+</div>
 <mat-paginator
   [length]="transactions.length"
   [pageSize]="pageSize"
@@ -15,26 +56,3 @@
   (page)="onPageChange($event)"
   aria-label="Select page">
 </mat-paginator>
-
-<!-- Transactions Table -->
-<table *ngIf="paginatedTransactions.length > 0" class="transactions-table">
-  <thead>
-    <tr>
-      <th>ID</th>
-      <th>User</th>
-      <th>Date</th>
-      <th>Total</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let transaction of paginatedTransactions">
-      <td>{{ transaction.id }}</td>
-      <td>{{ transaction.user_id }}</td>
-      <td>{{ transaction.date | date:'yyyy-MM-dd HH:mm:ss' }}</td>
-      <td>${{ transaction.total }}</td>
-    </tr>
-  </tbody>
-</table>
-<div *ngIf="paginatedTransactions.length === 0">
-  No hay transacciones para esta fecha.
-</div>

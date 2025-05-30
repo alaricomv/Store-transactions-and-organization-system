@@ -30,59 +30,46 @@
 </header> -->
 
 <header>
-    <div class="px-3 py-2 text-bg-dark border-bottom">
-        <div class="container">
-            <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
-                <a routerLink="/" class="d-flex align-items-center my-2 my-lg-0 me-lg-auto text-white text-decoration-none header-logo-img-link">
-                    <img src="assets/shared/images/logo.png" alt="Logo" style="height: 4.2rem; width: auto; max-width: 260px;" class="header-logo-img" />
-                </a>
-                <ul class="nav col-12 col-lg-auto my-2 justify-content-center my-md-0 text-small">
-                    <li>
-                        <a href="/" class="nav-link text-secondary">
-                            <i class="bi bi-house"></i>
-                            Home
-                        </a>
-                    </li>
-                    <li>
-                        <a *ngIf="user.token" href="/calculator" class="nav-link text-white">
-                            <i class="bi bi-calculator"></i>
-                            Calculadora
-                        </a>
-                    </li>
-                    <li>
-                        <a *ngIf="user.token" href="/transactions" class="nav-link text-white">
-                            <i class="bi bi-table"></i>
-                            Transacciones
-                        </a>
-                    </li>
-                    <li>
-                        <a *ngIf="user.token" href="/totaltransactions" class="nav-link text-white">
-                            <i class="bi bi-grid"></i>
-                            Cortes
-                        </a>
-                    </li>
+  <div class="px-3 py-2 text-bg-dark border-bottom">
+    <div class="container-fluid">
+      <div class="d-flex flex-wrap align-items-center justify-content-between">
+  <a routerLink="/" class="d-flex align-items-center my-2 my-lg-0 me-lg-auto text-decoration-none header-logo-img-link">
+    <img src="assets/shared/images/logo.png" alt="Logo" class="header-logo-img" />
+  </a>
+  <div class="text-end">
+    <a routerLink="/" class="nav-link text-secondary" style="padding: 1.3rem; font-size: 1.18rem;">
+    <i class="bi bi-house"></i> Home
+  </a>
+    <button *ngIf="!user.token" routerLink="/login" type="button" class="btn btn-light text-dark me-2">Login</button>
+    <button *ngIf="user.token" type="button" class="btn btn-primary" (click)="openSidebar()">
+      <i class="bi bi-person"></i> {{ user.company_name }}
+    </button>
+  </div>
+</div>
+    </div>
+  </div>
 
-                </ul>
-            </div>
-        </div>
+  <!-- Sidebar (offcanvas) for logged in users -->
+  <div class="offcanvas offcanvas-end" tabindex="-1" id="userSidebar" aria-labelledby="userSidebarLabel">
+    <div class="offcanvas-header">
+      <h5 class="offcanvas-title" id="userSidebarLabel">
+        <i class="bi bi-person-circle"></i> {{ user.company_name }}
+      </h5>
+      <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close" (click)="closeSidebar()"></button>
     </div>
-    <div class="px-3 py-2 border-bottom mb-3">
-        <div class="container d-flex flex-wrap justify-content-center">
-            <div class="col-12 col-lg-auto mb-2 mb-lg-0 me-lg-auto">
-                <div *ngIf="user.token" class="fs-4 mb-3">
-                    <i xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person"
-                        viewBox="0 0 16 16">
-                    </i>
-                    {{user.company_name}}
-                </div>
-                <p *ngIf="!user.token" class="h4"></p>
-            </div>
-            <div class="text-end">
-                <button *ngIf="!user.token" routerLink="/login" type="button"
-                    class="btn btn-light text-dark me-2">Login</button>
-                <button *ngIf="!user.token" routerLink="/register" type="button" class="btn btn-primary">Sign-up</button>
-                <button *ngIf="user.token" (click)="logout()" type="button" class="btn btn-primary">Cerrar sesion</button>
-            </div>
-        </div>
+    <div class="offcanvas-body">
+      <ul class="list-group mb-3">
+        <li class="list-group-item">
+          <a routerLink="/calculator" class="text-decoration-none"><i class="bi bi-calculator"></i> Calculadora</a>
+        </li>
+        <li class="list-group-item">
+          <a routerLink="/transactions" class="text-decoration-none"><i class="bi bi-table"></i> Transacciones</a>
+        </li>
+        <li class="list-group-item">
+          <a routerLink="/totaltransactions" class="text-decoration-none"><i class="bi bi-grid"></i> Cortes</a>
+        </li>
+      </ul>
+      <button (click)="logout()" class="btn btn-danger w-100"><i class="bi bi-box-arrow-right"></i> Cerrar sesión</button>
     </div>
-    </header>
+  </div>
+</header>

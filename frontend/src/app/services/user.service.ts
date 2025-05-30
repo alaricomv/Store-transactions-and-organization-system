@@ -27,6 +27,7 @@ export class UserService {
           this.setUserToLocalStorage(user);
           this.userSubject.next(user);
           this.toastrService.success('Login successful', 'Success');
+          this.router.navigate(['/calculator']);
       },
       error: (errorResponse) => {
         this.toastrService.error(errorResponse.error, 'Login Failed');

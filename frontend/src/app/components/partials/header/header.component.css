@@ -1,39 +1,164 @@
 header {
-  background: #f3f8ff;
+  background: #fff;
+  position: sticky;
+  top: 0;
+  z-index: 1050;
+  border-bottom: 4px solid #457b9d; /* Blue separator line */
 }
+
+
+.d-flex.flex-wrap.align-items-center.justify-content-between {
+  display: flex !important;
+  flex-direction: row !important;
+  flex-wrap: nowrap !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  width: 100%;
+  gap: 1rem;
+  /* Remove overflow-x: auto; */
+}
+
+.header-logo-img-link,
+.header-logo-img,
+ul.nav,
+.text-end {
+  flex-shrink: 1 !important; /* Allow shrinking */
+  min-width: 0;
+}
+
+.header-logo-img-link,
+.header-logo-img,
+ul.nav,
+.text-end {
+  flex-shrink: 0 !important;
+  min-width: 0;
+}
+
+ul.nav,
+.text-end {
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: center !important;
+  flex-wrap: nowrap !important;
+  gap: 0.5rem;
+  margin-bottom: 0 !important;
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+}
+
 
 .px-3.py-2.text-bg-dark.border-bottom {
-  background: #a7d3ff !important;
-  color: #fff !important;
-}
-
-a:hover{
-    background: #4da0fff3;
-    color: white;
-    cursor: pointer;
-}
-
-ul a{
-    padding: 1rem;
-    display: inline-block;
-}
-
-a.header-logo-img-link,
-a.header-logo-img-link:hover,
-a.header-logo-img-link:focus,
-a.header-logo-img-link:active {
-  cursor: pointer !important;
-  background: none !important;
-  color: inherit !important;
+  background: #fff !important;
+  color: #1d3557 !important;
+  padding-top: 2.2rem !important;
+  padding-bottom: 2.2rem !important;
 }
 
 .header-logo-img {
-  transition: none !important;
-  filter: none !important;
+  height: 7rem !important;
+  max-width: 400px !important;
 }
-.header-logo-img:hover, .header-logo-img:focus, .header-logo-img:active {
-  filter: none !important;
-  opacity: 1 !important;
-  box-shadow: none !important;
-  outline: none !important;
+
+ul a {
+  padding: 1.3rem;
+  font-size: 1.18rem;
+  display: inline-block;
+  color: #222 !important; /* Black text */
+  background: transparent !important;
+  transition: color 0.25s;
+}
+
+ul a:hover,
+ul a:focus {
+  color: #457b9d !important; /* Blue on hover */
+  background: transparent !important;
+  text-decoration: underline;
+}
+
+.text-end > button,
+.text-end > .btn {
+  font-size: 1.35rem;
+  padding: 1.1rem 2.5rem;
+  color: #222 !important; /* Black text */
+  background: #f5f8fa !important;
+  border: 1px solid #457b9d !important;
+  transition: background 0.25s, color 0.25s;
+}
+
+.text-end > .btn-primary:active,
+.text-end > button.btn-primary:active {
+  background: #25496b !important; /* Darker blue */
+  color: #fff !important;
+}
+
+.text-end > .btn-light:active,
+.text-end > button.btn-light:active {
+  background: #bcd0e6 !important; /* Darker light blue */
+  color: #1d3557 !important;
+}
+
+.text-end > .btn-danger:active,
+.text-end > button.btn-danger:active {
+  background: #b22222 !important; /* Darker red */
+  color: #fff !important;
+}
+
+
+.offcanvas-title {
+  font-size: 2rem !important;
+  font-weight: 700 !important;
+  color: #1d3557 !important;
+  text-align: center !important;
+  width: 100%;
+  display: block;
+}
+
+.list-group-item {
+  border: none !important;
+  border-bottom: 1px solid #e0e0e0 !important;
+  border-radius: 0 !important;
+}
+
+.list-group-item:last-child {
+  border-bottom: none !important;
+}
+
+/* Remove width: 100% from the flex container for mobile */
+@media (max-width: 991.98px) {
+  .d-flex.flex-wrap.align-items-center.justify-content-between {
+    flex-direction: row !important;
+    flex-wrap: nowrap !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    gap: 0.5rem;
+    padding-left: 0.5rem !important;
+    padding-right: 0.5rem !important;
+    width: auto !important;         /* <-- Add this line */
+    min-width: 0 !important;        /* <-- Add this line */
+  }
+  .header-logo-img {
+    height: 3.5rem !important;
+    max-width: 40vw !important;
+    min-width: 0 !important;
+    flex-shrink: 1 !important;
+  }
+  ul.nav,
+  .text-end {
+    gap: 0.25rem;
+    min-width: 0 !important;
+    flex-shrink: 1 !important;
+  }
+  ul.nav a {
+    padding: 0.7rem;
+    font-size: 1rem;
+  }
+  .text-end > button,
+  .text-end > .btn {
+    font-size: 1rem;
+    padding: 0.7rem 1.2rem;
+  }
+
+  .text-end {
+    margin-left: 0 !important;
+  }
 }

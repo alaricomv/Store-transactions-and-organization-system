@@ -1,0 +1,91 @@
+.transaction-table-responsive {
+  width: 95%;
+  min-width: 900px;
+  font-size: 1.25rem;
+  margin: 0 auto 2rem auto;
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 4px 24px rgba(69,123,157,0.10);
+  padding: 1.5rem 1rem;
+}
+
+.status-row-eliminado td {
+  background: #e05560 !important;
+  color: #fff !important;
+}
+.datepicker-mobile-center {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.fade-in-table {
+  animation: fadeInTable 0.7s ease;
+}
+.centered-bold {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+  font-size: 1.2rem;
+  min-height: 120px;
+  text-align: center;
+}
+
+@keyframes fadeInTable {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 993px) {
+  .transaction-table-responsive,
+  .transaction-table-responsive thead,
+  .transaction-table-responsive tbody,
+  .transaction-table-responsive th,
+  .transaction-table-responsive td,
+  .transaction-table-responsive tr {
+    display: block;
+    width: 100%;
+  }
+  .transaction-table-responsive thead {
+    display: none;
+  }
+  .transaction-table-responsive tr {
+    margin-bottom: 1.2rem;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(69,123,157,0.10);
+    background: #fff;
+    padding: 1rem 0.5rem;
+  }
+  .transaction-table-responsive td {
+    position: relative;
+    padding-left: 50%;
+    text-align: left;
+    border: none;
+    border-bottom: 1px solid #eee;
+    min-height: 40px;
+    font-size: 1rem;
+    background: none;
+    padding-top: 10px;
+  }
+  .transaction-table-responsive td:before {
+    position: absolute;
+    top: 0;
+    left: 0.75rem;
+    width: 45%;
+    white-space: nowrap;
+    font-weight: bold;
+    color: black;
+    content: attr(data-label);
+    padding-top: 10px;
+  }
+
+  .datepicker-mobile-center {
+    justify-content: center;
+  }
+}

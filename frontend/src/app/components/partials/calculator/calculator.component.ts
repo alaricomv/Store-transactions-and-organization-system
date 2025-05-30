@@ -132,7 +132,7 @@ export class CalculatorComponent {
 
   addTotalTransaction() {
     const now = new Date();
-  const datetoday: Date = new Date(now.getFullYear(), now.getMonth(), now.getDate()); // Create a Date object in YYYY-MM-DD format
+    const datetoday: Date = new Date(now.getFullYear(), now.getMonth(), now.getDate(), now.getHours(), now.getMinutes(), now.getSeconds()); // Create a Date object in YYYY-MM-DD format
 
     const totaltransaction = {
       user_id: this.user.id,
@@ -142,7 +142,7 @@ export class CalculatorComponent {
     console.log(totaltransaction);
     this.transactionService.createTotalTransaction(totaltransaction).subscribe((response) => {
       console.log('Total Transaction added successfully:', response);
-      window.location.reload();
+      //window.location.reload();
     }
     , (error) => {
       console.error('Error adding Total Transaction:', error);

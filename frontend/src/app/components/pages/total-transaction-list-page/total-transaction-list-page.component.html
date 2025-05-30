@@ -1,4 +1,3 @@
-
 <mat-form-field>
   <mat-label>Elige una fecha</mat-label>
   <input matInput [matDatepicker]="picker" [formControl]="date">
@@ -7,19 +6,10 @@
   <mat-datepicker #picker></mat-datepicker>
 </mat-form-field>
 
-<button mat-button (click)="createTotalTransaction()">Crear Corte en esta fecha</button>
-
-<mat-paginator
-  [length]="transactions.length"
-  [pageSize]="pageSize"
-  [pageIndex]="pageIndex"
-  [pageSizeOptions]="[5, 10, 25, 100]"
-  (page)="onPageChange($event)"
-  aria-label="Select page">
-</mat-paginator>
+<button mat-button color="primary" (click)="createTotalTransaction()">Crear Corte en esta fecha</button>
 
 <!-- Transactions Table -->
-<table *ngIf="paginatedTransactions.length > 0" class="transactions-table">
+<table *ngIf="paginatedTransactions.length > 0" class="transactions-table flashy-corte-table">
   <thead>
     <tr>
       <th>ID</th>
@@ -35,10 +25,19 @@
       <td>{{ transaction.user_id }}</td>
       <td>{{ transaction.date | date:'yyyy-MM-dd' }}</td>
       <td>{{ transaction.number_transactions }}</td>
-      <td>${{ transaction.total }}</td>
+      <td><span class="amount-corte">${{ transaction.total }}</span></td>
     </tr>
   </tbody>
 </table>
-<div *ngIf="paginatedTransactions.length === 0">
+<div *ngIf="paginatedTransactions.length === 0" class="no-corte-msg">
   No hay cortes para esta fecha.
 </div>
+
+<mat-paginator
+  [length]="transactions.length"
+  [pageSize]="pageSize"
+  [pageIndex]="pageIndex"
+  [pageSizeOptions]="[5, 10, 25, 100]"
+  (page)="onPageChange($event)"
+  aria-label="Select page">
+</mat-paginator>

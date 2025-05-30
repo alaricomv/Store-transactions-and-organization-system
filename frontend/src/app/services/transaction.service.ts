@@ -37,10 +37,10 @@ export class TransactionService {
     return this.http.get<Transaction[]>(url);
   }
 
-  deleteTransaction(id: number): Observable<any> {
+  deleteTransaction(id: string): Observable<any> {
     const url = `${TRANSACTION_BY_ID_URL}${id}`; // Construct the full URL
     console.log('HTTP Request URL:', url); // Log the URL to the console
-    return this.http.delete(url);
+    return this.http.put<Transaction>(url, { deleted: true });
   }
 
   createTransaction(transaction: Transaction): Observable<Transaction> {

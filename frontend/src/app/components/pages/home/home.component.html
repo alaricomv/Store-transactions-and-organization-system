@@ -1,13 +1,7 @@
 <main role="main">
 
-  <swiper-container
-    slides-per-view="1"
-    space-between="10"
-    navigation="true"
-    pagination="true"
-    autoplay="{ &quot;delay&quot;: 3000, &quot;disableOnInteraction&quot;: false }"
-    style="width: 100%; height: 300px;"
-  >
+  <swiper-container slides-per-view="1" space-between="10" navigation="true" pagination="true"
+    autoplay="{ &quot;delay&quot;: 3000, &quot;disableOnInteraction&quot;: false }" style="width: 100%; height: 300px;">
     <swiper-slide>
       <img src="assets/shared/images/login.jpg" alt="Login" style="width:100%;height:100%;object-fit:cover;" />
     </swiper-slide>
@@ -21,95 +15,131 @@
 
   <div style="height: 40px;"></div>
 
-      <!-- Marketing messaging and featurettes
-      ================================================== -->
-      <!-- Wrap the rest of the page in another container to center all the content. -->
+  <div class="container-fluid marketing">
 
-      ...
-<div class="container marketing">
+    <h2 class="text-center mb-5 flashy-title"
+    style="font-weight:700; letter-spacing:1.5px; color:#fff; font-size:2.5rem; background: linear-gradient(90deg, #457b9d 0%, #1d3557 100%); padding: 18px 0 18px 0; border-radius: 18px; box-shadow: 0 4px 24px rgba(69,123,157,0.10); position:relative; overflow:hidden;">
+  <span class="flashy-underline">Todas las operaciones para tu negocio en un solo lugar</span>
+</h2>
+    <!-- Three columns of text below the carousel -->
+    <div class="row">
+      <div class="col-lg-4 d-flex flex-column align-items-center feature-card">
+        <i class="bi bi-cash-stack"
+          style="font-size: 3.5rem; color: #e63946; margin-bottom: 18px; background: #a8dadc; border-radius: 50%; padding: 18px; transition: transform 0.3s;"></i>
+        <h2 class="text-center">Crea transacciones e imprime tickets de forma rápida y sencilla.</h2>
+        <p class="text-center">Registra tus ventas de manera eficiente sin necesidad de elementos externos.</p>
+        <p><a class="btn btn-secondary" href="/calculator" role="button">Ver detalles »</a></p>
+      </div><!-- /.col-lg-4 -->
+      <div class="col-lg-4 d-flex flex-column align-items-center feature-card">
+        <i class="bi bi-folder2-open"
+          style="font-size: 3.5rem; color: #e63946; margin-bottom: 18px; background: #a8dadc; border-radius: 50%; padding: 18px; transition: transform 0.3s;"></i>
+        <h2 class="text-center">Manten tus transacciones organizadas</h2>
+        <p class="text-center">Todas las transacciones quedan registradas y pueden ser visualizadas en cualquier
+          momento.</p>
+        <p><a class="btn btn-secondary" href="/transactions" role="button">Ver detalles»</a></p>
+      </div><!-- /.col-lg-4 -->
+      <div class="col-lg-4 d-flex flex-column align-items-center feature-card">
+        <i class="bi bi-calculator"
+          style="font-size: 3.5rem; color: #e63946; margin-bottom: 18px; background: #a8dadc; border-radius: 50%; padding: 18px; transition: transform 0.3s;"></i>
+        <h2 class="text-center">Crea cortes en el momento que lo necesites</h2>
+        <p class="text-center">Opciones para crear cortes en cualquier momento o dia</p>
+        <p><a class="btn btn-secondary" href="/totaltransactions" role="button">Ver detalles »</a></p>
+      </div><!-- /.col-lg-4 -->
+    </div><!-- /.row -->
 
-  <h2 class="text-center mb-5" style="font-weight:700; letter-spacing:0.5px; color:var(--navy);">
-    Todas tus operaciones para tu negocio en un solo lugar
-  </h2>
 
-  <!-- Three columns of text below the carousel -->
-  <div class="row">
-    <div class="col-lg-4 d-flex flex-column align-items-center">
-      <i class="bi bi-cash-stack" style="font-size: 3.5rem; color: #e63946; margin-bottom: 18px; background: #a8dadc; border-radius: 50%; padding: 18px;"></i>
-      <h2 class="text-center">Crea transacciones e imprime tickets de forma rápida y sencilla.</h2>
-      <p class="text-center">Registra tus ventas de manera eficiente sin necesidad de elementos externos.</p>
-      <p><a class="btn btn-secondary" href="/calculator" role="button">Ver detalles »</a></p>
-    </div><!-- /.col-lg-4 -->
-    <div class="col-lg-4 d-flex flex-column align-items-center">
-      <i class="bi bi-folder2-open" style="font-size: 3.5rem; color: #e63946; margin-bottom: 18px; background: #a8dadc; border-radius: 50%; padding: 18px;"></i>
-      <h2 class="text-center">Manten tus transacciones organizadas</h2>
-      <p class="text-center">Todas las transacciones quedan registradas y pueden ser visualizadas en cualquier momento.</p>
-      <p><a class="btn btn-secondary" href="/transactions" role="button">Ver detalles»</a></p>
-    </div><!-- /.col-lg-4 -->
-    <div class="col-lg-4 d-flex flex-column align-items-center">
-      <i class="bi bi-calculator" style="font-size: 3.5rem; color: #e63946; margin-bottom: 18px; background: #a8dadc; border-radius: 50%; padding: 18px;"></i>
-      <h2 class="text-center">Crea cortes en el momento que lo necesites</h2>
-      <p class="text-center">Opciones para crear cortes en cualquier momento o dia</p>
-      <p><a class="btn btn-secondary" href="/totaltransactions" role="button">Ver detalles »</a></p>
-    </div><!-- /.col-lg-4 -->
-  </div><!-- /.row -->
+    <!-- START THE FEATURETTES -->
+
+    <hr class="featurette-divider">
+
+    <div class="row featurette align-items-center">
+      <div
+        class="col-md-7 d-flex flex-column justify-content-center featurette-text shadow-lg p-4 rounded-4 mb-4 mb-md-0"
+        style="background: var(--offwhite, #f1faee); border-left: 8px solid var(--blue, #457b9d);">
+        <h2 class="featurette-heading text-center"
+          style="font-weight:700; color:var(--navy, #1d3557); letter-spacing:0.5px;">
+          Diseñado con pequeñas empresas en mente
+        </h2>
+        <p class="lead text-center" style="color:var(--blue, #457b9d); font-size:1.25rem;">
+          Facil de usar, intuitivo y con todas las funciones que necesitas para mantener las finanzas de tu negocio
+          organizado.
+        </p>
+      </div>
+      <div data-aos="fade-left" class="col-md-5">
+        <img class="featurette-image img-fluid mx-auto" alt="500x500" src="assets/shared/images/small-business.png"
+          style="max-width: 100%; height: auto;">
+      </div>
+    </div>
+
+    <hr class="featurette-divider">
+
+    <div class="row featurette align-items-center">
+      <div
+        class="col-md-7 order-md-2 d-flex flex-column justify-content-center featurette-text shadow-lg p-4 rounded-4 mb-4 mb-md-0"
+        style="background: var(--offwhite, #f1faee); border-right: 8px solid var(--teal, #a8dadc);">
+        <h2 class="featurette-heading text-center"
+          style="font-weight:700; color:var(--navy, #1d3557); letter-spacing:0.5px;">
+          Manten todo organizado en una sola aplicacion
+        </h2>
+        <p class="lead text-center" style="color:var(--blue, #457b9d); font-size:1.25rem;">
+          Con la habilidad de realizar las transaciones, imprimir transacciones, realizar cortes e imprimir cortes en
+          una sola aplicacion manten todo en orden. Todo esta registrado para que tu negocio nunca pierda un solo
+          detalle.
+        </p>
+      </div>
+      <div data-aos="fade-right" class="col-md-5 order-md-1">
+        <img class="featurette-image img-fluid mx-auto" alt="500x500" src="assets/shared/images/organized.jpg"
+          style="max-width: 100%; height: auto;">
+      </div>
+    </div>
+
+    <hr class="featurette-divider">
+
+    <div class="row featurette align-items-center">
+      <div
+        class="col-md-7 d-flex flex-column justify-content-center featurette-text shadow-lg p-4 rounded-4 mb-4 mb-md-0"
+        style="background: var(--offwhite, #f1faee); border-left: 8px solid var(--red, #e63946);">
+        <h2 class="featurette-heading text-center"
+          style="font-weight:700; color:var(--navy, #1d3557); letter-spacing:0.5px;">
+          Mucho mas para tu negocio pronto
+        </h2>
+        <p class="lead text-center" style="color:var(--blue, #457b9d); font-size:1.25rem;">
+          Futuras actualizaciones incluyendo: Graficas de ingresos, multiples sucursales, inventario de productos, cobro
+          por producto, y mucho mas
+        </p>
+      </div>
+      <div data-aos="fade-up" class="col-md-5">
+        <img class="featurette-image img-fluid mx-auto" alt="500x500" src="assets/shared/images/development.png"
+          style="max-width: 100%; height: auto;">
+      </div>
+    </div>
+
+    <hr class="featurette-divider">
 
 
-        <!-- START THE FEATURETTES -->
 
-        <hr class="featurette-divider">
+    <!-- /END THE FEATURETTES -->
 
-<div class="row featurette align-items-center">
-  <div class="col-md-7 d-flex flex-column justify-content-center">
-    <h2 class="featurette-heading text-center">Diseñado con pequeñas empresas en mente</h2>
-    <p class="lead text-center">Facil de usar, intuitivo y con todas las funciones que necesitas para mantener las finanzas de tu negocio organizado.</p>
   </div>
-  <div data-aos="fade-left" class="col-md-5">
-    <img class="featurette-image img-fluid mx-auto" alt="500x500" src="assets/shared/images/small-business.png" style="width: 500px; height: 500px;">
-  </div>
-</div>
-
-<hr class="featurette-divider">
-
-<div class="row featurette align-items-center">
-  <div class="col-md-7 order-md-2 d-flex flex-column justify-content-center">
-    <h2 class="featurette-heading text-center">Manten organizado todo en una sola aplicacion</h2>
-    <p class="lead text-center">Con la habilidad de realizar las transaciones, imprimir transacciones, realizar cortes e imprimir cortes en una sola aplicacion manten todo en orden. Todo esta registrado para que tu negocio nunca pierda un solo detalle.</p>
-  </div>
-  <div data-aos="fade-right" class="col-md-5 order-md-1">
-    <img class="featurette-image img-fluid mx-auto" alt="500x500" src="assets/shared/images/organized.jpg" style="width: 500px; height: 500px;">
-  </div>
-</div>
-
-<hr class="featurette-divider">
-
-<div class="row featurette align-items-center">
-  <div class="col-md-7 d-flex flex-column justify-content-center">
-    <h2 class="featurette-heading text-center">Mucho mas para tu negocio pronto</h2>
-    <p class="lead text-center">Futuras actualizaciones incluyendo: Graficas de ingresos, multiples sucursales, inventario de productos, cobro por producto, y mucho mas</p>
-  </div>
-  <div data-aos="fade-up" class="col-md-5">
-  <img class="featurette-image img-fluid mx-auto" alt="500x500" src="assets/shared/images/development.png" style="width: 500px; height: 500px;">
-</div>
-</div>
-
-        <hr class="featurette-divider">
-
-        <!-- /END THE FEATURETTES -->
-
-      </div><!-- /.container -->
 
 
-      <!-- FOOTER -->
-      <footer class="container">
-        <p class="float-right"><a href="#">Back to top</a></p>
-        <p>© 2017-2018 Company, Inc. · <a href="#">Privacy</a> · <a href="#">Terms</a></p>
-      </footer>
-    </main>
+  <!-- FOOTER -->
+  <footer class="container">
+    <p class="float-right"><a href="#">Back to top</a></p>
+    <p>© 2017-2018 Company, Inc. · <a href="#">Privacy</a> · <a href="#">Terms</a></p>
+  </footer>
+</main>
 
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+  integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 
-    <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery-slim.min.js"><\/script>')</script>
-    <script src="../../assets/js/vendor/popper.min.js"></script>
-    <script src="../../dist/js/bootstrap.min.js"></script>
-    <svg xmlns="http://www.w3.org/2000/svg" width="500" height="500" viewBox="0 0 500 500" preserveAspectRatio="none" style="display: none; visibility: hidden; position: absolute; top: -100%; left: -100%;"><defs><style type="text/css"></style></defs><text x="0" y="25" style="font-weight:bold;font-size:25pt;font-family:Arial, Helvetica, Open Sans, sans-serif">500x500</text></svg>
+<script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery-slim.min.js"><\/script>')</script>
+<script src="../../assets/js/vendor/popper.min.js"></script>
+<script src="../../dist/js/bootstrap.min.js"></script>
+<svg xmlns="http://www.w3.org/2000/svg" width="500" height="500" viewBox="0 0 500 500" preserveAspectRatio="none"
+  style="display: none; visibility: hidden; position: absolute; top: -100%; left: -100%;">
+  <defs>
+    <style type="text/css"></style>
+  </defs><text x="0" y="25"
+    style="font-weight:bold;font-size:25pt;font-family:Arial, Helvetica, Open Sans, sans-serif">500x500</text>
+</svg>
