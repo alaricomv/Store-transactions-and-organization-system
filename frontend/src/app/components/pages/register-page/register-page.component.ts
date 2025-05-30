@@ -5,6 +5,7 @@ import { CommonModule } from '@angular/common';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
+import { Router } from '@angular/router';
 
 @Component({
     selector: 'app-register-page',
@@ -16,7 +17,7 @@ export class RegisterPageComponent {
 
   registerForm!: FormGroup;
 
-  constructor(private userService: UserService, private fb: FormBuilder) {
+  constructor(private userService: UserService, private fb: FormBuilder, private router: Router) {
     this.registerForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
       company_name: ['', Validators.required],
@@ -36,6 +37,10 @@ export class RegisterPageComponent {
         }
       });
     }
+  }
+  onLoginClick() {
+    console.log('Navigating to login page');
+    this.router.navigate(['/login']);
   }
 
 }

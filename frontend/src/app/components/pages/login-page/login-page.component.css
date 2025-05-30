@@ -12,6 +12,13 @@
   display: block;
 }
 
+.bg,
+.contents {
+  flex: 1 1 50%;
+  min-width: 0;
+  width: 50%;
+}
+
 .contents {
   flex: 1 1 50%;
   display: flex;
@@ -20,25 +27,99 @@
   min-height: 100vh;
 }
 
-@media (max-width: 991.98px) {
-  .d-lg-flex.half {
-    flex-direction: column;
-  }
-  .bg {
-    order: 2;
-    width: 100%;
-    min-height: 200px;
-    height: 200px;
-  }
-  .contents {
-    order: 1;
-    width: 100%;
-    min-height: auto;
-    height: auto;
-  }
+a[routerLink="/register"] {
+  color: #457b9d;
+  text-decoration: underline;
+  cursor: pointer;
+  font-weight: bold;
+  transition: color 0.2s;
 }
 
-@media (max-width: 780px) {
+a[routerLink="/register"]:hover {
+  color: #25496b;
+  text-decoration: underline;
+}
+
+.big-login,
+.big-login label,
+.big-login input,
+.big-login .form-control,
+.big-login .btn,
+.big-login .caption,
+.big-login .error-list,
+.big-login h3,
+.big-login .text-center,
+.big-login a.fw-bold {
+  font-size: 1.5rem !important;
+}
+
+.big-login h3 {
+  font-size: 2.3rem !important;
+}
+
+.big-login .btn {
+  padding: 1rem 2.5rem !important;
+}
+
+.big-login .form-control {
+  padding: 1.1rem 1.2rem !important;
+}
+
+.big-login .error-list {
+  font-size: 1.1rem !important;
+}
+
+/* Add more space between labels and inputs, and between form groups */
+.big-login .form-group {
+  margin-bottom: 2.2rem !important;
+}
+
+.big-login label {
+  margin-bottom: 0.7rem !important;
+  display: block;
+}
+
+.big-login .form-control {
+  margin-bottom: 0.3rem !important;
+}
+
+.big-login .error-list {
+  margin-top: 0.2rem !important;
+  margin-bottom: 0.2rem !important;
+}
+
+.big-login .d-flex.mb-5 {
+  margin-bottom: 2.2rem !important;
+}
+
+.big-login button,
+.big-login .btn {
+  margin-top: 1.2rem !important;
+  margin-bottom: 1.2rem !important;
+}
+
+.big-login .text-center.mt-3 {
+  margin-top: 2.5rem !important;
+}
+
+.login-rectangle {
+  background: #fff;
+  border-radius: 1.5rem;
+  box-shadow: 0 6px 32px 0 rgba(80, 120, 200, 0.10), 0 1.5px 6px 0 rgba(80, 120, 200, 0.08);
+  border: 1.5px solid #e3f0ff;
+  padding: 3.5rem 2.5rem;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+  width: 100%;
+  min-width: 0;
+  max-width: none; /* <-- Remove or override the 540px max-width */
+  box-sizing: border-box;
+  transition: box-shadow 0.2s;
+  margin: 0 auto;
+}
+
+
+@media (max-width: 991.98px) {
   .d-lg-flex.half {
     flex-direction: column;
   }
@@ -54,9 +135,16 @@
     min-height: auto;
     height: auto;
   }
+
+  .login-rectangle {
+    padding: 2rem 0.5rem;
+    width: 100%;
+    min-width: 0;
+    max-width: 100%;
+  }
 }
 
-@media (min-width: 781px) {
+@media (min-width: 991.98px) {
   .d-lg-flex.half {
     flex-direction: row;
   }

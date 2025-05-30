@@ -3,10 +3,13 @@ import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { CommonModule } from '@angular/common';
 import { UserService } from '../../../services/user.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 
 @Component({
     selector: 'app-login-page',
-    imports: [ReactiveFormsModule, CommonModule],
+    imports: [ReactiveFormsModule, CommonModule, MatInputModule, MatFormFieldModule, MatCheckboxModule],
     templateUrl: './login-page.component.html',
     styleUrl: './login-page.component.css'
 })
@@ -42,5 +45,9 @@ export class LoginPageComponent implements OnInit {
     this.userService.login({email: this.fc['email'].value, password:this.fc['password'].value, rememberMe: this.fc['rememberMe'].value}).subscribe(()=>{
       this.router.navigate([this.returnUrl]); // Navigate to the return URL after successful login
     });
+  }
+
+  onRegisterClick() {
+    this.router.navigate(['/register']);
   }
 }
