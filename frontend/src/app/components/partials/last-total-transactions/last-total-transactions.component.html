@@ -7,7 +7,7 @@
         <p><strong>Date:</strong> {{ lasttransactions.date | date:'fullDate' }} {{ lasttransactions.date | date:'shortTime' }}</p>
         <p><strong>Total:</strong> ${{ lasttransactions.total }}</p>
         <p><strong>Numero de personas:</strong> {{ lasttransactions.number_transactions }}</p>
-        <button mat-button (click)="openTransactionDialog(lasttransactions)">Detalles</button>
+        <button class="btn btn-primary" mat-button (click)="openTransactionDialog(lasttransactions)">Detalles</button>
       </li>
     </ul>
   </div>

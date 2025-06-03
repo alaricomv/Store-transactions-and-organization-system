@@ -88,6 +88,17 @@ export class CalculatorComponent {
     this.result = '';
     this.input = '';
   }
+
+  backspace() {
+  if (this.input.length > 0) {
+    this.input = this.input.slice(0, -1);
+    if (this.input.length > 0) {
+      this.calcAnswer();
+    } else {
+      this.result = '';
+    }
+  }
+}
  
   calcAnswer() {
     let formula = this.input;

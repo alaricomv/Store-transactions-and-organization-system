@@ -3,13 +3,15 @@
   <swiper-container slides-per-view="1" space-between="10" navigation="true" pagination="true"
     autoplay="{ &quot;delay&quot;: 3000, &quot;disableOnInteraction&quot;: false }" style="width: 100%; height: 300px;">
     <swiper-slide>
-      <img src="assets/shared/images/login.jpg" alt="Login" style="width:100%;height:100%;object-fit:cover;" />
+      <!-- You can leave alt text as a single value if it does not need localization,
+           or provide the most common language version-->
+      <img src="assets/shared/images/login.jpg" alt="Iniciar sesión / Login" style="width:100%;height:100%;object-fit:cover;" />
     </swiper-slide>
     <swiper-slide>
-      <img src="assets/shared/images/register.jpg" alt="Register" style="width:100%;height:100%;object-fit:cover;" />
+      <img src="assets/shared/images/register.jpg" alt="Registrarse / Register" style="width:100%;height:100%;object-fit:cover;" />
     </swiper-slide>
     <swiper-slide>
-      <img src="assets/shared/images/register.jpeg" alt="Register" style="width:100%;height:100%;object-fit:cover;" />
+      <img src="assets/shared/images/register.jpeg" alt="Registrarse / Register" style="width:100%;height:100%;object-fit:cover;" />
     </swiper-slide>
   </swiper-container>
 
@@ -17,52 +19,88 @@
 
   <div class="container-fluid marketing">
 
-    <h2 class="text-center mb-5 flashy-title"
-    style="font-weight:700; letter-spacing:1.5px; color:#fff; font-size:2.5rem; background: linear-gradient(90deg, #457b9d 0%, #1d3557 100%); padding: 18px 0 18px 0; border-radius: 18px; box-shadow: 0 4px 24px rgba(69,123,157,0.10); position:relative; overflow:hidden;">
-  <span class="flashy-underline">Todas las operaciones para tu negocio en un solo lugar</span>
-</h2>
+    <h2 i18n class="text-center mb-5 flashy-title"
+      style="font-weight:700; letter-spacing:1.5px; color:#fff; font-size:2.5rem; background: linear-gradient(90deg, #457b9d 0%, #1d3557 100%); padding: 18px 0; border-radius: 18px; box-shadow: 0 4px 24px rgba(69,123,157,0.10); position:relative; overflow:hidden;">
+      <span class="flashy-underline">
+        <span lang="es-ES">Todas las operaciones para tu negocio en un solo lugar</span>
+        <span lang="en-GB">All operations for your business in one place</span>
+      </span>
+    </h2>
+    
     <!-- Three columns of text below the carousel -->
     <div class="row">
       <div class="col-lg-4 d-flex flex-column align-items-center feature-card">
         <i class="bi bi-cash-stack"
           style="font-size: 3.5rem; color: #e63946; margin-bottom: 18px; background: #a8dadc; border-radius: 50%; padding: 18px; transition: transform 0.3s;"></i>
-        <h2 class="text-center">Crea transacciones e imprime tickets de forma rápida y sencilla.</h2>
-        <p class="text-center">Registra tus ventas de manera eficiente sin necesidad de elementos externos.</p>
-        <p><a class="btn btn-secondary" href="/calculator" role="button">Ver detalles »</a></p>
+        <h2 class="text-center">
+          <span lang="es-ES">Crea transacciones e imprime tickets de forma rápida y sencilla.</span>
+          <span lang="en-GB">Create transactions and print tickets quickly and easily.</span>
+        </h2>
+        <p class="text-center">
+          <span lang="es-ES">Registra tus ventas de manera eficiente sin necesidad de elementos externos.</span>
+          <span lang="en-GB">Record your sales efficiently without needing extra tools.</span>
+        </p>
+        <p>
+          <a class="btn btn-secondary" href="/calculator" role="button">
+            <span lang="es-ES">Ver detalles »</span>
+            <span lang="en-GB">See details »</span>
+          </a>
+        </p>
       </div><!-- /.col-lg-4 -->
+
       <div class="col-lg-4 d-flex flex-column align-items-center feature-card">
         <i class="bi bi-folder2-open"
           style="font-size: 3.5rem; color: #e63946; margin-bottom: 18px; background: #a8dadc; border-radius: 50%; padding: 18px; transition: transform 0.3s;"></i>
-        <h2 class="text-center">Manten tus transacciones organizadas</h2>
-        <p class="text-center">Todas las transacciones quedan registradas y pueden ser visualizadas en cualquier
-          momento.</p>
-        <p><a class="btn btn-secondary" href="/transactions" role="button">Ver detalles»</a></p>
+        <h2 class="text-center">
+          <span lang="es-ES">Mantén tus transacciones organizadas</span>
+          <span lang="en-GB">Keep your transactions organized</span>
+        </h2>
+        <p class="text-center">
+          <span lang="es-ES">Todas las transacciones quedan registradas y pueden ser visualizadas en cualquier momento.</span>
+          <span lang="en-GB">All transactions are recorded and can be viewed at any time.</span>
+        </p>
+        <p>
+          <a class="btn btn-secondary" href="/transactions" role="button">
+            <span lang="es-ES">Ver detalles »</span>
+            <span lang="en-GB">See details »</span>
+          </a>
+        </p>
       </div><!-- /.col-lg-4 -->
+
       <div class="col-lg-4 d-flex flex-column align-items-center feature-card">
         <i class="bi bi-calculator"
           style="font-size: 3.5rem; color: #e63946; margin-bottom: 18px; background: #a8dadc; border-radius: 50%; padding: 18px; transition: transform 0.3s;"></i>
-        <h2 class="text-center">Crea cortes en el momento que lo necesites</h2>
-        <p class="text-center">Opciones para crear cortes en cualquier momento o dia</p>
-        <p><a class="btn btn-secondary" href="/totaltransactions" role="button">Ver detalles »</a></p>
+        <h2 class="text-center">
+          <span lang="es-ES">Crea cortes en el momento que lo necesites</span>
+          <span lang="en-GB">Create reports whenever you need them</span>
+        </h2>
+        <p class="text-center">
+          <span lang="es-ES">Opciones para crear cortes en cualquier momento o día.</span>
+          <span lang="en-GB">Options to generate reports anytime.</span>
+        </p>
+        <p>
+          <a class="btn btn-secondary" href="/totaltransactions" role="button">
+            <span lang="es-ES">Ver detalles »</span>
+            <span lang="en-GB">See details »</span>
+          </a>
+        </p>
       </div><!-- /.col-lg-4 -->
     </div><!-- /.row -->
 
-
     <!-- START THE FEATURETTES -->
-
     <hr class="featurette-divider">
 
+    <!-- Featurette 1 -->
     <div class="row featurette align-items-center">
-      <div
-        class="col-md-7 d-flex flex-column justify-content-center featurette-text shadow-lg p-4 rounded-4 mb-4 mb-md-0"
+      <div class="col-md-7 d-flex flex-column justify-content-center featurette-text shadow-lg p-4 rounded-4 mb-4 mb-md-0"
         style="background: var(--offwhite, #f1faee); border-left: 8px solid var(--blue, #457b9d);">
-        <h2 class="featurette-heading text-center"
-          style="font-weight:700; color:var(--navy, #1d3557); letter-spacing:0.5px;">
-          Diseñado con pequeñas empresas en mente
+        <h2 class="featurette-heading text-center" style="font-weight:700; color:var(--navy, #1d3557); letter-spacing:0.5px;">
+          <span lang="es-ES">Diseñado con pequeñas empresas en mente</span>
+          <span lang="en-GB">Designed with small businesses in mind</span>
         </h2>
-        <p class="lead text-center" style="color:var(--blue, #457b9d); font-size:1.25rem;">
-          Facil de usar, intuitivo y con todas las funciones que necesitas para mantener las finanzas de tu negocio
-          organizado.
+        <p class="lead text-center" style="color:var(--blue, #315972); font-size:1.25rem;">
+          <span lang="es-ES">Fácil de usar, intuitivo y con todas las funciones que necesitas para mantener las finanzas de tu negocio organizadas.</span>
+          <span lang="en-GB">Easy to use, intuitive, and packed with features to keep your business finances organized.</span>
         </p>
       </div>
       <div data-aos="fade-left" class="col-md-5">
@@ -73,18 +111,17 @@
 
     <hr class="featurette-divider">
 
+    <!-- Featurette 2 -->
     <div class="row featurette align-items-center">
-      <div
-        class="col-md-7 order-md-2 d-flex flex-column justify-content-center featurette-text shadow-lg p-4 rounded-4 mb-4 mb-md-0"
+      <div class="col-md-7 order-md-2 d-flex flex-column justify-content-center featurette-text shadow-lg p-4 rounded-4 mb-4 mb-md-0"
         style="background: var(--offwhite, #f1faee); border-right: 8px solid var(--teal, #a8dadc);">
-        <h2 class="featurette-heading text-center"
-          style="font-weight:700; color:var(--navy, #1d3557); letter-spacing:0.5px;">
-          Manten todo organizado en una sola aplicacion
+        <h2 class="featurette-heading text-center" style="font-weight:700; color:var(--navy, #1d3557); letter-spacing:0.5px;">
+          <span lang="es-ES">Mantén todo organizado en una sola aplicación</span>
+          <span lang="en-GB">Keep everything organized in one application</span>
         </h2>
-        <p class="lead text-center" style="color:var(--blue, #457b9d); font-size:1.25rem;">
-          Con la habilidad de realizar las transaciones, imprimir transacciones, realizar cortes e imprimir cortes en
-          una sola aplicacion manten todo en orden. Todo esta registrado para que tu negocio nunca pierda un solo
-          detalle.
+        <p class="lead text-center" style="color:var(--blue, #315972); font-size:1.25rem;">
+          <span lang="es-ES">Con la habilidad de realizar transacciones, imprimir tickets, generar y imprimir cortes en una sola aplicación, mantén todo en orden. Todo queda registrado para que tu negocio no pierda ni un detalle.</span>
+          <span lang="en-GB">With the ability to perform transactions, print tickets, generate and print reports all in one application, keep everything in order. Everything is recorded so your business never misses a detail.</span>
         </p>
       </div>
       <div data-aos="fade-right" class="col-md-5 order-md-1">
@@ -95,17 +132,17 @@
 
     <hr class="featurette-divider">
 
+    <!-- Featurette 3 -->
     <div class="row featurette align-items-center">
-      <div
-        class="col-md-7 d-flex flex-column justify-content-center featurette-text shadow-lg p-4 rounded-4 mb-4 mb-md-0"
+      <div class="col-md-7 d-flex flex-column justify-content-center featurette-text shadow-lg p-4 rounded-4 mb-4 mb-md-0"
         style="background: var(--offwhite, #f1faee); border-left: 8px solid var(--red, #e63946);">
-        <h2 class="featurette-heading text-center"
-          style="font-weight:700; color:var(--navy, #1d3557); letter-spacing:0.5px;">
-          Mucho mas para tu negocio pronto
+        <h2 class="featurette-heading text-center" style="font-weight:700; color:var(--navy, #1d3557); letter-spacing:0.5px;">
+          <span lang="es-ES">Mucho más para tu negocio, pronto</span>
+          <span lang="en-GB">Much more for your business coming soon</span>
         </h2>
-        <p class="lead text-center" style="color:var(--blue, #457b9d); font-size:1.25rem;">
-          Futuras actualizaciones incluyendo: Graficas de ingresos, multiples sucursales, inventario de productos, cobro
-          por producto, y mucho mas
+        <p class="lead text-center" style="color:var(--blue, #315972); font-size:1.25rem;">
+          <span lang="es-ES">Futuras actualizaciones incluirán: gráficas de ingresos, múltiples sucursales, inventario de productos, cobro por producto y mucho más.</span>
+          <span lang="en-GB">Future updates will include: revenue charts, multiple branches, product inventory, product billing, and much more.</span>
         </p>
       </div>
       <div data-aos="fade-up" class="col-md-5">
@@ -116,23 +153,35 @@
 
     <hr class="featurette-divider">
 
-
-
     <!-- /END THE FEATURETTES -->
 
   </div>
 
-
   <!-- FOOTER -->
   <footer class="container">
-    <p class="float-right"><a href="#">Back to top</a></p>
-    <p>© 2017-2018 Company, Inc. · <a href="#">Privacy</a> · <a href="#">Terms</a></p>
+    <p class="float-right">
+      <a href="#">
+        <span lang="es-ES">Volver arriba</span>
+        <span lang="en-GB">Back to top</span>
+      </a>
+    </p>
+    <p>
+      © 2017-2018 Company, Inc. · 
+      <a href="#">
+        <span lang="es-ES">Privacidad</span>
+        <span lang="en-GB">Privacy</span>
+      </a> · 
+      <a href="#">
+        <span lang="es-ES">Términos</span>
+        <span lang="en-GB">Terms</span>
+      </a>
+    </p>
   </footer>
 </main>
 
+<!-- Scripts remain unaffected -->
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
   integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-
 <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery-slim.min.js"><\/script>')</script>
 <script src="../../assets/js/vendor/popper.min.js"></script>
 <script src="../../dist/js/bootstrap.min.js"></script>
@@ -140,6 +189,7 @@
   style="display: none; visibility: hidden; position: absolute; top: -100%; left: -100%;">
   <defs>
     <style type="text/css"></style>
-  </defs><text x="0" y="25"
+  </defs>
+  <text x="0" y="25"
     style="font-weight:bold;font-size:25pt;font-family:Arial, Helvetica, Open Sans, sans-serif">500x500</text>
 </svg>

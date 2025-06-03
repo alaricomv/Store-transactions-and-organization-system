@@ -46,7 +46,7 @@ export class LastTransactionsComponent {
   openTransactionDialog(transaction: Transaction): void {
     this.dialog.open(TransactionPageComponent, {
       data: transaction,
-      width: '400px'
+      width: '600px'
     });
   }
 }

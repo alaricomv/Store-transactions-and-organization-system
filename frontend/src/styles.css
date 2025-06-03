@@ -41,3 +41,27 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   --blue: #457b9d;
   --navy: #1d3557;
 }
+
+.mat-datepicker-content {
+  min-width: 350px !important;
+  width: 350px !important;
+  max-width: 100vw !important;
+  min-height: 420px !important;
+  height: 420px !important;
+}
+
+.mat-datepicker-content .mat-calendar {
+  min-width: 350px !important;
+  width: 350px !important;
+  max-width: 100vw !important;
+  min-height: 420px !important;
+  height: 420px !important;
+}
+
+html[lang="es-ES"] [lang]:not([lang="es-ES"]) {
+  display: none !important;
+}
+
+html[lang="en-GB"] [lang]:not([lang="en-GB"]) {
+  display: none !important;
+}

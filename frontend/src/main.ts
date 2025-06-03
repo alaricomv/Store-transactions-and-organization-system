@@ -1,3 +1,5 @@
+/// <reference types="@angular/localize" />
+
 import { register } from 'swiper/element/bundle';
 register();
 

@@ -1,40 +1,74 @@
-<mat-form-field>
-  <mat-label>Elige una fecha</mat-label>
-  <input matInput [matDatepicker]="picker" [formControl]="date">
-  <mat-hint>MM/DD/YYYY</mat-hint>
-  <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
-  <mat-datepicker #picker></mat-datepicker>
-</mat-form-field>
+<div style="display: flex; justify-content: center; width: 100%; margin-top: 2rem;">
+  <div style="width: 100%; max-width: 90%; overflow-x: auto;">
+    <h2 class="transactions-title">
+      {{ user?.token ? 'Cortes' : 'Cortes Demo' }}
+    </h2>
+    <ng-container *ngIf="!user?.token">
+  <div class="centered-link">
+    <a routerLink="/login" class="linklogin" (click)="onLoginClick()">
+      Ingresa para empezar a ver tus cortes.
+    </a>
+  </div>
+</ng-container>
+    <div class="datepicker-mobile-center" style="flex-direction: column; align-items: flex-start;">
+      <mat-form-field style="margin-bottom: 1.5rem; width: 350px;">
+        <mat-label>Elige una fecha</mat-label>
+        <input matInput [matDatepicker]="picker" [formControl]="date" [disabled]="!user?.token">
+        <mat-hint>MM/DD/YYYY</mat-hint>
+        <mat-datepicker-toggle matIconSuffix [for]="picker" [disabled]="!user?.token"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+      
+    </div>
 
-<button mat-button color="primary" (click)="createTotalTransaction()">Crear Corte en esta fecha</button>
+    <table class="table table-striped transaction-table-responsive fade-in-table"
+           *ngIf="(user?.token && paginatedTransactions.length > 0) || (!user?.token)">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>User</th>
+          <th>Date</th>
+          <th>Numero de Personas</th>
+          <th>Total</th>
+        </tr>
+      </thead>
+      <tbody>
+        <ng-container *ngIf="user?.token; else mockupCorteRows">
+          <tr *ngFor="let transaction of paginatedTransactions">
+            <td data-label="ID">{{ transaction.id }}</td>
+            <td data-label="User">{{ transaction.user_id }}</td>
+            <td data-label="Date">{{ transaction.date | date:'yyyy-MM-dd' }}</td>
+            <td data-label="Numero de Personas">{{ transaction.number_transactions }}</td>
+            <td data-label="Total">${{ transaction.total }}</td>
+          </tr>
+        </ng-container>
+        <ng-template #mockupCorteRows>
+          <tr *ngFor="let corte of mockupPaginatedCortes">
+            <td data-label="ID">{{ corte.id }}</td>
+            <td data-label="User">{{ corte.user_id }}</td>
+            <td data-label="Date">{{ corte.date }}</td>
+            <td data-label="Numero de Personas">{{ corte.number_transactions }}</td>
+            <td data-label="Total">${{ corte.total }}</td>
+          </tr>
+        </ng-template>
+      </tbody>
+    </table>
+  </div>
+</div>
 
-<!-- Transactions Table -->
-<table *ngIf="paginatedTransactions.length > 0" class="transactions-table flashy-corte-table">
-  <thead>
-    <tr>
-      <th>ID</th>
-      <th>User</th>
-      <th>Date</th>
-      <th>Numero de Personas</th>
-      <th>Total</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let transaction of paginatedTransactions">
-      <td>{{ transaction.id }}</td>
-      <td>{{ transaction.user_id }}</td>
-      <td>{{ transaction.date | date:'yyyy-MM-dd' }}</td>
-      <td>{{ transaction.number_transactions }}</td>
-      <td><span class="amount-corte">${{ transaction.total }}</span></td>
-    </tr>
-  </tbody>
-</table>
-<div *ngIf="paginatedTransactions.length === 0" class="no-corte-msg">
+<div *ngIf="user?.token ? paginatedTransactions.length === 0 : false" class="centered-bold">
   No hay cortes para esta fecha.
 </div>
 
+<button mat-button color="primary"
+        (click)="createTotalTransaction()"
+        [disabled]="!user?.token"
+        style="height: 3.2rem; font-size: 1.2rem; margin-left: 1.5rem; display: block; margin: 0 auto; margin-bottom: 2.5rem;">
+  Crear Corte en esta fecha
+</button>
+
 <mat-paginator
-  [length]="transactions.length"
+  [length]="user?.token ? transactions.length : mockupCortes.length"
   [pageSize]="pageSize"
   [pageIndex]="pageIndex"
   [pageSizeOptions]="[5, 10, 25, 100]"

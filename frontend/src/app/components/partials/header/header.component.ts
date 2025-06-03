@@ -54,4 +54,14 @@ closeSidebar() {
     new bootstrap.Offcanvas(sidebar).hide();
   }
 }
+currentLang: string = 'en-GB';
+  
+  switchLanguage(event: Event): void {
+  const target = event.target as HTMLSelectElement | null;
+  if (target) {
+    const lang = target.value;
+    this.currentLang = lang;
+    document.documentElement.setAttribute('lang', lang);
+  }
+}
 }

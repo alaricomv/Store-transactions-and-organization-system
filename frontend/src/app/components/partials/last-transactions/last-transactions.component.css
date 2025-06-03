@@ -47,6 +47,12 @@
     font-weight: bold;
   }
   
+
+  .btn-primary {
+    display: block;
+    margin: 10px auto; /* Centers the button horizontally */
+  }
+
   /* Responsive design for smaller screens */
   @media (max-width: 768px) {
     .last-transactions-container {

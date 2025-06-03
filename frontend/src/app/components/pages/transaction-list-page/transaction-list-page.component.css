@@ -9,6 +9,39 @@
   padding: 1.5rem 1rem;
 }
 
+.centered-link {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+.centered-link .linklogin {
+  background: none;
+  box-shadow: none;
+  padding: 0;
+  border-radius: 0;
+  font-size: 1.5rem;
+  text-align: center;
+  color: #457b9d;
+  font-weight: bold;
+  text-decoration: underline;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.centered-link .linklogin:hover,
+.centered-link .linklogin:focus {
+  color: #25496b;
+}
+
+
+.transactions-title {
+  font-size: 2rem;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 3.5rem; /* Increased space below the title */
+}
 .status-row-eliminado td {
   background: #e05560 !important;
   color: #fff !important;
@@ -29,6 +62,52 @@
   font-size: 1.2rem;
   min-height: 120px;
   text-align: center;
+}
+
+/* Make the datepicker input and label bigger */
+.datepicker-mobile-center mat-form-field {
+  font-size: 1.4rem !important;
+  width: 350px !important;
+}
+
+.datepicker-mobile-center .mat-form-field-infix {
+  font-size: 1.4rem !important;
+  min-height: 3.2rem !important;
+}
+
+.datepicker-mobile-center .mat-form-field-label {
+  font-size: 1.2rem !important;
+}
+
+.datepicker-mobile-center input.mat-input-element {
+  font-size: 1.4rem !important;
+  padding: 1rem 0.75rem !important;
+  height: 2.5rem !important;
+}
+
+/* Make the Angular Material datepicker popup/calendar bigger */
+.mat-datepicker-content,
+.mat-calendar {
+  font-size: 1.5rem !important;
+  min-width: 380px !important;
+  min-height: 420px !important;
+}
+
+.mat-calendar-table,
+.mat-calendar-body {
+  font-size: 1.3rem !important;
+}
+
+.mat-calendar-body-cell-content {
+  width: 3.2rem !important;
+  height: 3.2rem !important;
+  font-size: 1.3rem !important;
+}
+
+.mat-calendar-period-button,
+.mat-calendar-previous-button,
+.mat-calendar-next-button {
+  font-size: 1.3rem !important;
 }
 
 @keyframes fadeInTable {

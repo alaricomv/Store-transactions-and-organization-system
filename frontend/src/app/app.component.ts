@@ -14,4 +14,10 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 })
 export class AppComponent {
   title = 'frontend';
+
+  currentLang = 'en';
+    
+    switchLanguage(lang: string) {
+        this.currentLang = lang;
+    }
 }

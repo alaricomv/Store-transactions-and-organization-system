@@ -12,6 +12,9 @@ import { CommonModule } from '@angular/common';
 import { ChangeDetectorRef, OnInit } from '@angular/core';
 import { PageEvent } from '@angular/material/paginator';
 import { Total_transaction } from '../../../shared/models/total_transactions';
+import { User } from '../../../shared/models/user';
+import { Route, Router } from '@angular/router';
+import { UserService } from '../../../services/user.service';
 
 @Component({
     selector: 'app-total-transaction-list-page',
@@ -31,6 +34,8 @@ import { Total_transaction } from '../../../shared/models/total_transactions';
     styleUrl: './total-transaction-list-page.component.css'
 })
 export class TotalTransactionListPageComponent {
+
+  user!: User;
   transactions: Total_transaction[] = [];
 
   pageIndex = 0;
@@ -51,12 +56,18 @@ export class TotalTransactionListPageComponent {
   }
 
 
-  constructor(private transactionService: TransactionService, private cdr: ChangeDetectorRef) {
-    
+  constructor(private transactionService: TransactionService, private cdr: ChangeDetectorRef, private router: Router, userService: UserService) {
+    userService.userObservable.subscribe((newUser) => {
+      this.user = newUser;
+    });
 
   }
 
   ngOnInit() {
+     if (!this.user?.token) {
+    this.date.setValue(new Date(2025, 4, 30)); 
+    }
+
     // Initial load
     this.fetchTransactions();
 
@@ -65,6 +76,16 @@ export class TotalTransactionListPageComponent {
       this.fetchTransactions();
     });
   }
+
+  // Add this to your component
+mockupCortes = [
+  { id: 1, user_id: 'demo_user', date: '2025-05-30', number_transactions: 5, total: '625.00' }
+];
+
+get mockupPaginatedCortes() {
+  const start = this.pageIndex * this.pageSize;
+  return this.mockupCortes.slice(start, start + this.pageSize);
+}
 
   get paginatedTransactions(): Total_transaction[] {
     const start = this.pageIndex * this.pageSize;
@@ -112,6 +133,11 @@ export class TotalTransactionListPageComponent {
         console.error('Error creating transaction:', err);
       }
     });
+  }
+
+  onLoginClick(){
+    // Redirect to login page
+    this.router.navigate(['/login']);
   }
 
 }
