@@ -40,7 +40,7 @@
     <!-- Footer (will not be printed) -->
     <div class="popup-footer non-printable">
       <button class="btn btn-primary" (click)="printPage()">Imprimir</button>
-      <button class="btn btn-danger" *ngIf="transaction?.id !== undefined" (click)="deleteTransaction(transaction.id!)">Eliminar</button>
+      <button class="btn btn-danger" *ngIf="transaction?.id !== undefined" (click)="deleteTransaction(transaction.id!)" [disabled]="!user?.token">Eliminar</button>
     </div>
   </div>
 </div>

@@ -22,8 +22,18 @@ export class LastTotalTransactionsComponent {
     lasttransactions: Total_transaction[] = [];
   
     user!: User;
+
+    demoLastTransactions: Total_transaction[] = [
+        { id: "1-13", user_id: 1, date: new Date('2025-05-30T00:00:00'), total: 100.00, number_transactions: 3 },
+        { id: "1-12", user_id: 1, date: new Date('2025-05-30T12:00:00'), total: 250.00, number_transactions: 6},
+        { id: "1-11", user_id: 1, date: new Date('2025-05-30T09:00:00'), total: 75.00, number_transactions: 2}
+      ];
   
     constructor(private transactionService: TransactionService, userService: UserService, private dialog: MatDialog) {
+      if (!this.user?.token) {
+        // No token? Use the demo transactions.
+        this.lasttransactions = this.demoLastTransactions;
+      } else {
       this.transactionService.getLastTotalTransactions().subscribe({
         next: (transactions) => {
           console.log('Received transactions:', transactions); // Log the JSON response
@@ -33,6 +43,7 @@ export class LastTotalTransactionsComponent {
           console.error('Error fetching transactions:', err); // Log any errors
         }
       });
+    }
   
       userService.userObservable.subscribe((newUser) => {
         this.user = newUser;

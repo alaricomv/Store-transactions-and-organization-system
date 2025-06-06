@@ -35,7 +35,16 @@
       <div class="button l" (click)="getAnswer()">=</div>
     </div>
   </div>
+  <div class="transaction-buttons-container">
+    <button class="btn btn-primary btn-lg" 
+            (click)="addTransaction()" 
+            [disabled]="!user?.token || transactionClicked">
+      Cobrar
+    </button>
+    <button class="btn btn-primary btn-lg" 
+            (click)="addTotalTransaction()" 
+            [disabled]="!user?.token || totalTransactionClicked">
+      Corte
+    </button>
+  </div>
 </div>
-<button (click)="addTransaction()"> Cobrar </button>
-
-    <button (click)="addTotalTransaction()"> Corte </button>

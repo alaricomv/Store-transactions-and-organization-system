@@ -143,12 +143,11 @@ export async function getTotalTransactionByDate(date,id) {
 
 //Total transactions by date and user ID
 export async function createTotalTransactions(user_id, date) {
-    // Query to calculate the total and count of transactions for the given user and date
+    // Calculate the total and count of transactions for the given user and date
     const formattedDate = new Date(date).toISOString().split('T')[0];
 
     console.log(formattedDate);
 
-    
     const [rows] = await pool.query(
         `SELECT SUM(total) AS total, COUNT(*) AS number_transactions 
          FROM transactions 
@@ -159,14 +158,31 @@ export async function createTotalTransactions(user_id, date) {
     const total = rows[0].total || 0; // Default to 0 if no transactions
     const number_transactions = rows[0].number_transactions || 0; // Default to 0 if no transactions
 
-    // Insert the calculated values into the total_transactions table
-    const [result] = await pool.query(
-        'INSERT INTO total_transactions (user_id, total, date, number_transactions) VALUES (?, ?, ?,?)',
-        [user_id, total, date, number_transactions]
+    // Get the current highest increment for this user in the total_transactions table
+    const [idRows] = await pool.query(
+        "SELECT id FROM total_transactions WHERE user_id = ? ORDER BY id DESC LIMIT 1",
+        [user_id]
     );
 
-    const id = result.insertId; // Get the ID of the newly created record
-    return getTotalTransactionsbyId(id); // Return the newly created record
+    let increment = 1;
+    if (idRows.length > 0) {
+        // Extract the incrementing number from the last custom id
+        const lastId = idRows[0].id;
+        const parts = lastId.split('-');
+        if (parts.length === 2 && !isNaN(parts[1])) {
+            increment = parseInt(parts[1], 10) + 1;
+        }
+    }
+    const customId = `${user_id}-${increment}`;
+
+    // Insert the calculated values into the total_transactions table with the custom id  
+    await pool.query(
+        'INSERT INTO total_transactions (id, user_id, total, date, number_transactions) VALUES (?, ?, ?, ?, ?)',
+        [customId, user_id, total, date, number_transactions]
+    );
+
+    // Return the newly created record by its custom id
+    return getTotalTransactionsbyId(customId);
 }
 
 
@@ -180,7 +196,7 @@ export async function getLastTotalTransactions(user_id) {
 }
 
 export async function deleteTotalTransaction(id) {
-    const [result] = await pool.query(' FROM total_transactions WHERE id = ?', [id]);
+    const [result] = await pool.query('DELETE FROM total_transactions WHERE id = ?', [id]);
     return result.affectedRows > 0; // Return true if a row was deleted
 }
 

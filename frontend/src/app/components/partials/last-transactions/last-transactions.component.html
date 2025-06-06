@@ -1,12 +1,16 @@
 <div class="last-transactions-container">
-    <h1>Ultimos Cobros</h1>
-    <ul>
-      <li *ngFor="let lasttransactions of lasttransactions">
-        <p><strong>ID:</strong> {{ lasttransactions.id }}</p>
-        <p><strong>User:</strong> {{ lasttransactions.user_id }}</p>
-        <p><strong>Date:</strong> {{ lasttransactions.date | date:'fullDate' }} {{ lasttransactions.date | date:'shortTime' }}</p>
-        <p><strong>Total:</strong> ${{ lasttransactions.total }}</p>
-        <button class="btn btn-primary" (click)="openTransactionDialog(lasttransactions)">Detalles</button>
-      </li>
-    </ul>
-  </div>
+  <h1>Últimos Cobros</h1>
+
+  <ul>
+    <li *ngFor="let transaction of lasttransactions">
+      <p><strong>ID:</strong> {{ transaction.id }}</p>
+      <p><strong>User:</strong> {{ transaction.user_id }}</p>
+      <p>
+        <strong>Date:</strong>
+        {{ transaction.date | date:'fullDate' }} {{ transaction.date | date:'shortTime' }}
+      </p>
+      <p><strong>Total:</strong> ${{ transaction.total }}</p>
+      <button class="btn btn-primary" (click)="openTransactionDialog(transaction)">Detalles</button>
+    </li>
+  </ul>
+</div>

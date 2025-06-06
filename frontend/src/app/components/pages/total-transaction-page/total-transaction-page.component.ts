@@ -39,7 +39,7 @@ export class TotalTransactionPageComponent {
     this.dialogRef.close();
   }
 
-  deleteTransaction(id: number): void {
+  deleteTransaction(id: string): void {
     this.transactionService.deleteTotalTransaction(id).subscribe(() => {
       console.log('Transaction deleted successfully');
       this.dialogRef.close();

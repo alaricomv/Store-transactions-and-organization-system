@@ -1,5 +1,5 @@
 export class Total_transaction{
-    id? : number;
+    id? : string;
     user_id! : number;
     date! : Date;
     total? : number;

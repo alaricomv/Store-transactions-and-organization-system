@@ -9,6 +9,8 @@ import { CalculatorComponent } from "../../partials/calculator/calculator.compon
 import { LastTransactionsComponent } from "../../partials/last-transactions/last-transactions.component";
 import { Observable } from 'rxjs';
 import { LastTotalTransactionsComponent } from '../../partials/last-total-transactions/last-total-transactions.component';
+import { User } from '../../../shared/models/user';
+import { Router } from '@angular/router';
 
 registerLocaleData(localeEs); // Register Spanish locale
 
@@ -20,15 +22,21 @@ registerLocaleData(localeEs); // Register Spanish locale
     providers: [{ provide: LOCALE_ID, useValue: 'es' }]
 })
 export class CalculatorPageComponent {
+  user!: User;
 
   lasttransactions:Transaction[] = [];
 
   transactions:Transaction[] = [];
-  constructor(private transactionService:TransactionService) {
+  constructor(private transactionService:TransactionService, private router: Router) {
     let transactionsObservable:Observable<Transaction[]>;
 
     transactionsObservable = transactionService.getLastthree();
 
     this.transactions = transactionService.getAll();
+  }
+
+   onLoginClick(){
+    // Redirect to login page
+    this.router.navigate(['/login']);
   }
 }

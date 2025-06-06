@@ -25,9 +25,19 @@ registerLocaleData(localeEs); // Register Spanish locale
 export class LastTransactionsComponent {
   lasttransactions: Transaction[] = [];
 
+  demoLastTransactions: Transaction[] = [
+    { id: "1-283", user_id: 1, date: new Date('2025-05-30T12:00:00'), total: 100.00, deleted: 0 },
+    { id: "1-282", user_id: 1, date: new Date('2025-05-30T13:00:00'), total: 250.00, deleted: 0 },
+    { id: "1-281", user_id: 1, date: new Date('2025-05-30T14:00:00'), total: 75.00, deleted: 0 }
+  ];
+
   user!: User;
 
   constructor(private transactionService: TransactionService, userService: UserService, private dialog: MatDialog) {
+    if (!this.user?.token) {
+        // No token? Use the demo transactions.
+        this.lasttransactions = this.demoLastTransactions;
+      } else {
     this.transactionService.getLastthree().subscribe({
       next: (transactions) => {
         console.log('Received transactions:', transactions); // Log the JSON response
@@ -37,6 +47,8 @@ export class LastTransactionsComponent {
         console.error('Error fetching transactions:', err); // Log any errors
       }
     });
+
+      }
 
     userService.userObservable.subscribe((newUser) => {
       this.user = newUser;

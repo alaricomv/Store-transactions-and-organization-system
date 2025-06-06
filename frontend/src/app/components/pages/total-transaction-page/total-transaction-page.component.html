@@ -29,8 +29,7 @@
 
     <!-- Footer (will not be printed) -->
     <div class="popup-footer non-printable">
-      <button class="btn btn-primary" (click)="closedDialog()">Volver</button>
-      <button class="btn btn-danger" *ngIf="totaltransaction?.id !== undefined" (click)="deleteTransaction(totaltransaction.id!)">Eliminar</button>
+      <button [disabled]="!user?.token" class="btn btn-danger" *ngIf="totaltransaction?.id !== undefined" (click)="deleteTransaction(totaltransaction.id!)">Eliminar</button>
     </div>
   </div>
 </div>

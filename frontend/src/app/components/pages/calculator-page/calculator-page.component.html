@@ -1,15 +1,27 @@
-<div class="home-container">
-    <!-- Calculator Section -->
-    <div class="calculator-container">
+<h2 class="transactions-title fade-in">
+  {{ user?.token ? 'Operations' : 'Operations Demo' }}
+</h2>
+<div class="centered-link fade-in">
+  <a routerLink="/login" class="linklogin" (click)="onLoginClick()">
+    Ingresa para empezar a hacer transacciones.
+  </a>
+</div>
+
+<div class="home-container fade-in">
+  <!-- Calculator Section -->
+  <div class="calculator-container">
+    <div class="calculator-card">
       <app-calculator></app-calculator>
     </div>
-  
-    <!-- Transactions Section -->
+  </div>
+
+  <!-- Transactions Group -->
+  <div class="transactions-group">
     <div class="transactions-container">
       <app-last-transactions></app-last-transactions>
     </div>
-
     <div class="transactions-container">
       <app-last-total-transactions></app-last-total-transactions>
     </div>
+  </div>
 </div>
