@@ -5,10 +5,11 @@ import { HomeComponent } from "./components/pages/home/home.component";
 import {} from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { FooterComponent } from "./components/partials/footer/footer.component";
 
 @Component({
     selector: 'app-root',
-    imports: [RouterLink, RouterOutlet, HeaderComponent, HomeComponent, ReactiveFormsModule],
+    imports: [RouterLink, RouterOutlet, HeaderComponent, HomeComponent, ReactiveFormsModule, FooterComponent],
     templateUrl: './app.component.html',
     styleUrls: ['./app.component.css']
 })
