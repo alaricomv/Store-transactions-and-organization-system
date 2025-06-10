@@ -30,7 +30,7 @@ export class RegisterPageComponent {
     if (this.registerForm.valid) {
       this.userService.register(this.registerForm.value).subscribe({
         next: (user) => {
-          console.log('User registered successfully:', user);
+          console.log('User registered successfully:');
         },
         error: (errorResponse) => {
           console.error('Registration failed:', errorResponse);
@@ -39,7 +39,6 @@ export class RegisterPageComponent {
     }
   }
   onLoginClick() {
-    console.log('Navigating to login page');
     this.router.navigate(['/login']);
   }
 

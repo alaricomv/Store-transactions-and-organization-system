@@ -40,7 +40,7 @@
   display: table;
   font-size: 2rem;
   font-weight: bold;
-  margin: 2rem auto 3.5rem auto; /* centers the element */
+  margin: 2rem auto 3.5rem auto;
   border-bottom: 2px solid #457b9d;
 }
 
@@ -67,7 +67,7 @@
   text-align: center;
 }
 
-/* Make the datepicker input and label bigger */
+
 .datepicker-mobile-center mat-form-field {
   font-size: 1.4rem !important;
   width: 350px !important;
@@ -88,7 +88,7 @@
   height: 2.5rem !important;
 }
 
-/* Make the Angular Material datepicker popup/calendar bigger */
+
 .mat-datepicker-content,
 .mat-calendar {
   font-size: 1.5rem !important;

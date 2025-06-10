@@ -86,7 +86,7 @@ export class TransactionListPageComponent {
   { id: 7, user: 'demo_user', date: '2025-05-30 18:00:00', total: '210.00', deleted: false }
 ];
 
-// Add this getter for paginated mockup rows
+
 get mockupPaginatedRows() {
   const start = this.pageIndex * this.pageSize;
   return this.mockupRows.slice(start, start + this.pageSize);

@@ -90,9 +90,4 @@ export class TransactionPageComponent {
       : { day: '2-digit', month: '2-digit', year: '2-digit' } // English format
   ).format(new Date(date));
 }
-
-
-ngOnInit() {
-  console.log('Formatted Date:', this.formatDate(this.transaction?.date));
-}
 }

@@ -77,7 +77,6 @@ export class TotalTransactionListPageComponent {
     });
   }
 
-  // Add this to your component
 mockupCortes = [
   { id: 1, user_id: 'demo_user', date: '2025-05-30', number_transactions: 5, total: '625.00' }
 ];
@@ -120,7 +119,7 @@ get mockupPaginatedCortes() {
 
   createTotalTransaction() {
     const newTransaction: Total_transaction = {
-      user_id: JSON.parse(localStorage.getItem('User') || '{}').id, // Example user ID
+      user_id: JSON.parse(localStorage.getItem('User') || '{}').id,
       date: new Date(this.dateString)
     };
 

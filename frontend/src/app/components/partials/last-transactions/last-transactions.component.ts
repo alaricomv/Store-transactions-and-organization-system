@@ -57,7 +57,7 @@ export class LastTransactionsComponent {
   }
 
   openTransactionModal(transaction: Transaction): void {
-    // Optionally blur any active element
+    
     const activeEl = document.activeElement as HTMLElement;
     if (activeEl) {
       activeEl.blur();

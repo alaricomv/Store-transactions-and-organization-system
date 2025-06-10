@@ -86,7 +86,7 @@
   margin-top: 2.5rem !important;
 }
 
-/* Make the register button look like the login button */
+
 .register-rectangle .btn,
 .register-rectangle button,
 .register-rectangle [mat-raised-button] {

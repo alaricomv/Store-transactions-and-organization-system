@@ -1,4 +1,4 @@
-/* Full-width Modal overlays remain unchanged */
+
 .modal-overlay {
   position: fixed;
   top: 0;
@@ -13,7 +13,6 @@
 }
 
 
-/* Existing modal styles remain the same */
 
 .last-transactions-container {
   background-color: #ffffff;
@@ -54,7 +53,7 @@
   transform: scale(1.01);
 }
 
-/* Updated transaction details styling for a column layout */
+
 .transaction-details {
   display: flex;
   flex-direction: column;

@@ -1,6 +1,6 @@
 header {
   background: #fff;
-  position: sticky;
+  /* position: sticky; */
   top: 0;
   z-index: 1050;
   border-bottom: 4px solid #457b9d; /* Blue separator line */
@@ -62,14 +62,14 @@ ul a {
   padding: 1.3rem;
   font-size: 1.18rem;
   display: inline-block;
-  color: #222 !important; /* Black text */
+  color: #222 !important; 
   background: transparent !important;
   transition: color 0.25s;
 }
 
 ul a:hover,
 ul a:focus {
-  color: #457b9d !important; /* Blue on hover */
+  color: #457b9d !important;
   background: transparent !important;
   text-decoration: underline;
 }
@@ -78,7 +78,7 @@ ul a:focus {
 .text-end > .btn {
   font-size: 1.35rem;
   padding: 1.1rem 2.5rem;
-  color: #222 !important; /* Black text */
+  color: #222 !important; 
   background: #f5f8fa !important;
   border: 1px solid #457b9d !important;
   transition: background 0.25s, color 0.25s;
@@ -86,19 +86,19 @@ ul a:focus {
 
 .text-end > .btn-primary:active,
 .text-end > button.btn-primary:active {
-  background: #25496b !important; /* Darker blue */
+  background: #25496b !important; 
   color: #fff !important;
 }
 
 .text-end > .btn-light:active,
 .text-end > button.btn-light:active {
-  background: #bcd0e6 !important; /* Darker light blue */
+  background: #bcd0e6 !important;
   color: #1d3557 !important;
 }
 
 .text-end > .btn-danger:active,
 .text-end > button.btn-danger:active {
-  background: #b22222 !important; /* Darker red */
+  background: #b22222 !important; 
   color: #fff !important;
 }
 

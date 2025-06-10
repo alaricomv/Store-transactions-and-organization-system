@@ -3,7 +3,7 @@ import { Total_transaction } from '../../../shared/models/total_transactions';
 import { User } from '../../../shared/models/user';
 import { TransactionService } from '../../../services/transaction.service';
 import { UserService } from '../../../services/user.service';
-import { MatDialog, MatDialogModule } from '@angular/material/dialog';
+import { MatDialog, MatDialogActions, MatDialogModule } from '@angular/material/dialog';
 import { CommonModule, registerLocaleData } from '@angular/common';
 import localeEs from '@angular/common/locales/es';
 import { TotalTransactionPageComponent } from '../../pages/total-transaction-page/total-transaction-page.component';
@@ -28,14 +28,14 @@ export class LastTotalTransactionsComponent {
     { id: "1-11", user_id: 1, date: new Date('2025-05-30T09:00:00'), total: 75.00, number_transactions: 2 }
   ];
 
-  // New modal management properties
+  // modal management properties
   showModal: boolean = false;
   selectedTransaction!: Total_transaction;
 
   constructor(
     private transactionService: TransactionService, 
     userService: UserService,
-    private dialog: MatDialog // Remove if not using Material Dialog elsewhere
+    private dialog: MatDialogActions
   ) {
     if (!this.user?.token) {
       // No token? Use the demo transactions.

@@ -69,7 +69,7 @@ a[routerLink="/register"]:hover {
   font-size: 1.1rem !important;
 }
 
-/* Add more space between labels and inputs, and between form groups */
+
 .big-login .form-group {
   margin-bottom: 2.2rem !important;
 }
@@ -112,7 +112,7 @@ a[routerLink="/register"]:hover {
   margin-bottom: 2rem;
   width: 100%;
   min-width: 0;
-  max-width: none; /* <-- Remove or override the 540px max-width */
+  max-width: none; 
   box-sizing: border-box;
   transition: box-shadow 0.2s;
   margin: 0 auto;

@@ -46,11 +46,8 @@ export class HomeComponent{
 
   onProgress(event: CustomEvent<[Swiper, number]>) {
     const [swiper, progress] = event.detail;
-    console.log(progress);
   }
 
-  onSlideChange() {
-    console.log('slide changed');
-  }
+
 
 }
