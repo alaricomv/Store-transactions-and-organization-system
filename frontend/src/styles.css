@@ -65,3 +65,8 @@ html[lang="es-ES"] [lang]:not([lang="es-ES"]) {
 html[lang="en-GB"] [lang]:not([lang="en-GB"]) {
   display: none !important;
 }
+
+.toast-top-center {
+  top: 200px !important; /* Adjust spacing */
+  position: absolute !important;
+}

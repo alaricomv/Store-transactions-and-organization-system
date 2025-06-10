@@ -36,15 +36,16 @@
     </div>
   </div>
   <div class="transaction-buttons-container">
-    <button class="btn btn-primary btn-lg" 
-            (click)="addTransaction()" 
-            [disabled]="!user?.token || transactionClicked">
-      Cobrar
-    </button>
-    <button class="btn btn-primary btn-lg" 
-            (click)="addTotalTransaction()" 
-            [disabled]="!user?.token || totalTransactionClicked">
-      Corte
-    </button>
-  </div>
+  <button class="btn btn-primary btn-lg" 
+          (click)="addTransaction()" 
+          [disabled]="!user?.token || transactionClicked">
+    <span lang="es-ES">Cobrar</span>
+    <span lang="en-GB">New transaction</span>
+  </button>
+  <button class="btn btn-primary btn-lg" 
+          (click)="addTotalTransaction()" 
+          [disabled]="!user?.token || totalTransactionClicked">
+    <span lang="es-ES">Corte</span>
+    <span lang="en-GB">Report</span>
+  </button>
 </div>

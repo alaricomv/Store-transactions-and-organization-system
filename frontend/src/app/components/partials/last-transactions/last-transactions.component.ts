@@ -6,21 +6,18 @@ import localeEs from '@angular/common/locales/es';
 import { LOCALE_ID } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
-import { Observable } from 'rxjs';
 import { User } from '../../../shared/models/user';
 import { UserService } from '../../../services/user.service';
-import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { TransactionPageComponent } from '../../pages/transaction-page/transaction-page.component';
-
 
 registerLocaleData(localeEs); // Register Spanish locale
 
 @Component({
-    selector: 'app-last-transactions',
-    imports: [RouterLink, CommonModule, MatDialogModule],
-    templateUrl: './last-transactions.component.html',
-    styleUrl: './last-transactions.component.css',
-    providers: [{ provide: LOCALE_ID, useValue: 'es' }]
+  selector: 'app-last-transactions',
+  imports: [RouterLink, CommonModule, TransactionPageComponent],
+  templateUrl: './last-transactions.component.html',
+  styleUrls: ['./last-transactions.component.css'],
+  providers: [{ provide: LOCALE_ID, useValue: 'es' }]
 })
 export class LastTransactionsComponent {
   lasttransactions: Transaction[] = [];
@@ -33,32 +30,43 @@ export class LastTransactionsComponent {
 
   user!: User;
 
-  constructor(private transactionService: TransactionService, userService: UserService, private dialog: MatDialog) {
-    if (!this.user?.token) {
-        // No token? Use the demo transactions.
-        this.lasttransactions = this.demoLastTransactions;
-      } else {
-    this.transactionService.getLastthree().subscribe({
-      next: (transactions) => {
-        console.log('Received transactions:', transactions); // Log the JSON response
-        this.lasttransactions = transactions; // Assign the response to the component property
-      },
-      error: (err) => {
-        console.error('Error fetching transactions:', err); // Log any errors
-      }
-    });
+  // Properties to manage the custom modal
+  showModal: boolean = false;
+  selectedTransaction!: Transaction;
 
-      }
-
+  constructor(
+    private transactionService: TransactionService,
+    userService: UserService
+  ) {
     userService.userObservable.subscribe((newUser) => {
       this.user = newUser;
+      if (!this.user?.token) {
+        this.lasttransactions = this.demoLastTransactions;
+      } else {
+        this.transactionService.getLastthree().subscribe({
+          next: (transactions) => {
+            console.log('Received transactions:', transactions);
+            this.lasttransactions = transactions;
+          },
+          error: (err) => {
+            console.error('Error fetching transactions:', err);
+          }
+        });
+      }
     });
   }
 
-  openTransactionDialog(transaction: Transaction): void {
-    this.dialog.open(TransactionPageComponent, {
-      data: transaction,
-      width: '600px'
-    });
+  openTransactionModal(transaction: Transaction): void {
+    // Optionally blur any active element
+    const activeEl = document.activeElement as HTMLElement;
+    if (activeEl) {
+      activeEl.blur();
+    }
+    this.selectedTransaction = transaction;
+    this.showModal = true;
+  }
+
+  closeModal(): void {
+    this.showModal = false;
   }
 }

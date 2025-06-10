@@ -1,16 +1,43 @@
 <div class="last-transactions-container">
-  <h1>Últimos Cobros</h1>
-
+  <h1>
+    <span lang="es-ES">Últimas Transacciones</span>
+    <span lang="en-GB">Latest Transactions</span>
+  </h1>
   <ul>
-    <li *ngFor="let transaction of lasttransactions">
-      <p><strong>ID:</strong> {{ transaction.id }}</p>
-      <p><strong>User:</strong> {{ transaction.user_id }}</p>
-      <p>
-        <strong>Date:</strong>
-        {{ transaction.date | date:'fullDate' }} {{ transaction.date | date:'shortTime' }}
-      </p>
-      <p><strong>Total:</strong> ${{ transaction.total }}</p>
-      <button class="btn btn-primary" (click)="openTransactionDialog(transaction)">Detalles</button>
+    <li *ngFor="let transaction of lasttransactions" (click)="openTransactionModal(transaction)">
+      <div class="transaction-details">
+        <p>
+          <strong>ID:</strong> {{ transaction.id }}
+        </p>
+        <p>
+          <strong>
+            <span lang="es-ES">Total:</span>
+            <span lang="en-GB">Total:</span>
+          </strong> ${{ transaction.total }}
+        </p>
+        <p>
+          <strong>
+            <span lang="es-ES">Fecha:</span>
+            <span lang="en-GB">Date:</span>
+          </strong> {{ transaction.date | date:'shortDate' }}
+        </p>
+        <p>
+          <strong>
+            <span lang="es-ES">Hora:</span>
+            <span lang="en-GB">Time:</span>
+          </strong> {{ transaction.date | date:'shortTime' }}
+        </p>
+      </div>
     </li>
   </ul>
+</div>
+
+<!-- Custom Modal Container -->
+<div *ngIf="showModal" class="modal-overlay">
+  <div class="modal-content">
+    <app-transaction-page
+      [transaction]="selectedTransaction"
+      (close)="closeModal()">
+    </app-transaction-page>
+  </div>
 </div>

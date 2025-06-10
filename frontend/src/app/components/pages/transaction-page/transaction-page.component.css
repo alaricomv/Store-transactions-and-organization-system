@@ -39,7 +39,7 @@
 .close-button {
   background: none;
   border: none;
-  font-size: 1.5rem;
+  font-size: 2.5rem;
   cursor: pointer;
 }
 
@@ -49,14 +49,16 @@
 
 .popup-footer {
   display: flex;
-  justify-content: flex-end;
+  justify-content: space-between;
   border-top: 1px solid #ddd;
   padding-top: 10px;
 }
 
 .popup-footer .btn {
-  margin-left: 10px;
+  /* Remove margin-left so each button sits on its respective side */
+  margin: 0;
 }
+
 
   
   /* Hide non-printable elements when printing */

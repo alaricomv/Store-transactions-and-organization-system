@@ -1,11 +1,24 @@
 /* Base Layout for large screens (width > 1062px) */
 .transactions-title {
+  display: inline-block;
   margin-top: 2rem;
   font-size: 2rem;
   font-weight: bold;
-  text-align: center;
-  margin-bottom: 3.5rem; /* Increased space below the title */
+  margin-bottom: 3.5rem;
+  border-bottom: 2px solid #457b9d;
+  margin-left: auto;
+  margin-right: auto;
 }
+
+.home-container {
+  display: flex;
+  flex-direction: row;                /* Two columns: calculator and transactions group */
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 20px;
+  gap: 10px;  /* Reduced gap for non-mobile screens */
+}
+
 
 .centered-link {
   display: flex;
@@ -117,7 +130,7 @@
 
 /* For medium screens (width ≤ 1062px but > 768px): 
    Switch the overall layout to vertical: calculator on top and transactions-group below */
-@media (max-width: 1062px) {
+@media (max-width: 1262px) {
   .home-container {
     flex-direction: column;
     align-items: center;

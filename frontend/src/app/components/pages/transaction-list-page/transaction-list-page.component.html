@@ -1,20 +1,30 @@
 <div style="display: flex; justify-content: center; width: 100%; margin-top: 2rem;">
   <div style="width: 100%; max-width: 90%; overflow-x: auto;">
     <h2 class="transactions-title">
-      {{ user?.token ? 'Transacciones' : 'Transacciones Demo' }}
+      <span lang="es-ES">{{ user?.token ? 'Transacciones' : 'Transacciones Demo' }}</span>
+      <span lang="en-GB">{{ user?.token ? 'Transactions' : 'Transactions Demo' }}</span>
     </h2>
-  <ng-container *ngIf="!user?.token">
-  <div class="centered-link">
-    <a routerLink="/login" class="linklogin" (click)="onLoginClick()">
-      Ingresa para empezar a ver tus transacciones.
-    </a>
-  </div>
-</ng-container>
+
+    <ng-container *ngIf="!user?.token">
+      <div class="centered-link">
+        <a routerLink="/login" class="linklogin" (click)="onLoginClick()">
+          <span lang="es-ES">Ingresa para empezar a ver tus transacciones.</span>
+          <span lang="en-GB">Log in to start viewing your transactions.</span>
+        </a>
+      </div>
+    </ng-container>
+
     <div class="datepicker-mobile-center" style="flex-direction: column; align-items: flex-start;">
       <mat-form-field style="margin-bottom: 1.5rem; width: 300px;">
-        <mat-label>Elige una fecha</mat-label>
+        <mat-label>
+          <span lang="es-ES">Elige una fecha</span>
+          <span lang="en-GB">Choose a date</span>
+        </mat-label>
         <input matInput [matDatepicker]="picker" [formControl]="date" [disabled]="!user?.token">
-        <mat-hint>MM/DD/YYYY</mat-hint>
+        <mat-hint>
+          <span lang="es-ES">MM/DD/YYYY</span>
+          <span lang="en-GB">MM/DD/YYYY</span>
+        </mat-hint>
         <mat-datepicker-toggle matIconSuffix [for]="picker" [disabled]="!user?.token"></mat-datepicker-toggle>
         <mat-datepicker #picker></mat-datepicker>
       </mat-form-field>
@@ -23,41 +33,38 @@
     <table class="table table-striped transaction-table-responsive fade-in-table" *ngIf="(user?.token && paginatedTransactions.length > 0) || (!user?.token)">
       <thead>
         <tr>
-          <th scope="col">Numero Transaccion</th>
-          <th scope="col">Usuario</th>
-          <th scope="col">Fecha</th>
-          <th scope="col">Total</th>
-          <th scope="col">Estado</th>
+          <th scope="col"><span lang="es-ES">Numero Transacción</span><span lang="en-GB">Transaction Number</span></th>
+          <th scope="col"><span lang="es-ES">Usuario</span><span lang="en-GB">User</span></th>
+          <th scope="col"><span lang="es-ES">Fecha</span><span lang="en-GB">Date</span></th>
+          <th scope="col"><span lang="es-ES">Total</span><span lang="en-GB">Total</span></th>
+          <th scope="col"><span lang="es-ES">Estado</span><span lang="en-GB">Status</span></th>
         </tr>
       </thead>
       <tbody>
         <ng-container *ngIf="user?.token; else mockupRows">
-          <tr *ngFor="let transaction of paginatedTransactions"
-              [ngClass]="transaction.deleted === 0 ? '' : 'status-row-eliminado'">
-            <td data-label="Numero Transaccion">{{ transaction.id }}</td>
+          <tr *ngFor="let transaction of paginatedTransactions" [ngClass]="transaction.deleted === 0 ? '' : 'status-row-eliminado'">
+            <td data-label="Numero Transacción">{{ transaction.id }}</td>
             <td data-label="Usuario">{{ transaction.user_id }}</td>
             <td data-label="Fecha">{{ transaction.date | date:'yyyy-MM-dd HH:mm:ss' }}</td>
-            <td data-label="Total">
-              <span class="amount">${{ transaction.total }}</span>
-            </td>
+            <td data-label="Total"><span class="amount">${{ transaction.total }}</span></td>
             <td data-label="Estado">
-              <span 
-                class="status"
-                [ngClass]="transaction.deleted === 0 ? 'status-activo' : 'status-eliminado'">
-                {{ transaction.deleted === 0 ? 'Activo' : 'Eliminado' }}
+              <span class="status" [ngClass]="transaction.deleted === 0 ? 'status-activo' : 'status-eliminado'">
+                <span lang="es-ES">{{ transaction.deleted === 0 ? 'Activo' : 'Eliminado' }}</span>
+                <span lang="en-GB">{{ transaction.deleted === 0 ? 'Active' : 'Deleted' }}</span>
               </span>
             </td>
           </tr>
         </ng-container>
         <ng-template #mockupRows>
           <tr *ngFor="let row of mockupPaginatedRows" [ngClass]="row.deleted ? 'status-row-eliminado' : ''">
-            <td data-label="Numero Transaccion">{{ row.id }}</td>
+            <td data-label="Numero Transacción">{{ row.id }}</td>
             <td data-label="Usuario">{{ row.user }}</td>
             <td data-label="Fecha">{{ row.date }}</td>
             <td data-label="Total"><span class="amount">${{ row.total }}</span></td>
             <td data-label="Estado">
               <span class="status" [ngClass]="row.deleted ? 'status-eliminado' : 'status-activo'">
-                {{ row.deleted ? 'Eliminado' : 'Activo' }}
+                <span lang="es-ES">{{ row.deleted ? 'Eliminado' : 'Activo' }}</span>
+                <span lang="en-GB">{{ row.deleted ? 'Deleted' : 'Active' }}</span>
               </span>
             </td>
           </tr>
@@ -68,8 +75,10 @@
 </div>
 
 <div *ngIf="user?.token && paginatedTransactions.length === 0" class="no-transactions-msg centered-bold">
-  No hay transacciones para esta fecha.
+  <span lang="es-ES">No hay transacciones para esta fecha.</span>
+  <span lang="en-GB">No transactions for this date.</span>
 </div>
+
 <mat-paginator
   [length]="user?.token ? transactions.length : mockupRows.length"
   [pageSize]="pageSize"

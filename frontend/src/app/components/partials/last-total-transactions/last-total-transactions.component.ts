@@ -13,48 +13,60 @@ import { RouterLink } from '@angular/router';
 registerLocaleData(localeEs); // Register Spanish locale
 @Component({
     selector: 'app-last-total-transactions',
-    imports: [RouterLink, CommonModule, MatDialogModule],
+    imports: [RouterLink, CommonModule, MatDialogModule, TotalTransactionPageComponent],
     templateUrl: './last-total-transactions.component.html',
     styleUrl: './last-total-transactions.component.css',
     providers: [{ provide: LOCALE_ID, useValue: 'es' }]
 })
 export class LastTotalTransactionsComponent {
-    lasttransactions: Total_transaction[] = [];
+  lasttransactions: Total_transaction[] = [];
+  user!: User;
   
-    user!: User;
+  demoLastTransactions: Total_transaction[] = [
+    { id: "1-13", user_id: 1, date: new Date('2025-05-30T00:00:00'), total: 100.00, number_transactions: 3 },
+    { id: "1-12", user_id: 1, date: new Date('2025-05-30T12:00:00'), total: 250.00, number_transactions: 6 },
+    { id: "1-11", user_id: 1, date: new Date('2025-05-30T09:00:00'), total: 75.00, number_transactions: 2 }
+  ];
 
-    demoLastTransactions: Total_transaction[] = [
-        { id: "1-13", user_id: 1, date: new Date('2025-05-30T00:00:00'), total: 100.00, number_transactions: 3 },
-        { id: "1-12", user_id: 1, date: new Date('2025-05-30T12:00:00'), total: 250.00, number_transactions: 6},
-        { id: "1-11", user_id: 1, date: new Date('2025-05-30T09:00:00'), total: 75.00, number_transactions: 2}
-      ];
-  
-    constructor(private transactionService: TransactionService, userService: UserService, private dialog: MatDialog) {
-      if (!this.user?.token) {
-        // No token? Use the demo transactions.
-        this.lasttransactions = this.demoLastTransactions;
-      } else {
+  // New modal management properties
+  showModal: boolean = false;
+  selectedTransaction!: Total_transaction;
+
+  constructor(
+    private transactionService: TransactionService, 
+    userService: UserService,
+    private dialog: MatDialog // Remove if not using Material Dialog elsewhere
+  ) {
+    if (!this.user?.token) {
+      // No token? Use the demo transactions.
+      this.lasttransactions = this.demoLastTransactions;
+    } else {
       this.transactionService.getLastTotalTransactions().subscribe({
         next: (transactions) => {
-          console.log('Received transactions:', transactions); // Log the JSON response
-          this.lasttransactions = transactions; // Assign the response to the component property
+          console.log('Received transactions:', transactions);
+          this.lasttransactions = transactions;
         },
         error: (err) => {
-          console.error('Error fetching transactions:', err); // Log any errors
+          console.error('Error fetching transactions:', err);
         }
       });
     }
-  
-      userService.userObservable.subscribe((newUser) => {
-        this.user = newUser;
-      });
-    }
-  
-    openTransactionDialog(transaction: Total_transaction): void {
-      this.dialog.open(TotalTransactionPageComponent, {
-        data: transaction,
-        width: '400px'
-      });
-    }
 
+    userService.userObservable.subscribe((newUser) => {
+      this.user = newUser;
+    });
+  }
+
+  openTransactionDialog(transaction: Total_transaction): void {
+    const activeEl = document.activeElement as HTMLElement;
+    if (activeEl) {
+      activeEl.blur();
+    }
+    this.selectedTransaction = transaction;
+    this.showModal = true;
+  }
+
+  closeModal(): void {
+    this.showModal = false;
+  }
 }

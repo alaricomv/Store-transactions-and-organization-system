@@ -173,6 +173,15 @@ a[routerLink="/register"]:hover {
   border-color: #a7d3ff;
 }
 
+.toast-container {
+  position: absolute !important;
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 9999;
+}
+
+
 @media (max-width: 767.98px) {
   .login-rectangle {
     padding: 2rem 0.5rem;

@@ -1,52 +1,48 @@
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Component, Inject } from '@angular/core';
-import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { Total_transaction } from '../../../shared/models/total_transactions';
-import { ActivatedRoute } from '@angular/router';
 import { TransactionService } from '../../../services/transaction.service';
 import { UserService } from '../../../services/user.service';
 import { User } from '../../../shared/models/user';
 
 @Component({
-    selector: 'app-total-transaction-page',
-    imports: [CommonModule],
-    templateUrl: './total-transaction-page.component.html',
-    styleUrl: './total-transaction-page.component.css'
+  selector: 'app-total-transaction-page',
+  imports: [CommonModule],
+  templateUrl: './total-transaction-page.component.html',
+  styleUrls: ['./total-transaction-page.component.css']
 })
 export class TotalTransactionPageComponent {
+  // Receive the total transaction via an input property instead of MAT_DIALOG_DATA
+  @Input() totaltransaction!: Total_transaction;
+
+  // Output event emitter to signal the parent to close the modal
+  @Output() close = new EventEmitter<void>();
 
   user!: User;
 
-  constructor(@Inject(MAT_DIALOG_DATA) public totaltransaction: Total_transaction, 
-    activatedRoute:ActivatedRoute,
+  constructor(
     private transactionService: TransactionService,
-    private userService: UserService,
-    private dialogRef: MatDialogRef<TotalTransactionPageComponent>) { activatedRoute.params.subscribe((params) => {
-      if (params['id']) {
-        this.transactionService.getTotalTransactionbyId(params['id']).subscribe((totaltransaction) => {
-          this.totaltransaction = totaltransaction;
-        });
-      }
-    });
-
+    private userService: UserService
+  ) {
+    // Subscribe to user observable to get user details
     userService.userObservable.subscribe((newUser) => {
       this.user = newUser;
     });
-
   }
 
-  closedDialog(): void{
-    this.dialogRef.close();
+  // When the close button is clicked, emit the close event
+  closedDialog(): void {
+    this.close.emit();
   }
 
+  // Delete the transaction, then emit the close event and reload the page
   deleteTransaction(id: string): void {
     this.transactionService.deleteTotalTransaction(id).subscribe(() => {
       console.log('Transaction deleted successfully');
-      this.dialogRef.close();
+      this.close.emit();
       window.location.reload();
     }, error => {
       console.error('Error deleting transaction:', error);
     });
   }
-
 }

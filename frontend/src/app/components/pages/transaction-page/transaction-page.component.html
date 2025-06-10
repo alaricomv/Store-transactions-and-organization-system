@@ -1,8 +1,11 @@
 <div class="popup-container">
   <div class="popup-content">
-    <!-- Header (will not be printed) -->
+    <!-- Header (not printed) -->
     <div class="popup-header non-printable">
-      <h5 class="popup-title">Detalles de la transacción</h5>
+      <h5 class="popup-title">
+        <span lang="es-ES">Detalles de la transacción</span>
+        <span lang="en-GB">Transaction Details</span>
+      </h5>
       <button type="button" class="close-button" (click)="closedDialog()">
         <span aria-hidden="true">×</span>
       </button>
@@ -11,36 +14,55 @@
     <!-- Body -->
     <div class="popup-body">
       <div class="printable" id="printable-section">
-        <!-- Company name for ticket header (only in print) -->
-        <h1 class="only-printable">{{user.company_name}}</h1>
+        <!-- Company name for print header -->
+        <h1 class="only-printable">{{ user.company_name }}</h1>
         <div *ngIf="transaction">
-          <!-- Transaction details -->
-          <p><strong>ID:</strong> {{ transaction.id }}</p>
-          <p><strong>User:</strong> {{ transaction.user_id }}</p>
           <p>
-            <strong>Date:</strong> {{ transaction.date | date:'fullDate' }}
-            {{ transaction.date | date:'shortTime' }}
+            <strong>ID:</strong> {{ transaction.id }}
           </p>
-
-          <!-- Total line with dotted divider above -->
+          <p>
+            <strong>
+              <span lang="es-ES">Usuario:</span>
+              <span lang="en-GB">User:</span>
+            </strong> {{ transaction.user_id }}
+          </p>
+          <p>
+            <strong>
+              <span lang="es-ES">Fecha:</span>
+              <span lang="en-GB">Date:</span>
+            </strong>
+              <span lang="es-ES"> {{ formatDate(transaction.date) }}:</span>
+              <span lang="en-GB"> {{ transaction.date | date:'shortDate' }}</span>
+          </p>
           <p class="total-line">
-            <strong>Total:</strong>
+            <strong>
+              <span lang="es-ES">Total:</span>
+              <span lang="en-GB">Total:</span>
+            </strong>
             <span class="total-amount"> ${{ transaction.total }}</span>
           </p>
-
-          <!-- Optional dotted line for a perforation/ticket separation -->
           <hr class="only-printable ticket-divider" />
-          
-          <!-- Thank-you message visible only in print -->
-          <p class="only-printable thank-you">Gracias por su compra!</p>
+          <p class="only-printable thank-you">
+            <span lang="es-ES">Gracias por su compra!</span>
+            <span lang="en-GB">Thank you for your purchase!</span>
+          </p>
         </div>
       </div>
     </div>
 
-    <!-- Footer (will not be printed) -->
+    <!-- Footer (not printed) -->
     <div class="popup-footer non-printable">
-      <button class="btn btn-primary" (click)="printPage()">Imprimir</button>
-      <button class="btn btn-danger" *ngIf="transaction?.id !== undefined" (click)="deleteTransaction(transaction.id!)" [disabled]="!user?.token">Eliminar</button>
+      <button class="btn btn-primary" (click)="printPage()">
+        <span lang="es-ES">Imprimir</span>
+        <span lang="en-GB">Print</span>
+      </button>
+      <button class="btn btn-danger" *ngIf="transaction?.id !== undefined" 
+              (click)="deleteTransaction(transaction.id!)" 
+              [disabled]="!user?.token">
+        <span lang="es-ES">Eliminar</span>
+        <span lang="en-GB">Delete</span>
+      </button>
     </div>
+  
   </div>
 </div>

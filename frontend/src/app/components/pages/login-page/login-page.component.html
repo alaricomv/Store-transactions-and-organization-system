@@ -5,37 +5,62 @@
       <div class="row align-items-center justify-content-center">
         <div>
           <div class="login-rectangle p-4 p-md-5 shadow rounded-4 bg-white big-login">
-            <h3 class="text-center">Ingresa a <strong>Transacto</strong></h3>
+            <h3 class="text-center">
+              <span lang="es-ES">Ingresa a </span> <span lang="en-GB">Log in to </span> <strong>Transacto</strong>
+            </h3>
             <form [formGroup]="loginForm" (ngSubmit)="submit()">
               <div class="form-group first mb-4">
                 <mat-form-field appearance="fill" class="w-100">
-                  <mat-label>Email</mat-label>
+                  <mat-label>
+                    <span lang="es-ES">Email</span>
+                    <span lang="en-GB">Email</span>
+                  </mat-label>
                   <input matInput id="email" formControlName="email" type="email">
                 </mat-form-field>
                 <div class="error-list" *ngIf="fc['email'].errors && isSubmitted">
-                  <div *ngIf="fc['email'].errors['required']">Email is required</div>
-                  <div *ngIf="fc['email'].errors['email']">Email is invalid</div>
+                  <div *ngIf="fc['email'].errors['required']">
+                    <span lang="es-ES">El correo electrónico es obligatorio</span>
+                    <span lang="en-GB">Email is required</span>
+                  </div>
+                  <div *ngIf="fc['email'].errors['email']">
+                    <span lang="es-ES">El correo electrónico es inválido</span>
+                    <span lang="en-GB">Email is invalid</span>
+                  </div>
                 </div>
               </div>
               <div class="form-group last mb-4">
                 <mat-form-field appearance="fill" class="w-100">
-                  <mat-label>Contraseña</mat-label>
+                  <mat-label>
+                    <span lang="es-ES">Contraseña</span>
+                    <span lang="en-GB">Password</span>
+                  </mat-label>
                   <input matInput id="password" formControlName="password" type="password">
                 </mat-form-field>
                 <div class="error-list" *ngIf="fc['password'].errors && isSubmitted">
-                  <div *ngIf="fc['password'].errors['required']">Password is required</div>
+                  <div *ngIf="fc['password'].errors['required']">
+                    <span lang="es-ES">La contraseña es obligatoria</span>
+                    <span lang="en-GB">Password is required</span>
+                  </div>
                 </div>
               </div>
               <div class="d-flex mb-5 align-items-center justify-content-center">
                 <mat-checkbox formControlName="rememberMe">
-                  Recuerdame
+                  <span lang="es-ES">Recuérdame</span>
+                  <span lang="en-GB">Remember me</span>
                 </mat-checkbox>
               </div>
-              <button type="submit" class="btn btn-block btn-primary d-block mx-auto">Login</button>
+              <button type="submit" class="btn btn-block btn-primary d-block mx-auto">
+                <span lang="es-ES">Iniciar sesión</span>
+                <span lang="en-GB">Login</span>
+              </button>
             </form>
             <div class="text-center mt-3">
-              ¿Aun no tienes cuenta?
-              <a routerLink="/register" (click)="onRegisterClick()" class="fw-bold">Registrate aqui</a>
+              <span lang="es-ES">¿Aún no tienes cuenta? </span>
+              <span lang="en-GB">Don't have an account yet? </span>
+              <a routerLink="/register" (click)="onRegisterClick()" class="fw-bold">
+                <span lang="es-ES">Regístrate aquí</span>
+                <span lang="en-GB">Register here</span>
+              </a>
             </div>
           </div>
         </div>

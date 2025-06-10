@@ -1,9 +1,20 @@
-<h2 class="transactions-title fade-in">
-  {{ user?.token ? 'Operations' : 'Operations Demo' }}
-</h2>
-<div class="centered-link fade-in">
+<div class="title-container" style="text-align: center;">
+  <h2 class="transactions-title fade-in">
+    <ng-container *ngIf="user?.token; else demoText">
+      <span lang="es-ES">Operaciones</span>
+      <span lang="en-GB">Operations</span>
+    </ng-container>
+    <ng-template #demoText>
+      <span lang="es-ES">Demo de operaciones</span>
+      <span lang="en-GB">Operations Demo</span>
+    </ng-template>
+  </h2>
+</div>
+
+<div class="centered-link fade-in" *ngIf="!user?.token">
   <a routerLink="/login" class="linklogin" (click)="onLoginClick()">
-    Ingresa para empezar a hacer transacciones.
+    <span lang="es-ES">Ingresa para empezar a hacer transacciones.</span>
+    <span lang="en-GB">Log in to start creating transactions.</span>
   </a>
 </div>
 
