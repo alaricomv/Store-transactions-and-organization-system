@@ -1,0 +1,69 @@
+<div class="popup-container">
+  <div class="popup-content">
+    <!-- Header (will not be printed) -->
+    <div class="popup-header non-printable">
+      <h5 class="popup-title">
+        <span lang="es-ES">Detalles de la transacción</span>
+        <span lang="en-GB">Transaction Details</span>
+      </h5>
+      <button type="button" class="close-button" (click)="closedDialog()">
+        <span aria-hidden="true">×</span>
+      </button>
+    </div>
+
+    <!-- Body -->
+    <div class="popup-body">
+      <div class="printable" id="printable-section">
+        <!-- Company name for ticket header (only in print) -->
+        <h1 class="only-printable">{{ user.company_name }}</h1>
+        <div *ngIf="totaltransaction">
+          <p>
+            <strong>ID:</strong> {{ totaltransaction.id }}
+          </p>
+          <p>
+            <strong>
+              <span lang="es-ES">Usuario:</span>
+              <span lang="en-GB">User:</span>
+            </strong> {{ totaltransaction.user_id }}
+          </p>
+          <p>
+            <strong>
+              <span lang="es-ES">Fecha:</span>
+              <span lang="en-GB">Date:</span>
+            </strong>
+            {{ totaltransaction.date | date:'fullDate' }}
+            {{ totaltransaction.date | date:'shortTime' }}
+          </p>
+          <p>
+            <strong>
+              <span lang="es-ES">Fecha de creacion:</span>
+              <span lang="en-GB">Creation Date:</span>
+            </strong>
+            {{ totaltransaction.creation_date | date:'fullDate' }}
+            {{ totaltransaction.creation_date | date:'shortTime' }}
+          </p>
+          <p>
+            <strong>
+              <span lang="es-ES">Total:</span>
+              <span lang="en-GB">Total:</span>
+            </strong> ${{ totaltransaction.total }}
+          </p>
+          <p>
+            <strong>
+              <span lang="es-ES">Número de Personas:</span>
+              <span lang="en-GB">Number of People:</span>
+            </strong> {{ totaltransaction.number_transactions }}
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer (will not be printed) -->
+    <div class="popup-footer non-printable">
+      <button [disabled]="!user?.token" class="btn btn-danger" *ngIf="totaltransaction?.id !== undefined" (click)="deleteTransaction(totaltransaction.id!)">
+        <span lang="es-ES">Eliminar</span>
+        <span lang="en-GB">Delete</span>
+      </button>
+    </div>
+  </div>
+</div>

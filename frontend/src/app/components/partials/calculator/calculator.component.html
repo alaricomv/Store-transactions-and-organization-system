@@ -1,0 +1,51 @@
+<div class="container">
+  <div class="calc-body">
+    <div class="calc-screen">
+      <div class="calc-operation">{{ input }}</div>
+      <div class="calc-typed">{{ result }}<span class="blink-me">|</span></div>
+    </div>
+    <div class="calc-button-row">
+      <div class="button c" (click)="allClear()">C</div>
+      
+      <div class="button l" (click)="pressOperator('%')">%</div>
+      <div class="button l" (click)="pressOperator('/')">/</div>
+    </div>
+    <div class="calc-button-row">
+      <div class="button" (click)="pressNum('7')">7</div>
+      <div class="button" (click)="pressNum('8')">8</div>
+      <div class="button" (click)="pressNum('9')">9</div>
+      <div class="button l" (click)="pressOperator('*')">x</div>
+    </div>
+    <div class="calc-button-row">
+      <div class="button" (click)="pressNum('4')">4</div>
+      <div class="button" (click)="pressNum('5')">5</div>
+      <div class="button" (click)="pressNum('6')">6</div>
+      <div class="button l" (click)="pressOperator('-')">−</div>
+    </div>
+    <div class="calc-button-row">
+      <div class="button" (click)="pressNum('1')">1</div>
+      <div class="button" (click)="pressNum('2')">2</div>
+      <div class="button" (click)="pressNum('3')">3</div>
+      <div class="button l" (click)="pressOperator('+')">+</div>
+    </div>
+    <div class="calc-button-row">
+      <div class="button" (click)="pressNum('.')">.</div>
+      <div class="button" (click)="pressNum('0')">0</div>
+      <div class="button" (click)="backspace()">&lt;</div>
+      <div class="button l" (click)="getAnswer()">=</div>
+    </div>
+  </div>
+  <div class="transaction-buttons-container">
+  <button class="btn btn-primary btn-lg" 
+          (click)="addTransaction()" 
+          [disabled]="!user?.token || transactionClicked">
+    <span lang="es-ES">Cobrar</span>
+    <span lang="en-GB">Create transaction</span>
+  </button>
+  <button class="btn btn-primary btn-lg" 
+          (click)="addTotalTransaction()" 
+          [disabled]="!user?.token || totalTransactionClicked">
+    <span lang="es-ES">Corte</span>
+    <span lang="en-GB">Create Report</span>
+  </button>
+</div>

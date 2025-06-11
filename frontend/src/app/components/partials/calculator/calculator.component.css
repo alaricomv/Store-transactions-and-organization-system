@@ -1,0 +1,119 @@
+* {
+  box-sizing: border-box;
+  font-family: 'Roboto', sans-serif;
+}
+
+body {
+  background: #EAEBEC;
+}
+
+.container {
+  width: 600px;
+  margin: auto;
+}
+
+
+.calc-body {
+  width: 420px;
+  margin: auto;
+  min-height: 600px;
+  border: solid 1px #3A4655;
+  box-shadow: 0 8px 50px -7px black;
+}
+
+.calc-screen {
+  background: #3A4655;
+  width: 100%;
+  height: 220px;
+  padding: 32px;
+}
+
+
+.calc-operation {
+  text-align: right;
+  color: #727B86;
+  font-size: 32px;
+  padding-bottom: 18px;
+  border-bottom: dotted 1px;
+}
+
+.calc-typed {
+  margin-top: 32px;
+  font-size: 68px;
+  text-align: right;
+  color: #fff;
+}
+
+.calc-button-row {
+  width: 100%;
+  background: #3C4857;
+}
+
+.button {
+  width: 25%;
+  background: #425062;
+  color: #fff;
+  padding: 32px;
+  display: inline-block;
+  font-size: 38px;
+  text-align: center;
+  vertical-align: middle;
+  margin-right: -4px;
+  border-right: solid 2px #3C4857;
+  border-bottom: solid 2px #3C4857;
+  transition: all 0.2s ease-in-out;
+}
+
+.button.l {
+  color: #AEB3BA;
+  background: #404D5E;
+}
+
+.button.c {
+  color: #D95D4E;
+  background: #404D5E;
+}
+
+.button:hover {
+  background: #E0B612;
+  transform: rotate(5deg);
+}
+
+.button.c:hover,
+.button.l:hover {
+  background: #E0B612;
+  color: #fff;
+}
+
+.blink-me {
+  color: #E0B612;
+}
+
+.button,
+.button.l,
+.button.c {
+  cursor: pointer;
+}
+
+.blink-me {
+  animation: blink 1s steps(2, start) infinite;
+}
+.transaction-buttons-container {
+  display: flex;
+  justify-content: center;
+  gap: 20px;      
+  margin-top: 20px; 
+}
+
+
+.transaction-buttons-container .btn {
+  padding: 12px 24px;
+  font-size: 1.25rem;
+}
+
+
+@keyframes blink {
+  to {
+    visibility: hidden;
+  }
+}

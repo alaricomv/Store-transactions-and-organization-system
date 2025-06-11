@@ -1,0 +1,90 @@
+
+.only-printable {
+    display: none;
+  }
+
+.popup-container {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  max-width: 400px;
+  width: 100%;
+}
+
+.popup-content {
+  display: flex;
+  flex-direction: column;
+}
+
+.popup-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 2px solid #ddd;
+  padding-bottom: 10px;
+}
+
+.popup-title {
+  font-size: 1.25rem;
+  font-weight: bold;
+}
+
+.close-button {
+  background: none;
+  border: none;
+  font-size: 2.5rem;
+  cursor: pointer;
+}
+
+.popup-body {
+  padding: 15px 0;
+}
+
+.popup-footer {
+  display: flex;
+  justify-content: space-between;
+  border-top: 1px solid #ddd;
+  padding-top: 10px;
+}
+
+.popup-footer .btn {
+  /* Remove margin-left so each button sits on its respective side */
+  margin: 0;
+}
+
+
+  
+  /* Hide non-printable elements when printing */
+  @media print {
+    .non-printable {
+      display: none;
+    }
+  
+    .printable {
+      border: none;
+      background-color: white;
+      margin: 0;
+      padding: 0;
+      width: 100%;
+    }
+  
+    h1 {
+      font-size: 24px;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+  
+    p {
+      font-size: 16px;
+      margin: 5px 0;
+    }
+  
+    p strong {
+      font-weight: bold;
+    }
+  }

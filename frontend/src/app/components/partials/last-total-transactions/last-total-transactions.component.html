@@ -1,0 +1,54 @@
+<div class="last-transactions-container">
+  <h1>
+    <span lang="es-ES">Últimos Cortes</span>
+    <span lang="en-GB">Latest Reports</span>
+  </h1>
+  <ul>
+    <li *ngFor="let transaction of lasttransactions" (click)="openTransactionDialog(transaction)">
+      <div class="transaction-details">
+        <p>
+          <strong>ID:</strong> {{ transaction.id }}
+        </p>
+        <p>
+          <strong>
+            <span lang="es-ES">Usuario:</span>
+            <span lang="en-GB">User:</span>
+          </strong>
+          {{ transaction.user_id }}
+        </p>
+        <p>
+          <strong>
+            <span lang="es-ES">Fecha:</span>
+            <span lang="en-GB">Date:</span>
+          </strong>
+          {{ transaction.date | date:'shortDate' }}<br/>
+        </p>
+        <p>
+          <strong>
+            <span lang="es-ES">Total:</span>
+            <span lang="en-GB">Total:</span>
+          </strong>
+          ${{ transaction.total }}
+        </p>
+        <p>
+          <strong>
+            <span lang="es-ES">Número de Personas:</span>
+            <span lang="en-GB">Number of People:</span>
+          </strong>
+          {{ transaction.number_transactions }}
+        </p>
+      </div>
+    </li>
+  </ul>
+</div>
+
+<!-- Custom Modal Container -->
+<div *ngIf="showModal" class="modal-overlay">
+  <div class="modal-content">
+    <app-total-transaction-page
+      [totaltransaction]="selectedTransaction"
+      (close)="closeModal()">
+    </app-total-transaction-page>
+  </div>
+</div>
+
