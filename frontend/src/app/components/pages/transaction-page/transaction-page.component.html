@@ -1,17 +1,68 @@
-<div>
-    <div class="printable" id="printable-section">
-        <h1 class="only-printable">{{user.company_name}}</h1>
-        <h1 class="non-printable">Detalles de la transacción</h1>
+<div class="popup-container">
+  <div class="popup-content">
+    <!-- Header (not printed) -->
+    <div class="popup-header non-printable">
+      <h5 class="popup-title">
+        <span lang="es-ES">Detalles de la transacción</span>
+        <span lang="en-GB">Transaction Details</span>
+      </h5>
+      <button type="button" class="close-button" (click)="closedDialog()">
+        <span aria-hidden="true">×</span>
+      </button>
+    </div>
+
+    <!-- Body -->
+    <div class="popup-body">
+      <div class="printable" id="printable-section">
+        <!-- Company name for print header -->
+        <h1 class="only-printable">{{ user.company_name }}</h1>
         <div *ngIf="transaction">
-            <p><strong>ID:</strong> {{ transaction.id }}</p>
-            <p><strong>User:</strong> {{ transaction.user_id }}</p>
-            <p><strong>Date:</strong> {{ transaction.date | date:'fullDate' }} {{ transaction.date | date:'shortTime' }}</p>
-            <p><strong>Total:</strong> ${{ transaction.total }}</p>
+          <p>
+            <strong>ID:</strong> {{ transaction.id }}
+          </p>
+          <p>
+            <strong>
+              <span lang="es-ES">Usuario:</span>
+              <span lang="en-GB">User:</span>
+            </strong> {{ transaction.user_id }}
+          </p>
+          <p>
+            <strong>
+              <span lang="es-ES">Fecha:</span>
+              <span lang="en-GB">Date:</span>
+            </strong>
+              <span lang="es-ES"> {{ formatDate(transaction.date) }}:</span>
+              <span lang="en-GB"> {{ transaction.date | date:'shortDate' }}</span>
+          </p>
+          <p class="total-line">
+            <strong>
+              <span lang="es-ES">Total:</span>
+              <span lang="en-GB">Total:</span>
+            </strong>
+            <span class="total-amount"> ${{ transaction.total }}</span>
+          </p>
+          <hr class="only-printable ticket-divider" />
+          <p class="only-printable thank-you">
+            <span lang="es-ES">Gracias por su compra!</span>
+            <span lang="en-GB">Thank you for your purchase!</span>
+          </p>
         </div>
+      </div>
     </div>
-    <div class="non-printable">
-        <button mat-button (click)="closedDialog()">Volver</button>
-        <button mat-button (click)="printPage()">Imprimir</button>
-        <button mat-button *ngIf="transaction?.id !== undefined" (click)="deleteTransaction(transaction.id!)">Eliminar</button>
+
+    <!-- Footer (not printed) -->
+    <div class="popup-footer non-printable">
+      <button class="btn btn-primary" (click)="printPage()">
+        <span lang="es-ES">Imprimir</span>
+        <span lang="en-GB">Print</span>
+      </button>
+      <button class="btn btn-danger" *ngIf="transaction?.id !== undefined" 
+              (click)="deleteTransaction(transaction.id!)" 
+              [disabled]="!user?.token">
+        <span lang="es-ES">Eliminar</span>
+        <span lang="en-GB">Delete</span>
+      </button>
     </div>
+  
+  </div>
 </div>

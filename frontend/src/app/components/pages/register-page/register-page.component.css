@@ -1,0 +1,155 @@
+.register-bg-container {
+  display: flex;
+  min-height: 100vh;
+}
+
+.register-bg-image {
+  flex: 1 1 50%;
+  min-height: 100vh;
+  background-image: url('/assets/shared/images/register.jpeg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  display: block;
+}
+
+.register-contents {
+  flex: 1 1 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+}
+
+.register-rectangle {
+  background: #fff;
+  border-radius: 1.5rem;
+  box-shadow: 0 6px 32px 0 rgba(80, 120, 200, 0.10), 0 1.5px 6px 0 rgba(80, 120, 200, 0.08);
+  border: 1.5px solid #e3f0ff;
+  padding: 3.5rem 2.5rem;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+   min-width: 320px;
+  width: 100%;
+  max-width: 540px;
+  box-sizing: border-box;
+  transition: box-shadow 0.2s;
+  margin: 0 auto;
+}
+
+
+.register-rectangle,
+.register-rectangle label,
+.register-rectangle input,
+.register-rectangle .form-control,
+.register-rectangle .btn,
+.register-rectangle .caption,
+.register-rectangle .error-list,
+.register-rectangle h3,
+.register-rectangle .text-center,
+.register-rectangle a.fw-bold,
+.register-rectangle .mat-form-field,
+.register-rectangle .mat-input-element {
+  font-size: 1.5rem !important;
+}
+
+.register-rectangle h3 {
+  font-size: 2.3rem !important;
+}
+
+.register-rectangle .btn,
+.register-rectangle button,
+.register-rectangle [mat-raised-button] {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 1rem 2.5rem !important;
+  margin-top: 1.2rem !important;
+  margin-bottom: 1.2rem !important;
+}
+
+.register-rectangle .mat-form-field {
+  margin-bottom: 2.2rem !important;
+}
+
+.register-rectangle .mat-form-field-label {
+  margin-bottom: 0.7rem !important;
+}
+
+.register-rectangle .error-list {
+  font-size: 1.1rem !important;
+  margin-top: 0.2rem !important;
+  margin-bottom: 0.2rem !important;
+}
+
+.register-rectangle .text-center.mt-3 {
+  margin-top: 2.5rem !important;
+}
+
+
+.register-rectangle .btn,
+.register-rectangle button,
+.register-rectangle [mat-raised-button] {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 1rem 2.5rem !important;
+  font-size: 1.5rem !important;
+  font-weight: 600;
+  background: #457b9d !important;
+  color: #fff !important;
+  border: 1px solid #457b9d !important;
+  border-radius: 0.5rem !important;
+  box-shadow: none !important;
+  margin-top: 1.2rem !important;
+  margin-bottom: 1.2rem !important;
+  transition: background 0.25s, color 0.25s;
+}
+
+.register-rectangle .btn:hover,
+.register-rectangle button:hover,
+.register-rectangle [mat-raised-button]:hover {
+  background: #25496b !important;
+  color: #fff !important;
+}
+
+a {
+  color: #457b9d;
+  text-decoration: underline;
+  cursor: pointer !important;
+  font-weight: bold;
+  transition: color 0.2s;
+}
+
+a:hover {
+  color: #25496b;
+  text-decoration: underline;
+}
+
+
+@media (max-width: 992px) {
+  .register-bg-container {
+    flex-direction: column;
+  }
+  .register-bg-image {
+    min-height: 200px;
+    height: 200px;
+    width: 100%;
+  }
+  .register-rectangle {
+    padding: 2rem 0.5rem;
+    max-width: 100%;
+    margin-top: 1.5rem !important;
+    margin-bottom: 0.5rem !important;
+    /* Move the rectangle up */
+    align-self: flex-start;
+  }
+  .register-contents {
+    align-items: flex-start !important;
+    min-height: unset;
+  }
+}
+
+.full-width {
+  width: 100%;
+}

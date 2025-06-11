@@ -1,44 +1,85 @@
+<div style="display: flex; justify-content: center; width: 100%; margin-top: 2rem;">
+  <div style="width: 100%; max-width: 90%; overflow-x: auto;">
+    <h2 class="transactions-title">
+      <span lang="es-ES">{{ user?.token ? 'Cortes' : 'Cortes Demo' }}</span>
+      <span lang="en-GB">{{ user?.token ? 'Reports' : 'Reports Demo' }}</span>
+    </h2>
 
-<mat-form-field>
-  <mat-label>Elige una fecha</mat-label>
-  <input matInput [matDatepicker]="picker" [formControl]="date">
-  <mat-hint>MM/DD/YYYY</mat-hint>
-  <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
-  <mat-datepicker #picker></mat-datepicker>
-</mat-form-field>
+    <ng-container *ngIf="!user?.token">
+      <div class="centered-link">
+        <a routerLink="/login" class="linklogin" (click)="onLoginClick()">
+          <span lang="es-ES">Ingresa para empezar a ver tus cortes.</span>
+          <span lang="en-GB">Log in to start viewing your reports.</span>
+        </a>
+      </div>
+    </ng-container>
 
-<button mat-button (click)="createTotalTransaction()">Crear Corte en esta fecha</button>
+    <div class="datepicker-mobile-center" style="flex-direction: column; align-items: flex-start;">
+      <mat-form-field style="margin-bottom: 1.5rem; width: 350px;">
+        <mat-label>
+          <span lang="es-ES">Elige una fecha</span>
+          <span lang="en-GB">Choose a date</span>
+        </mat-label>
+        <input matInput [matDatepicker]="picker" [formControl]="date" [disabled]="!user?.token">
+        <mat-hint>MM/DD/YYYY</mat-hint>
+        <mat-datepicker-toggle matIconSuffix [for]="picker" [disabled]="!user?.token"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+    </div>
+
+    <table class="table table-striped transaction-table-responsive fade-in-table"
+           *ngIf="(user?.token && paginatedTransactions.length > 0) || (!user?.token)">
+      <thead>
+        <tr>
+          <th><span lang="es-ES">ID</span><span lang="en-GB">ID</span></th>
+          <th><span lang="es-ES">Usuario</span><span lang="en-GB">User</span></th>
+          <th><span lang="es-ES">Fecha</span><span lang="en-GB">Date</span></th>
+          <th><span lang="es-ES">Número de Personas</span><span lang="en-GB">Number of People</span></th>
+          <th><span lang="es-ES">Total</span><span lang="en-GB">Total</span></th>
+        </tr>
+      </thead>
+      <tbody>
+        <ng-container *ngIf="user?.token; else mockupCorteRows">
+          <tr *ngFor="let transaction of paginatedTransactions">
+            <td data-label="ID">{{ transaction.id }}</td>
+            <td data-label="Usuario / User">{{ transaction.user_id }}</td>
+            <td data-label="Fecha / Date">{{ transaction.date | date:'yyyy-MM-dd' }}</td>
+            <td data-label="# de Personas / # of People">{{ transaction.number_transactions }}</td>
+            <td data-label="Total">${{ transaction.total }}</td>
+          </tr>
+        </ng-container>
+        <ng-template #mockupCorteRows>
+          <tr *ngFor="let corte of mockupPaginatedCortes">
+            <td data-label="ID">{{ corte.id }}</td>
+            <td data-label="Usuario / User">{{ corte.user_id }}</td>
+            <td data-label="Fecha / Date">{{ corte.date }}</td>
+            <td data-label="# de Personas / # of People">{{ corte.number_transactions }}</td>
+            <td data-label="Total">${{ corte.total }}</td>
+          </tr>
+        </ng-template>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div *ngIf="user?.token ? paginatedTransactions.length === 0 : false" class="centered-bold">
+  <span lang="es-ES">No hay cortes para esta fecha.</span>
+  <span lang="en-GB">No reports for this date.</span>
+</div>
+
+<button mat-button color="primary"
+        (click)="createTotalTransaction()"
+        [disabled]="!user?.token"
+        style="height: 3.2rem; font-size: 1.2rem; margin-left: 1.5rem; display: block; margin: 0 auto; margin-bottom: 2.5rem;">
+  <span lang="es-ES">Crear Corte en esta fecha</span>
+  <span lang="en-GB">Create Report for this date</span>
+</button>
 
 <mat-paginator
-  [length]="transactions.length"
+  [length]="user?.token ? transactions.length : mockupCortes.length"
   [pageSize]="pageSize"
   [pageIndex]="pageIndex"
   [pageSizeOptions]="[5, 10, 25, 100]"
   (page)="onPageChange($event)"
   aria-label="Select page">
 </mat-paginator>
-
-<!-- Transactions Table -->
-<table *ngIf="paginatedTransactions.length > 0" class="transactions-table">
-  <thead>
-    <tr>
-      <th>ID</th>
-      <th>User</th>
-      <th>Date</th>
-      <th>Numero de Personas</th>
-      <th>Total</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let transaction of paginatedTransactions">
-      <td>{{ transaction.id }}</td>
-      <td>{{ transaction.user_id }}</td>
-      <td>{{ transaction.date | date:'yyyy-MM-dd' }}</td>
-      <td>{{ transaction.number_transactions }}</td>
-      <td>${{ transaction.total }}</td>
-    </tr>
-  </tbody>
-</table>
-<div *ngIf="paginatedTransactions.length === 0">
-  No hay cortes para esta fecha.
-</div>

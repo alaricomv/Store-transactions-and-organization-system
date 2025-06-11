@@ -20,13 +20,13 @@ export class UserService {
    }
 
    login(userLogin:IUserLogin):Observable<User>{
-    console.log('Logging in user:', userLogin); // Log the user login details
     return this.http.post<User>(USER_LOGIN_URL, userLogin).pipe(
       tap({
         next: (user) => {
           this.setUserToLocalStorage(user);
           this.userSubject.next(user);
           this.toastrService.success('Login successful', 'Success');
+          this.router.navigate(['/calculator']);
       },
       error: (errorResponse) => {
         this.toastrService.error(errorResponse.error, 'Login Failed');
@@ -70,7 +70,6 @@ export class UserService {
    }
 
    register(user:User):Observable<User>{
-    console.log('Registering user:', user); // Log the user registration details
     return this.http.post<User>(USERS_URL, user).pipe(
       tap({
         next: (user) => {

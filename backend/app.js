@@ -112,7 +112,6 @@ app.get('/lasttransactions/:id', async (req, res) => {
 
 // Create transaction
 app.post('/transactions', express.json(), async (req, res) => {
-    console.log(req.body);
     const { user_id, total } = req.body;
     if (!user_id || !total) {
         return res.status(400).send('All fields are required');
@@ -127,7 +126,7 @@ app.post('/transactions', express.json(), async (req, res) => {
 })
 
 // Delete transaction
-app.delete('/transactions/:id', async (req, res) => {
+app.put('/transactions/:id', async (req, res) => {
     const id = req.params.id;
     try {
         const result = await deleteTransaction(id);

@@ -1,30 +1,104 @@
 <header>
-    <div class="header-container">
-        <a routerLink="/" class="logo"> De Moda</a>
-        <nav>
-            <ul>
-                <li *ngIf="user.token">
-                    <p>{{user.company_name}}</p>
-                </li>
-                <li *ngIf="!user.token">
-                    <a routerLink="/login">Login</a>
-                </li>
-                <li *ngIf="!user.token">
-                    <a routerLink="/register">Register</a>
-                </li>
-                <li *ngIf="user.token">
-                    <a (click)="logout()">Logout</a>
-                </li>
-                <li *ngIf="user.token">
-                    <a routerLink="/transactions">Transacciones</a>
-                </li>
-                <li *ngIf="user.token">
-                    <a routerLink="/totaltransactions">Cortes</a>
-                </li>
-                <li *ngIf="user.token">
-                    <a routerLink="/calculator">Calculadora</a>
-                </li>
-            </ul>
-        </nav>
+  <div class="px-3 py-2 text-bg-dark border-bottom">
+    <div class="container-fluid">
+      <div class="d-flex flex-wrap align-items-center justify-content-between">
+
+        <!-- Logo Link -->
+        <a routerLink="/" class="d-flex align-items-center my-2 my-lg-0 me-lg-auto text-decoration-none header-logo-img-link">
+          <img src="assets/shared/images/logo.png" alt="Logo" class="header-logo-img" />
+        </a>
+
+        <!-- Language changer (dropdown) -->
+        <div class="d-flex align-items-center">
+          <select 
+            name="lang" 
+            (change)="switchLanguage($event)" 
+            class="form-select me-3" 
+            style="width: auto;"
+            [value]="currentLang">
+            <!-- Include Spanish as default -->
+            <option value="es-ES">Español</option>
+            <option value="en-GB">English</option>
+          </select>
+        </div>
+
+        <!-- Navigation -->
+        <div class="text-end">
+          <!-- Home link with language-specific text -->
+          <a routerLink="/" class="nav-link text-secondary" style="padding: 1.3rem; font-size: 1.18rem;">
+            <i class="bi bi-house"></i>
+            <span lang="es-ES"> Inicio</span>
+            <span lang="en-GB"> Home</span>
+          </a>
+          <!-- Hamburger menu button always visible -->
+          <button type="button" class="btn btn-outline-secondary ms-2" (click)="openSidebar()" aria-label="Menú">
+            <span style="display: inline-block; width: 2rem; height: 2rem;">
+              <span style="display: block; width: 100%; height: 0.3rem; background: #457b9d; margin: 0.3rem 0; border-radius: 2px;"></span>
+              <span style="display: block; width: 100%; height: 0.3rem; background: #457b9d; margin: 0.3rem 0; border-radius: 2px;"></span>
+              <span style="display: block; width: 100%; height: 0.3rem; background: #457b9d; margin: 0.3rem 0; border-radius: 2px;"></span>
+            </span>
+          </button>
+        </div>
+      </div>
     </div>
+  </div>
+
+  <!-- Sidebar (offcanvas) for all users -->
+  <div class="offcanvas offcanvas-end" tabindex="-1" id="userSidebar" aria-labelledby="userSidebarLabel">
+    <div class="offcanvas-header">
+      <h5 class="offcanvas-title" id="userSidebarLabel">
+        <i class="bi bi-person-circle"></i>
+        <!-- Header title can also have dual language if needed -->
+        <ng-container *ngIf="user.token; else loginBtn">
+          {{ user.company_name }}
+        </ng-container>
+        <ng-template #loginBtn></ng-template>
+      </h5>
+      <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close" (click)="closeSidebar()"></button>
+    </div>
+    <div class="offcanvas-body">
+      <ul class="list-group mb-3">
+        <!-- Calculator -->
+        <li class="list-group-item">
+          <a routerLink="/calculator" class="text-decoration-none">
+            <i class="bi bi-calculator"></i>
+            <span lang="es-ES"> Operaciones</span>
+            <span lang="en-GB"> Operations</span>
+          </a>
+        </li>
+        <!-- Transactions -->
+        <li class="list-group-item">
+          <a routerLink="/transactions" class="text-decoration-none">
+            <i class="bi bi-table"></i>
+            <span lang="es-ES"> Transacciones</span>
+            <span lang="en-GB"> Transactions</span>
+          </a>
+        </li>
+        <!-- Total Transactions / Reports -->
+        <li class="list-group-item">
+          <a routerLink="/totaltransactions" class="text-decoration-none">
+            <i class="bi bi-grid"></i>
+            <span lang="es-ES"> Cortes</span>
+            <span lang="en-GB"> Reports</span>
+          </a>
+        </li>
+      </ul>
+      <ng-container *ngIf="user.token; else loginBtnSidebar">
+        <!-- Logout button -->
+        <button (click)="logout()" class="btn btn-danger w-100">
+          <i class="bi bi-box-arrow-right"></i>
+          <span lang="es-ES">Cerrar sesión</span>
+          <span lang="en-GB">Logout</span>
+        </button>
+      </ng-container>
+      <ng-template #loginBtnSidebar>
+        <!-- Login button -->
+        <button routerLink="/login" class="btn btn-primary w-100">
+          <i class="bi bi-box-arrow-in-right"></i>
+          <span lang="es-ES">Iniciar sesión</span>
+          <span lang="en-GB">Login</span>
+        </button>
+      </ng-template>
+    </div>
+  </div>
 </header>

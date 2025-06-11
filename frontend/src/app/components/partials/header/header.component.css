@@ -1,66 +1,163 @@
-header{
-    position: relative;
-    background: white;
-    padding: 0;
-    border-bottom: 1px solid #e72929;
+header {
+  background: #fff;
+  /* position: sticky; */
+  top: 0;
+  z-index: 1050;
+  border-bottom: 4px solid #457b9d; /* Blue separator line */
 }
 
-a{
-    color: #af1313;
+
+.d-flex.flex-wrap.align-items-center.justify-content-between {
+  display: flex !important;
+  flex-direction: row !important;
+  flex-wrap: nowrap !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  width: 100%;
+  gap: 1rem;
 }
 
-a:hover{
-    background: #e72929;
-    color: white;
-    cursor: pointer;
+.header-logo-img-link,
+.header-logo-img,
+ul.nav,
+.text-end {
+  flex-shrink: 1 !important; /* Allow shrinking */
+  min-width: 0;
 }
 
-.header-container{
-    margin: 0 auto;
-    display: flex;
-    justify-content: space-between;
+.header-logo-img-link,
+.header-logo-img,
+ul.nav,
+.text-end {
+  flex-shrink: 0 !important;
+  min-width: 0;
 }
 
-a.logo{
-    font-weight: bold;
-    padding: 1rem;
+ul.nav,
+.text-end {
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: center !important;
+  flex-wrap: nowrap !important;
+  gap: 0.5rem;
+  margin-bottom: 0 !important;
+  padding-left: 0 !important;
+  padding-right: 0 !important;
 }
 
-ul{
-    display: flex;
-    list-style-type: none;
-    margin: 0;
+
+.px-3.py-2.text-bg-dark.border-bottom {
+  background: #fff !important;
+  color: #1d3557 !important;
+  padding-top: 2.2rem !important;
+  padding-bottom: 2.2rem !important;
 }
 
-ul a{
-    padding: 1rem;
-    display: inline-block;
+.header-logo-img {
+  height: 7rem !important;
+  max-width: 400px !important;
 }
 
-a span{
-    background: #ff4d4d;
-    color: white;
-    padding: 0.1rem 0.45rem;
-    border-radius: 100rem;
-    font-size: 0.9rem;
+ul a {
+  padding: 1.3rem;
+  font-size: 1.18rem;
+  display: inline-block;
+  color: #222 !important; 
+  background: transparent !important;
+  transition: color 0.25s;
 }
 
-.menu-container{
-    position: relative;
+ul a:hover,
+ul a:focus {
+  color: #457b9d !important;
+  background: transparent !important;
+  text-decoration: underline;
 }
 
-.menu{
-    position:absolute;
-    z-index: 1;
-    background: whitesmoke;
-    display: none;
+.text-end > button,
+.text-end > .btn {
+  font-size: 1.35rem;
+  padding: 1.1rem 2.5rem;
+  color: #222 !important; 
+  background: #f5f8fa !important;
+  border: 1px solid #457b9d !important;
+  transition: background 0.25s, color 0.25s;
 }
 
-.menu-container:hover .menu{
-    display: block;
+.text-end > .btn-primary:active,
+.text-end > button.btn-primary:active {
+  background: #25496b !important; 
+  color: #fff !important;
 }
 
-.menu a{
-    width: 100%;
-    min-width: 8rem;
+.text-end > .btn-light:active,
+.text-end > button.btn-light:active {
+  background: #bcd0e6 !important;
+  color: #1d3557 !important;
+}
+
+.text-end > .btn-danger:active,
+.text-end > button.btn-danger:active {
+  background: #b22222 !important; 
+  color: #fff !important;
+}
+
+
+.offcanvas-title {
+  font-size: 2rem !important;
+  font-weight: 700 !important;
+  color: #1d3557 !important;
+  text-align: center !important;
+  width: 100%;
+  display: block;
+}
+
+.list-group-item {
+  border: none !important;
+  border-bottom: 1px solid #e0e0e0 !important;
+  border-radius: 0 !important;
+}
+
+.list-group-item:last-child {
+  border-bottom: none !important;
+}
+
+
+@media (max-width: 991.98px) {
+  .d-flex.flex-wrap.align-items-center.justify-content-between {
+    flex-direction: row !important;
+    flex-wrap: nowrap !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    gap: 0.5rem;
+    padding-left: 0.5rem !important;
+    padding-right: 0.5rem !important;
+    width: auto !important;        
+    min-width: 0 !important;        
+  }
+  .header-logo-img {
+    height: 3.5rem !important;
+    max-width: 40vw !important;
+    min-width: 0 !important;
+    flex-shrink: 1 !important;
+  }
+  ul.nav,
+  .text-end {
+    gap: 0.25rem;
+    min-width: 0 !important;
+    flex-shrink: 1 !important;
+  }
+  ul.nav a {
+    padding: 0.7rem;
+    font-size: 1rem;
+  }
+  .text-end > button,
+  .text-end > .btn {
+    font-size: 1rem;
+    padding: 0.7rem 1.2rem;
+  }
+
+  .text-end {
+    margin-left: 0 !important;
+  }
 }

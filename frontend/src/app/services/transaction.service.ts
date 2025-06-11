@@ -21,7 +21,6 @@ export class TransactionService {
     const user = JSON.parse(localStorage.getItem('User') || '{}');
     const userId = user.id; // Get the user ID from local storage
     const url = `${LAST_TRANSACTIONS_URL}/${userId}`; // Construct the full URL
-    console.log('HTTP Request URL:', url); // Log the URL to the console
     return this.http.get<Transaction[]>(url);
   }
 
@@ -33,19 +32,16 @@ export class TransactionService {
     const user = JSON.parse(localStorage.getItem('User') || '{}');
     const userId = user.id; // Get the user ID from local storage
     const url = `${TRANSACTION_BY_DATE_URL}${date}/${userId}`; // Construct the full URL
-    console.log('HTTP Request URL:', url); // Log the URL to the console
     return this.http.get<Transaction[]>(url);
   }
 
-  deleteTransaction(id: number): Observable<any> {
+  deleteTransaction(id: string): Observable<any> {
     const url = `${TRANSACTION_BY_ID_URL}${id}`; // Construct the full URL
-    console.log('HTTP Request URL:', url); // Log the URL to the console
-    return this.http.delete(url);
+    return this.http.put<Transaction>(url, { deleted: true });
   }
 
   createTransaction(transaction: Transaction): Observable<Transaction> {
     const url = TRANSACTIONS_URL; // Construct the full URL
-    console.log('HTTP Request URL:', url); // Log the URL to the console
     return this.http.post<Transaction>(url, transaction);
   }
 
@@ -53,7 +49,6 @@ export class TransactionService {
 
   createTotalTransaction(totalTransaction:Total_transaction): Observable<Total_transaction> {
     const url = TOTAL_TRANSACTIONS_URL; // Construct the full URL
-    console.log('HTTP Request URL:', url); // Log the URL to the console
     return this.http.post<Total_transaction>(url, totalTransaction); 
   }
 
@@ -61,7 +56,6 @@ export class TransactionService {
     const user = JSON.parse(localStorage.getItem('User') || '{}');
     const userId = user.id; // Get the user ID from local storage
     const url = `${LAST_TOTAL_TRANSACTIONS_URL}/${userId}`; // Construct the full URL
-    console.log('HTTP Request URL:', url); // Log the URL to the console
     return this.http.get<Total_transaction[]>(url);
   }
 
@@ -73,13 +67,11 @@ export class TransactionService {
     const user = JSON.parse(localStorage.getItem('User') || '{}');
     const userId = user.id; // Get the user ID from local storage
     const url = `${TOTAL_TRANSACTIONS_BY_DATE_URL}${date}/${userId}`; // Construct the full URL
-    console.log('HTTP Request URL:', url); // Log the URL to the console
     return this.http.get<Total_transaction[]>(url);
   }
 
-  deleteTotalTransaction(id: number): Observable<any> {
+  deleteTotalTransaction(id: string): Observable<any> {
     const url = `${TOTAL_TRANSACTIONS_BY_ID_URL}${id}`; // Construct the full URL
-    console.log('HTTP Request URL:', url); // Log the URL to the console
     return this.http.delete(url);
   }
 

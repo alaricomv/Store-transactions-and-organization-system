@@ -1,37 +1,38 @@
-<div class="home-container">
-    <!-- Calculator Section -->
-    <div class="calculator-container">
+<div class="title-container" style="text-align: center;">
+  <h2 class="transactions-title fade-in">
+    <ng-container *ngIf="user?.token; else demoText">
+      <span lang="es-ES">Operaciones</span>
+      <span lang="en-GB">Operations</span>
+    </ng-container>
+    <ng-template #demoText>
+      <span lang="es-ES">Demo de operaciones</span>
+      <span lang="en-GB">Operations Demo</span>
+    </ng-template>
+  </h2>
+</div>
+
+<div class="centered-link fade-in" *ngIf="!user?.token">
+  <a routerLink="/login" class="linklogin" (click)="onLoginClick()">
+    <span lang="es-ES">Ingresa para empezar a hacer transacciones.</span>
+    <span lang="en-GB">Log in to start creating transactions.</span>
+  </a>
+</div>
+
+<div class="home-container fade-in">
+  <!-- Calculator Section -->
+  <div class="calculator-container">
+    <div class="calculator-card">
       <app-calculator></app-calculator>
     </div>
-  
-    <!-- Transactions Section -->
+  </div>
+
+  <!-- Transactions Group -->
+  <div class="transactions-group">
     <div class="transactions-container">
       <app-last-transactions></app-last-transactions>
-  
-      <!-- <h1>All Transactions</h1>
-      <ul>
-        <li *ngFor="let transaction of transactions">
-          <p><strong>ID:</strong> {{ transaction.id }}</p>
-          <p><strong>User:</strong> {{ transaction.user }}</p>
-          <p><strong>Date:</strong> {{ transaction.date | date:'fullDate' }} {{ transaction.date | date:'shortTime' }}</p>
-          <p><strong>Total:</strong> ${{ transaction.total }}</p>
-        </li>
-      </ul> -->
-
     </div>
-
     <div class="transactions-container">
       <app-last-total-transactions></app-last-total-transactions>
-  
-      <!-- <h1>All Transactions</h1>
-      <ul>
-        <li *ngFor="let transaction of transactions">
-          <p><strong>ID:</strong> {{ transaction.id }}</p>
-          <p><strong>User:</strong> {{ transaction.user }}</p>
-          <p><strong>Date:</strong> {{ transaction.date | date:'fullDate' }} {{ transaction.date | date:'shortTime' }}</p>
-          <p><strong>Total:</strong> ${{ transaction.total }}</p>
-        </li>
-      </ul> -->
-
     </div>
+  </div>
 </div>

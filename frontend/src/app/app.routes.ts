@@ -10,11 +10,11 @@ import { RegisterPageComponent } from './components/pages/register-page/register
 
 export const routes: Routes = [
   { path: '', component: HomeComponent }, // Default route
-  { path: 'transaction/:id', component: TransactionPageComponent, canActivate: [authGuard] }, // Transactions page
-  { path: 'calculator', component: CalculatorPageComponent, canActivate: [authGuard] }, // Calculator page
+  { path: 'transaction/:id', component: TransactionPageComponent }, // Transactions page
+  { path: 'calculator', component: CalculatorPageComponent, }, // Calculator page
   { path: 'login', component: LoginPageComponent, canActivate: [guestGuard] }, // Login page
   { path: 'register', component: RegisterPageComponent, canActivate: [guestGuard] }, // Register page
-  { path: 'transactions', component: TransactionListPageComponent, canActivate: [authGuard] }, // Transactions List page
-  { path: 'totaltransactions', component: TotalTransactionListPageComponent, canActivate: [authGuard] }, // Total Transactions List page
+  { path: 'transactions', component: TransactionListPageComponent }, // Transactions List page
+  { path: 'totaltransactions', component: TotalTransactionListPageComponent }, // Total Transactions List page
   { path: '**', redirectTo: '' } // Redirect unknown routes to the home page
 ];

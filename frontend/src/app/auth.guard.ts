@@ -1,8 +1,6 @@
 import { CanActivateFn, Router } from '@angular/router';
-
-import {jwtDecode} from 'jwt-decode';
-
-
+import { inject } from '@angular/core';
+import { jwtDecode } from 'jwt-decode';
 
 function isTokenExpired(token: string): boolean {
   try {
@@ -14,6 +12,7 @@ function isTokenExpired(token: string): boolean {
 }
 
 export const authGuard: CanActivateFn = (route, state) => {
+  const router = inject(Router);
   const user = localStorage.getItem('User');
   if (user) {
     const token = JSON.parse(user).token;
@@ -22,17 +21,18 @@ export const authGuard: CanActivateFn = (route, state) => {
     }
   }
   // Redirect to login if not authenticated or token is expired
-  window.location.href = '/login';
+  router.navigate(['/login']);
   return false;
 };
 
 export const guestGuard: CanActivateFn = (route, state) => {
+  const router = inject(Router);
   const user = JSON.parse(localStorage.getItem('User') || '{}');
   const token = user?.token;
   if (!token || isTokenExpired(token)) {
     return true; // Allow access if not logged in or token expired
   } else {
-    window.location.href = '/';
+    router.navigate(['/']);
     return false;
   }
 };

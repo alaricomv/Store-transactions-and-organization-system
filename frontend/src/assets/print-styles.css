@@ -1,38 +1,111 @@
 /*Styles for print only*/
-
 body {
+    margin: 0;
+    padding: 0;
     font-family: Arial, sans-serif;
     color: #333;
-    margin: 20px;
-    padding: 20px;
+    background: #fff;
   }
   
-  h1 {
-    font-size: 28px;
+  /* Hide non-printable elements */
+  .non-printable {
+    display: none !important;
+  }
+  
+  /* Ensure only-printable items are visible in print */
+  .only-printable {
+    display: block;
+  }
+  
+  /* Ticket container styling using lighter dotted borders for a receipt feel */
+  .popup-container {
+    position: relative;
+    top: auto;
+    left: auto;
+    transform: none;
+    max-width: 300px;
+    margin: 20px auto;
+    padding: 15px 8px;
+    background: #fff;
+    box-shadow: 0 0 2px rgba(0, 0, 0, 0.2);
+    border: 1px dotted #000;
+  }
+  
+  /* Add smaller perforation-style notches using dotted borders */
+  .popup-container::before,
+  .popup-container::after {
+    content: "";
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background: #fff;
+    border: 1px dotted #000;
+    border-radius: 50%;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+  
+  .popup-container::before {
+    left: -6px;
+  }
+  
+  .popup-container::after {
+    right: -6px;
+  }
+  
+  /* Ticket header styling: receipt-like header with a dotted underline */
+  .only-printable {
+    font-size: 26px;
     text-align: center;
-    margin-bottom: 20px;
-    color: black;
-    border-bottom: 2px solid #ddd;
-    padding-bottom: 10px;
+    margin-bottom: 10px;
+    padding-bottom: 8px;
+    color: #000;
+    border-bottom: 1px dotted #000;
   }
   
+  /* General text styling for the ticket */
   p {
-    font-size: 18px;
-    line-height: 1.6;
-    margin: 10px 0;
+    font-size: 16px;
+    line-height: 1.5;
+    margin: 8px 0;
   }
   
   p strong {
     font-weight: bold;
     color: #222;
   }
-
-  /* Will not appear in the print*/
-  .non-printable {
-    display: none;
+  
+  /* Divider styling to mimic a perforated or tear-off line using a fine dotted line */
+  .ticket-divider {
+    border: none;
+    border-top: 1px dotted #000;
+    margin: 10px 0;
   }
-
-  /* Will only appear in the print*/
-  .only-printable {
-    display: block;
+  
+  /* Total line styling:
+     - A dotted divider above the total,
+     - Enlarged bold text,
+     - Flex layout to align label left and amount right */
+  p.total-line {
+    font-size: 20px;
+    font-weight: bold;
+    border-top: 1px dotted #000;
+    margin-top: 10px;
+    padding-top: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
   }
+  
+  .total-amount {
+    text-align: right;
+    width: 50%;
+  }
+  
+  .thank-you {
+    text-align: center;
+    margin-top: 15px;
+    font-size: 18px;
+    font-weight: bold;
+  }
+  

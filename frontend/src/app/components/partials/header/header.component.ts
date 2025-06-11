@@ -5,11 +5,10 @@ import { User } from '../../../shared/models/user';
 import { CommonModule } from '@angular/common';
 
 @Component({
-  selector: 'app-header',
-  standalone: true,
-  imports: [RouterLink, CommonModule],
-  templateUrl: './header.component.html',
-  styleUrl: './header.component.css'
+    selector: 'app-header',
+    imports: [RouterLink, CommonModule],
+    templateUrl: './header.component.html',
+    styleUrl: './header.component.css'
 })
 export class HeaderComponent implements OnInit {
 
@@ -37,4 +36,32 @@ export class HeaderComponent implements OnInit {
   logout() {
     this.userService.logout();
   }
+
+  // Add to your header.component.ts
+openSidebar() {
+  const sidebar = document.getElementById('userSidebar');
+  if (sidebar) {
+    // Bootstrap 5 Offcanvas
+    // @ts-ignore
+    new bootstrap.Offcanvas(sidebar).show();
+  }
+}
+closeSidebar() {
+  const sidebar = document.getElementById('userSidebar');
+  if (sidebar) {
+    // Bootstrap 5 Offcanvas
+    // @ts-ignore
+    new bootstrap.Offcanvas(sidebar).hide();
+  }
+}
+currentLang: string = 'en-GB';
+  
+  switchLanguage(event: Event): void {
+  const target = event.target as HTMLSelectElement | null;
+  if (target) {
+    const lang = target.value;
+    this.currentLang = lang;
+    document.documentElement.setAttribute('lang', lang);
+  }
+}
 }

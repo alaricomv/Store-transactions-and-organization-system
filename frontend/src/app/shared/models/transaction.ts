@@ -1,6 +1,7 @@
 export class Transaction{
-    id? : number;
+    id? : string;
     user_id! : number;
     date? : Date;
     total? : number;
+    deleted?: number;
 }
