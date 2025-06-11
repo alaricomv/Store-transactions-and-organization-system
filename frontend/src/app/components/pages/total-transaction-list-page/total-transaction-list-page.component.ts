@@ -78,7 +78,7 @@ export class TotalTransactionListPageComponent {
   }
 
 mockupCortes = [
-  { id: 1, user_id: 'demo_user', date: '2025-05-30', number_transactions: 5, total: '625.00' }
+  { id: 1, user_id: 'demo_user', date: '2025-05-30', creation_date: '2025-05-29 11:00:00', number_transactions: 5, total: '625.00' }
 ];
 
 get mockupPaginatedCortes() {
@@ -131,6 +131,16 @@ get mockupPaginatedCortes() {
       error: (err) => {
         console.error('Error creating transaction:', err);
       }
+    });
+  }
+
+  // Delete the transaction, then emit the close event and reload the page
+  deleteTransaction(id: string): void {
+    this.transactionService.deleteTotalTransaction(id).subscribe(() => {
+      console.log('Transaction deleted successfully');
+      window.location.reload();
+    }, error => {
+      console.error('Error deleting transaction:', error);
     });
   }
 

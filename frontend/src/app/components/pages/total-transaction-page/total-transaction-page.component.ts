@@ -45,4 +45,8 @@ export class TotalTransactionPageComponent {
       console.error('Error deleting transaction:', error);
     });
   }
+
+  ngOnInit(){
+    console.log('TotalTransactionPageComponent initialized with transaction:', this.totaltransaction);
+  }
 }

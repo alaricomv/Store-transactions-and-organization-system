@@ -133,32 +133,38 @@ export class CalculatorComponent {
     });
   }
 
-  addTotalTransaction() {
-
-    // Prevent multiple clicks
-    if (this.totalTransactionClicked) {
-      return;
-    }
+  addTotalTransaction(): void {
+    if (this.totalTransactionClicked) { return; }
     this.totalTransactionClicked = true;
 
-    // Use Luxon to capture the current local datetime with offset information
-    const now = DateTime.local();
-    // toISO() produces an ISO string with local timezone offset, e.g. "2025-06-05T03:38:00-07:00"
-    const formattedDate = now.toISO();
+    /* 1. grab local wall-clock time */
+    const localNow = DateTime.local();                    // 2025-06-11 17:00 PDT
 
+    /* 2. re-label it as UTC without changing the digits     *
+     *    (so 17:00 “Pacific” becomes 17:00 “UTC”)           */
+    const utcWallClock = localNow
+      .setZone('utc', { keepLocalTime: true })            // 2025-06-11 17:00 UTC
+      .toJSDate();                                        // plain JS Date
+
+    
     const totaltransaction = {
       user_id: this.user.id,
-      date: new Date(formattedDate)  // sending as an ISO string that includes timezone info
+      date: utcWallClock                                  // type is Date
     };
 
-    console.log(totaltransaction);
-    this.transactionService.createTotalTransaction(totaltransaction).subscribe((response) => {
-      console.log('Total Transaction added successfully:', response);
-       window.location.reload();
-    },
-    (error) => {
-      console.error('Error adding Total Transaction:', error);
-      this.totalTransactionClicked = false;
-    });
+    this.transactionService.createTotalTransaction(totaltransaction)
+      .subscribe({
+        next: res => {
+          console.log('✅ Total Transaction added', res);
+           window.location.reload();
+          this.totalTransactionClicked = false;
+        },
+        error: err => {
+          console.error('❌ Error adding Total Transaction', err);
+          this.totalTransactionClicked = false;
+        }
+      });
   }
+
+
 }

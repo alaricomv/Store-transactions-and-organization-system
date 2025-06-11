@@ -21,12 +21,7 @@
             <span lang="es-ES">Fecha:</span>
             <span lang="en-GB">Date:</span>
           </strong>
-          {{ transaction.date | date:'fullDate' }}<br/>
-          <strong>
-            <span lang="es-ES">Hora:</span>
-            <span lang="en-GB">Time:</span>
-          </strong>
-          {{ transaction.date | date:'shortTime' }}
+          {{ transaction.date | date:'shortDate' }}<br/>
         </p>
         <p>
           <strong>

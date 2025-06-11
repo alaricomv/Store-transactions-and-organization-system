@@ -37,7 +37,12 @@ export class LastTotalTransactionsComponent {
     userService: UserService,
     private dialog: MatDialog 
   ) {
-    if (!this.user?.token) {
+    
+
+    userService.userObservable.subscribe((newUser) => {
+      this.user = newUser;
+
+      if (!this.user?.token) {
       // No token? Use the demo transactions.
       this.lasttransactions = this.demoLastTransactions;
     } else {
@@ -51,9 +56,6 @@ export class LastTotalTransactionsComponent {
         }
       });
     }
-
-    userService.userObservable.subscribe((newUser) => {
-      this.user = newUser;
     });
   }
 
@@ -68,5 +70,9 @@ export class LastTotalTransactionsComponent {
 
   closeModal(): void {
     this.showModal = false;
+  }
+
+  ngOnInit(){
+    console.log('LastTotalTransactionsComponent initialized with transactions:', this.lasttransactions);
   }
 }

@@ -36,6 +36,14 @@
           </p>
           <p>
             <strong>
+              <span lang="es-ES">Fecha de creacion:</span>
+              <span lang="en-GB">Creation Date:</span>
+            </strong>
+            {{ totaltransaction.creation_date | date:'fullDate' }}
+            {{ totaltransaction.creation_date | date:'shortTime' }}
+          </p>
+          <p>
+            <strong>
               <span lang="es-ES">Total:</span>
               <span lang="en-GB">Total:</span>
             </strong> ${{ totaltransaction.total }}

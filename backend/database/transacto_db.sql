@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 06-06-2025 a las 05:20:36
+-- Tiempo de generación: 11-06-2025 a las 02:45:51
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -30,7 +30,8 @@ SET time_zone = "+00:00";
 CREATE TABLE `total_transactions` (
   `id` varchar(255) NOT NULL,
   `user_id` int(11) NOT NULL,
-  `date` datetime NOT NULL,
+  `date` date NOT NULL,
+  `creation_date` datetime NOT NULL DEFAULT current_timestamp(),
   `number_transactions` int(11) NOT NULL,
   `total` float NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;

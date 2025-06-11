@@ -71,7 +71,7 @@ export async function getTransactionById(id) {
 export async function createTransaction(user_id, total) {
     // Get the current highest increment for this user
     const [rows] = await pool.query(
-        "SELECT id FROM transactions WHERE user_id = ? ORDER BY date DESC LIMIT 1",
+        "SELECT id FROM transactions WHERE user_id = ? ORDER BY CAST(SUBSTRING_INDEX(id, '-', -1) AS UNSIGNED) DESC LIMIT 1;",
         [user_id]
     );
 
@@ -146,8 +146,6 @@ export async function createTotalTransactions(user_id, date) {
     // Calculate the total and count of transactions for the given user and date
     const formattedDate = new Date(date).toISOString().split('T')[0];
 
-    console.log(formattedDate);
-
     const [rows] = await pool.query(
         `SELECT SUM(total) AS total, COUNT(*) AS number_transactions 
          FROM transactions 
@@ -160,7 +158,7 @@ export async function createTotalTransactions(user_id, date) {
 
     // Get the current highest increment for this user in the total_transactions table
     const [idRows] = await pool.query(
-        "SELECT id FROM total_transactions WHERE user_id = ? ORDER BY id DESC LIMIT 1",
+        "SELECT id FROM total_transactions WHERE user_id = ? ORDER BY CAST(SUBSTRING_INDEX(id, '-', -1) AS UNSIGNED) DESC LIMIT 1;",
         [user_id]
     );
 
@@ -189,7 +187,7 @@ export async function createTotalTransactions(user_id, date) {
 // Get the last 3 total transactions for a user
 export async function getLastTotalTransactions(user_id) {
     const [rows] = await pool.query(
-        'SELECT * FROM total_transactions WHERE user_id = ? ORDER BY date DESC LIMIT 3',
+        'SELECT * FROM total_transactions WHERE user_id = ? ORDER BY creation_date DESC LIMIT 3',
         [user_id]
     );
     return rows; // Return all 3 rows, not just the first one
