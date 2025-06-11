@@ -28,44 +28,32 @@
     </div>
 
     <table class="table table-striped transaction-table-responsive fade-in-table"
-      *ngIf="(user?.token && paginatedTransactions.length > 0) || (!user?.token)">
+           *ngIf="(user?.token && paginatedTransactions.length > 0) || (!user?.token)">
       <thead>
         <tr>
           <th><span lang="es-ES">ID</span><span lang="en-GB">ID</span></th>
           <th><span lang="es-ES">Usuario</span><span lang="en-GB">User</span></th>
           <th><span lang="es-ES">Fecha</span><span lang="en-GB">Date</span></th>
-          <th><span lang="es-ES">Fecha de Creacion</span><span lang="en-GB">Creation Date</span></th>
           <th><span lang="es-ES">Número de Personas</span><span lang="en-GB">Number of People</span></th>
           <th><span lang="es-ES">Total</span><span lang="en-GB">Total</span></th>
-          <!-- Actions column only visible when user is logged in -->
-          <th *ngIf="user?.token"><span lang="es-ES">Acciones</span><span lang="en-GB">Actions</span></th>
         </tr>
       </thead>
       <tbody>
         <ng-container *ngIf="user?.token; else mockupCorteRows">
           <tr *ngFor="let transaction of paginatedTransactions">
             <td data-label="ID">{{ transaction.id }}</td>
-            <td data-label="Usuario">{{ transaction.user_id }}</td>
-            <td data-label="Fecha">{{ transaction.date | date:'yyyy-MM-dd' }}</td>
-            <td data-label="Fecha de Creacion">{{ transaction.creation_date | date:'yyyy-MM-dd HH:mm:ss' }}</td>
-            <td data-label="Número de Personas">{{ transaction.number_transactions }}</td>
+            <td data-label="Usuario / User">{{ transaction.user_id }}</td>
+            <td data-label="Fecha / Date">{{ transaction.date | date:'yyyy-MM-dd' }}</td>
+            <td data-label="# de Personas / # of People">{{ transaction.number_transactions }}</td>
             <td data-label="Total">${{ transaction.total }}</td>
-            <td data-label="Acciones">
-              <button mat-button color="warn" class="btn btn-danger" [disabled]="!user?.token"
-                (click)="user?.token && deleteTransaction(transaction.id!)">
-                <span lang="es-ES">Eliminar</span>
-                <span lang="en-GB">Delete</span>
-              </button>
-            </td>
           </tr>
         </ng-container>
         <ng-template #mockupCorteRows>
           <tr *ngFor="let corte of mockupPaginatedCortes">
             <td data-label="ID">{{ corte.id }}</td>
-            <td data-label="Usuario">{{ corte.user_id }}</td>
-            <td data-label="Fecha">{{ corte.date }}</td>
-            <td data-label="Fecha de Creacion">{{ corte.creation_date }}</td>
-            <td data-label="Número de Personas">{{ corte.number_transactions }}</td>
+            <td data-label="Usuario / User">{{ corte.user_id }}</td>
+            <td data-label="Fecha / Date">{{ corte.date }}</td>
+            <td data-label="# de Personas / # of People">{{ corte.number_transactions }}</td>
             <td data-label="Total">${{ corte.total }}</td>
           </tr>
         </ng-template>
@@ -79,12 +67,19 @@
   <span lang="en-GB">No reports for this date.</span>
 </div>
 
-<button mat-button color="primary" (click)="createTotalTransaction()" [disabled]="!user?.token"
-  style="height: 3.2rem; font-size: 1.2rem; margin-left: 1.5rem; display: block; margin: 0 auto; margin-bottom: 2.5rem;">
+<button mat-button color="primary"
+        (click)="createTotalTransaction()"
+        [disabled]="!user?.token"
+        style="height: 3.2rem; font-size: 1.2rem; margin-left: 1.5rem; display: block; margin: 0 auto; margin-bottom: 2.5rem;">
   <span lang="es-ES">Crear Corte en esta fecha</span>
   <span lang="en-GB">Create Report for this date</span>
 </button>
 
-<mat-paginator [length]="user?.token ? transactions.length : mockupCortes.length" [pageSize]="pageSize"
-  [pageIndex]="pageIndex" [pageSizeOptions]="[5, 10, 25, 100]" (page)="onPageChange($event)" aria-label="Select page">
+<mat-paginator
+  [length]="user?.token ? transactions.length : mockupCortes.length"
+  [pageSize]="pageSize"
+  [pageIndex]="pageIndex"
+  [pageSizeOptions]="[5, 10, 25, 100]"
+  (page)="onPageChange($event)"
+  aria-label="Select page">
 </mat-paginator>

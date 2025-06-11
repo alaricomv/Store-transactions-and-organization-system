@@ -57,10 +57,10 @@ export async function getTransactions() {
 
 export async function getLastTransactions(user_id) {
     const [rows] = await pool.query(
-        'SELECT * FROM transactions WHERE user_id = ? AND deleted = 0 ORDER BY date DESC LIMIT 3',
+        'SELECT * FROM transactions WHERE user_id = ? AND deleted = 0 ORDER BY date DESC LIMIT 5',
         [user_id]
     );
-    return rows; // Return all 3 rows, not just the first one
+    return rows; // Return all 5 rows, not just the first one
 }
 
 export async function getTransactionById(id) {
@@ -187,7 +187,7 @@ export async function createTotalTransactions(user_id, date) {
 // Get the last 3 total transactions for a user
 export async function getLastTotalTransactions(user_id) {
     const [rows] = await pool.query(
-        'SELECT * FROM total_transactions WHERE user_id = ? ORDER BY creation_date DESC LIMIT 3',
+        'SELECT * FROM total_transactions WHERE user_id = ? ORDER BY creation_date DESC LIMIT 5',
         [user_id]
     );
     return rows; // Return all 3 rows, not just the first one

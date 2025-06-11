@@ -43,11 +43,11 @@
       <tbody>
         <ng-container *ngIf="user?.token; else mockupRows">
           <tr *ngFor="let transaction of paginatedTransactions" [ngClass]="transaction.deleted === 0 ? '' : 'status-row-eliminado'">
-            <td data-label="Numero Transacción">{{ transaction.id }}</td>
-            <td data-label="Usuario">{{ transaction.user_id }}</td>
-            <td data-label="Fecha">{{ transaction.date | date:'yyyy-MM-dd HH:mm:ss' }}</td>
+            <td data-label="ID">{{ transaction.id }}</td>
+            <td data-label="Usuario / User">{{ transaction.user_id }}</td>
+            <td data-label="Fecha / Date">{{ transaction.date | date:'yyyy-MM-dd HH:mm:ss' }}</td>
             <td data-label="Total"><span class="amount">${{ transaction.total }}</span></td>
-            <td data-label="Estado">
+            <td data-label="Estado / Status">
               <span class="status" [ngClass]="transaction.deleted === 0 ? 'status-activo' : 'status-eliminado'">
                 <span lang="es-ES">{{ transaction.deleted === 0 ? 'Activo' : 'Eliminado' }}</span>
                 <span lang="en-GB">{{ transaction.deleted === 0 ? 'Active' : 'Deleted' }}</span>
@@ -57,11 +57,11 @@
         </ng-container>
         <ng-template #mockupRows>
           <tr *ngFor="let row of mockupPaginatedRows" [ngClass]="row.deleted ? 'status-row-eliminado' : ''">
-            <td data-label="Numero Transacción">{{ row.id }}</td>
-            <td data-label="Usuario">{{ row.user }}</td>
-            <td data-label="Fecha">{{ row.date }}</td>
+            <td data-label="ID">{{ row.id }}</td>
+            <td data-label="Usuario / User">{{ row.user }}</td>
+            <td data-label="Fecha / Date">{{ row.date }}</td>
             <td data-label="Total"><span class="amount">${{ row.total }}</span></td>
-            <td data-label="Estado">
+            <td data-label="Estado / Status">
               <span class="status" [ngClass]="row.deleted ? 'status-eliminado' : 'status-activo'">
                 <span lang="es-ES">{{ row.deleted ? 'Eliminado' : 'Activo' }}</span>
                 <span lang="en-GB">{{ row.deleted ? 'Deleted' : 'Active' }}</span>
