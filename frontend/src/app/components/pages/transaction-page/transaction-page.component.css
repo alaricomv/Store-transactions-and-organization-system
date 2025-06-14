@@ -87,4 +87,6 @@
     p strong {
       font-weight: bold;
     }
+
+    span[lang="es-ES"] { display: none; }
   }

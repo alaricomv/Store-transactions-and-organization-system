@@ -16,7 +16,7 @@ registerLocaleData(localeEs); // Register Spanish locale
     imports: [RouterLink, CommonModule, MatDialogModule, TotalTransactionPageComponent],
     templateUrl: './last-total-transactions.component.html',
     styleUrl: './last-total-transactions.component.css',
-    providers: [{ provide: LOCALE_ID, useValue: 'es' }]
+    providers: []
 })
 export class LastTotalTransactionsComponent {
   lasttransactions: Total_transaction[] = [];

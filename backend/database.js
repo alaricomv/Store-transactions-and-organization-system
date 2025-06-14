@@ -175,9 +175,10 @@ export async function createTotalTransactions(user_id, date) {
 
     // Insert the calculated values into the total_transactions table with the custom id  
     await pool.query(
-        'INSERT INTO total_transactions (id, user_id, total, date, number_transactions) VALUES (?, ?, ?, ?, ?)',
-        [customId, user_id, total, date, number_transactions]
+    'INSERT INTO total_transactions (id, user_id, total, date, number_transactions) VALUES (?, ?, ?, STR_TO_DATE(?, "%Y-%m-%dT%H:%i:%s.%fZ"), ?)',
+    [customId, user_id, total, date, number_transactions]
     );
+
 
     // Return the newly created record by its custom id
     return getTotalTransactionsbyId(customId);
