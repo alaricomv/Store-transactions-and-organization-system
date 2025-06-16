@@ -7,7 +7,7 @@ const app = express();
 
 app.use(express.json()); // Middleware to parse JSON bodies
 
-app.use(cors({origin: 'http://localhost:4200'})); // Enable CORS for your frontend app
+app.use(cors({origin: process.env.FRONTEND_URL})); // Enable CORS for your frontend app, 'http://localhost:4200'
 
 
 // User routes
