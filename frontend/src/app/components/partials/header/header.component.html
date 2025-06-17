@@ -60,7 +60,7 @@
       <ul class="list-group mb-3">
         <!-- Calculator -->
         <li class="list-group-item">
-          <a routerLink="/calculator" class="text-decoration-none">
+          <a routerLink="/calculator" class="text-decoration-none" (click)="closeSidebar()">
             <i class="bi bi-calculator"></i>
             <span lang="es-ES"> Operaciones</span>
             <span lang="en-GB"> Operations</span>
@@ -68,7 +68,7 @@
         </li>
         <!-- Transactions -->
         <li class="list-group-item">
-          <a routerLink="/transactions" class="text-decoration-none">
+          <a routerLink="/transactions" class="text-decoration-none" (click)="closeSidebar()">
             <i class="bi bi-table"></i>
             <span lang="es-ES"> Transacciones</span>
             <span lang="en-GB"> Transactions</span>
@@ -76,7 +76,7 @@
         </li>
         <!-- Total Transactions / Reports -->
         <li class="list-group-item">
-          <a routerLink="/totaltransactions" class="text-decoration-none">
+          <a routerLink="/totaltransactions" class="text-decoration-none" (click)="closeSidebar()">
             <i class="bi bi-grid"></i>
             <span lang="es-ES"> Cortes</span>
             <span lang="en-GB"> Reports</span>
@@ -93,7 +93,7 @@
       </ng-container>
       <ng-template #loginBtnSidebar>
         <!-- Login button -->
-        <button routerLink="/login" class="btn btn-primary w-100">
+        <button routerLink="/login" class="btn btn-primary w-100" (click)="closeSidebar()">
           <i class="bi bi-box-arrow-in-right"></i>
           <span lang="es-ES">Iniciar sesión</span>
           <span lang="en-GB">Login</span>

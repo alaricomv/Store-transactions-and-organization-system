@@ -3,7 +3,7 @@ import { Router, NavigationEnd, RouterLink } from '@angular/router';
 import { UserService } from '../../../services/user.service';
 import { User } from '../../../shared/models/user';
 import { CommonModule } from '@angular/common';
-
+declare var bootstrap: any;
 @Component({
     selector: 'app-header',
     imports: [RouterLink, CommonModule],
@@ -17,6 +17,7 @@ export class HeaderComponent implements OnInit {
   constructor(private router: Router, private userService: UserService) {
     this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
+        this.closeSidebar();
         console.log('Navigated to:', event.urlAfterRedirects);
       }
     });
@@ -41,17 +42,24 @@ export class HeaderComponent implements OnInit {
 openSidebar() {
   const sidebar = document.getElementById('userSidebar');
   if (sidebar) {
-    // Bootstrap 5 Offcanvas
-    // @ts-ignore
-    new bootstrap.Offcanvas(sidebar).show();
+    // Try to get an existing instance
+    let offcanvas = bootstrap.Offcanvas.getInstance(sidebar);
+    if (!offcanvas) {
+      // Create one if none exists
+      offcanvas = new bootstrap.Offcanvas(sidebar);
+    }
+    offcanvas.show();
   }
 }
+
 closeSidebar() {
   const sidebar = document.getElementById('userSidebar');
   if (sidebar) {
-    // Bootstrap 5 Offcanvas
-    // @ts-ignore
-    new bootstrap.Offcanvas(sidebar).hide();
+    // Retrieve the current instance
+    const offcanvas = bootstrap.Offcanvas.getInstance(sidebar);
+    if (offcanvas) {
+      offcanvas.hide();
+    }
   }
 }
 currentLang: string = 'en-GB';
