@@ -34,10 +34,8 @@
           <th><span lang="es-ES">ID</span><span lang="en-GB">ID</span></th>
           <th><span lang="es-ES">Usuario</span><span lang="en-GB">User</span></th>
           <th><span lang="es-ES">Fecha</span><span lang="en-GB">Date</span></th>
-          <th><span lang="es-ES">Fecha de Creacion</span><span lang="en-GB">Creation Date</span></th>
           <th><span lang="es-ES">Número de Personas</span><span lang="en-GB">Number of People</span></th>
           <th><span lang="es-ES">Total</span><span lang="en-GB">Total</span></th>
-          <th></th>
         </tr>
       </thead>
       <tbody>
@@ -45,22 +43,16 @@
           <tr *ngFor="let transaction of paginatedTransactions">
             <td data-label="ID">{{ transaction.id }}</td>
             <td data-label="Usuario / User">{{ transaction.user_id }}</td>
-            <td data-label="Fecha / Date">{{ transaction.date | date:'yyyy-MM-dd':'UTC' }}</td>
-            <td data-label="Fecha de Creacion / Creation Date">{{ transaction.creation_date | date:'yyyy-MM-dd HH:mm:ss':'UTC' }}</td>
+            <td data-label="Fecha / Date">{{ transaction.date | date:'yyyy-MM-dd' }}</td>
             <td data-label="# de Personas / # of People">{{ transaction.number_transactions }}</td>
             <td data-label="Total">${{ transaction.total }}</td>
-            <td data-label=""><button class="btn btn-danger"  (click)="deleteTransaction(transaction.id!)">
-            <span lang="es-ES">Eliminar</span>
-            <span lang="en-GB">Delete</span>
-            </button></td>
           </tr>
         </ng-container>
         <ng-template #mockupCorteRows>
           <tr *ngFor="let corte of mockupPaginatedCortes">
             <td data-label="ID">{{ corte.id }}</td>
             <td data-label="Usuario / User">{{ corte.user_id }}</td>
-            <td data-label="Fecha / Date">{{ corte.date | date:'yyyy-MM-dd HH:mm:ss':'UTC'}}</td>
-            <td data-label="Fecha / Date">{{ corte.creation_date | date:'yyyy-MM-dd HH:mm:ss':'UTC' }}</td>
+            <td data-label="Fecha / Date">{{ corte.date }}</td>
             <td data-label="# de Personas / # of People">{{ corte.number_transactions }}</td>
             <td data-label="Total">${{ corte.total }}</td>
           </tr>

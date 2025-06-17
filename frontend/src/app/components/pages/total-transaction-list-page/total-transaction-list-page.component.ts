@@ -78,22 +78,7 @@ export class TotalTransactionListPageComponent {
   }
 
 mockupCortes = [
-  { 
-    id: "1-13", 
-    user_id: 1, 
-    date: new Date('2025-05-30T12:00:00'), 
-    creation_date: new Date('2025-05-30T12:15:00'), 
-    total: 355.00, 
-    number_transactions: 3 
-  },
-  { 
-    id: "1-12", 
-    user_id: 1, 
-    date: new Date('2025-05-30T17:00:00'), 
-    creation_date: new Date('2025-05-30T17:15:00'), 
-    total: 1010.00, 
-    number_transactions: 5 
-  }
+  { id: 1, user_id: 'demo_user', date: '2025-05-30', creation_date: '2025-05-29 11:00:00', number_transactions: 5, total: '625.00' }
 ];
 
 get mockupPaginatedCortes() {
@@ -133,59 +118,31 @@ get mockupPaginatedCortes() {
   }
 
   createTotalTransaction() {
-  const newTransaction: Total_transaction = {
-    user_id: JSON.parse(localStorage.getItem('User') || '{}').id,
-    date: new Date(this.dateString)
-  };
+    const newTransaction: Total_transaction = {
+      user_id: JSON.parse(localStorage.getItem('User') || '{}').id,
+      date: new Date(this.dateString)
+    };
 
-  this.transactionService.createTotalTransaction(newTransaction).subscribe({
-    next: (transaction) => {
-      // Ensure transaction.date is converted to an ISO string if it's a Date object.
-      const utcDateStr: string = transaction.date instanceof Date 
-        ? transaction.date.toISOString() 
-        : transaction.date;
-      
-      // Extract just the date portion (YYYY-MM-DD)
-      const datePart = utcDateStr.split('T')[0]; // e.g., "2025-06-16"
-      
-      // Create a new Date object from the date part, so that the timezone doesn't shift the day.
-      this.date.setValue(new Date(datePart + 'T00:00:00'));
-      
-      // Trigger change detection if needed.
-      this.cdr.markForCheck();
-
-      // Remove or comment out the reload if you want the change to happen smoothly.
-      // window.location.reload();
-    },
-    error: (err) => {
-      console.error('Error creating transaction:', err);
-    }
-  });
-}
-
+    this.transactionService.createTotalTransaction(newTransaction).subscribe({
+      next: (transaction) => {
+        this.transactions.unshift(transaction);
+        this.cdr.markForCheck();
+      },
+      error: (err) => {
+        console.error('Error creating transaction:', err);
+      }
+    });
+  }
 
   // Delete the transaction, then emit the close event and reload the page
   deleteTransaction(id: string): void {
-  this.transactionService.deleteTotalTransaction(id).subscribe({
-    next: () => {
+    this.transactionService.deleteTotalTransaction(id).subscribe(() => {
       console.log('Transaction deleted successfully');
-
-      // Option 1: Remove the transaction from the current list
-      this.transactions = this.transactions.filter(t => t.id !== id);
-
-      // Option 2: Re-fetch transactions for the current date so the list is updated correctly.
-      // This keeps the selected date in the calendar.
-      this.fetchTransactions();
-
-      // No page reload is necessary, so the calendar remains on the same date.
-      this.cdr.markForCheck();
-    },
-    error: error => {
+      window.location.reload();
+    }, error => {
       console.error('Error deleting transaction:', error);
-    }
-  });
-}
-
+    });
+  }
 
   onLoginClick(){
     // Redirect to login page

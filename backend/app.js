@@ -7,7 +7,7 @@ const app = express();
 
 app.use(express.json()); // Middleware to parse JSON bodies
 
-app.use(cors({origin: process.env.FRONTEND_URL})); // Enable CORS for your frontend app, 'http://localhost:4200'
+app.use(cors({origin: 'http://localhost:4200'})); // Enable CORS for your frontend app
 
 
 // User routes
@@ -79,43 +79,30 @@ app.get('/transactions', async (req, res) => {
 // Transaction by ID
 app.get('/transactions/:id', async (req, res) => {
     const id = req.params.id;
-    const userTimeZone = req.get('X-User-Timezone') || 'UTC';
-    const transaction = await getTransactionById(id,userTimeZone);
+    const transaction = await getTransactionById(id);
     if (transaction) {
-        res.send(transaction, userTimeZone);
+        res.send(transaction);
     } else {
         res.status(404).send('Transaction not found');
     }
 })
 
-// Transaction by date endpoint
+// Transaction by date
 app.get('/transactions/date/:date/:user_id', async (req, res) => {
-  const date = req.params.date;
-  const user_id = req.params.user_id;
-  
-  // Retrieve the user's timezone from the custom header. 
-  // If the header isn’t provided, default to UTC.
-  const userTimeZone = req.get('X-User-Timezone') || 'UTC';
-  
-  try {
-    const transactions = await getTransactionByDate(date, user_id, userTimeZone);
+    const date = req.params.date;
+    const user_id = req.params.user_id;
+    const transactions = await getTransactionByDate(date,user_id);
     if (transactions.length > 0) {
-      res.send(transactions);
+        res.send(transactions);
     } else {
-      res.status(404).send('No transactions found for this date');
+        res.status(404).send('No transactions found for this date');
     }
-  } catch (error) {
-    console.error('Error fetching transactions:', error);
-    res.status(500).send('Error fetching transactions');
-  }
-});
-
+})
 
 //Last 3 transactions by user ID
 app.get('/lasttransactions/:id', async (req, res) => {
     const id = req.params.id;
-    const userTimeZone = req.get('X-User-Timezone') || 'UTC';
-    const transactions = await getLastTransactions(id,userTimeZone);
+    const transactions = await getLastTransactions(id);
     if (transactions.length > 0) {
         res.send(transactions);
     } else {
@@ -159,8 +146,7 @@ app.put('/transactions/:id', async (req, res) => {
 // Total transactions by ID
 app.get('/totaltransactions/:id', async (req, res) => {
     const id = req.params.id;
-    const userTimeZone = req.get('X-User-Timezone') || 'UTC';
-    const transaction = await getTotalTransactionsbyId(id, userTimeZone);
+    const transaction = await getTotalTransactionsbyId(id);
     if (transaction) {
         res.send(transaction);
     } else {
@@ -172,8 +158,7 @@ app.get('/totaltransactions/:id', async (req, res) => {
 app.get('/totaltransactions/date/:date/:user_id', async (req, res) => {
     const date = req.params.date;
     const user_id = req.params.user_id;
-    const userTimeZone = req.get('X-User-Timezone') || 'UTC';
-    const transactions = await getTotalTransactionByDate(date,user_id, userTimeZone);
+    const transactions = await getTotalTransactionByDate(date,user_id);
     if (transactions.length > 0) {
         res.send(transactions);
     } else {
@@ -185,12 +170,11 @@ app.get('/totaltransactions/date/:date/:user_id', async (req, res) => {
 // Total transactions by user ID and date
 app.post('/totaltransactions', async (req, res) => {
     const { user_id, date } = req.body;
-    const userTimeZone = req.get('X-User-Timezone') || 'UTC';
     if (!user_id || !date) {
         return res.status(400).send('All fields are required');
     }
     try {
-        const newTransaction = await createTotalTransactions(user_id, date, userTimeZone);
+        const newTransaction = await createTotalTransactions(user_id, date);
         res.status(201).send(newTransaction);
     } catch (error) {
         console.error(error);
@@ -212,8 +196,7 @@ app.get('/totaltransactions/user/:user_id', async (req, res) => {
 // Last 3 total transactions by user ID
 app.get('/lasttotaltransactions/:user_id', async (req, res) => {
     const user_id = req.params.user_id;
-    const userTimeZone = req.get('X-User-Timezone') || 'UTC';
-    const transactions = await getLastTotalTransactions(user_id, userTimeZone);
+    const transactions = await getLastTotalTransactions(user_id);
     if (transactions.length > 0) {
         res.send(transactions);
     } else {
