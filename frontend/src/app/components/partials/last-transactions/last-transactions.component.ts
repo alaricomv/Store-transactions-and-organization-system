@@ -23,9 +23,11 @@ export class LastTransactionsComponent {
   lasttransactions: Transaction[] = [];
 
   demoLastTransactions: Transaction[] = [
-    { id: "1-283", user_id: 1, date: new Date('2025-05-30T12:00:00'), total: 100.00, deleted: 0 },
-    { id: "1-282", user_id: 1, date: new Date('2025-05-30T13:00:00'), total: 250.00, deleted: 0 },
-    { id: "1-281", user_id: 1, date: new Date('2025-05-30T14:00:00'), total: 75.00, deleted: 0 }
+    { id: "1-10", user_id: 1, date: new Date('2025-05-30T21:00:00'), total: 500.00 },
+    { id: "1-9",  user_id: 1, date: new Date('2025-05-30T20:00:00'), total: 90.00},
+    { id: "1-8",  user_id: 1, date: new Date('2025-05-30T19:00:00'), total: 150.00},
+    { id: "1-7",  user_id: 1, date: new Date('2025-05-30T18:00:00'), total: 210.00},
+    { id: "1-6",  user_id: 1, date: new Date('2025-05-30T17:00:00'), total: 60.00},
   ];
 
   user!: User;

@@ -23,9 +23,22 @@ export class LastTotalTransactionsComponent {
   user!: User;
   
   demoLastTransactions: Total_transaction[] = [
-    { id: "1-13", user_id: 1, date: new Date('2025-05-30T00:00:00'), creation_date: new Date('2025-05-30T08:00:00'), total: 100.00, number_transactions: 3 },
-    { id: "1-12", user_id: 1, date: new Date('2025-05-30T12:00:00'), creation_date: new Date('2025-05-30T12:15:00'), total: 250.00, number_transactions: 6 },
-    { id: "1-11", user_id: 1, date: new Date('2025-05-30T09:00:00'), creation_date: new Date('2025-05-30T09:30:00'), total: 75.00, number_transactions: 2 }
+    { 
+    id: "1-13", 
+    user_id: 1, 
+    date: new Date('2025-05-30T12:00:00'), 
+    creation_date: new Date('2025-05-30T12:15:00'), 
+    total: 355.00, 
+    number_transactions: 3 
+    },
+    { 
+    id: "1-12", 
+    user_id: 1, 
+    date: new Date('2025-05-30T17:00:00'), 
+    creation_date: new Date('2025-05-30T17:15:00'), 
+    total: 1010.00, 
+    number_transactions: 5 
+    }
   ];
 
   // New modal management properties
