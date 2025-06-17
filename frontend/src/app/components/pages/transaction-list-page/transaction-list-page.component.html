@@ -45,7 +45,7 @@
           <tr *ngFor="let transaction of paginatedTransactions" [ngClass]="transaction.deleted === 0 ? '' : 'status-row-eliminado'">
             <td data-label="ID">{{ transaction.id }}</td>
             <td data-label="Usuario / User">{{ transaction.user_id }}</td>
-            <td data-label="Fecha / Date">{{ transaction.date | date:'yyyy-MM-dd HH:mm:ss' }}</td>
+            <td data-label="Fecha / Date">{{ transaction.date | date:'yyyy-MM-dd HH:mm:ss':'UTC' }}</td>
             <td data-label="Total"><span class="amount">${{ transaction.total }}</span></td>
             <td data-label="Estado / Status">
               <span class="status" [ngClass]="transaction.deleted === 0 ? 'status-activo' : 'status-eliminado'">

@@ -20,7 +20,7 @@ registerLocaleData(localeEs); // Register Spanish locale
     imports: [CommonModule, CalculatorComponent, LastTransactionsComponent, LastTotalTransactionsComponent],
     templateUrl: './calculator-page.component.html',
     styleUrl: './calculator-page.component.css',
-    providers: [{ provide: LOCALE_ID, useValue: 'es' }]
+    providers: []
 })
 export class CalculatorPageComponent {
   user!: User;

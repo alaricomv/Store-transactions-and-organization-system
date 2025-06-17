@@ -77,13 +77,16 @@ export class TransactionListPageComponent {
   }
 
   mockupRows = [
-  { id: 1, user: 'demo_user', date: '2025-05-30 12:00:00', total: '100.00', deleted: false },
-  { id: 2, user: 'demo_user', date: '2025-05-30 13:00:00', total: '250.00', deleted: true },
-  { id: 3, user: 'demo_user', date: '2025-05-30 14:00:00', total: '75.00', deleted: false },
-  { id: 4, user: 'demo_user', date: '2025-05-30 15:00:00', total: '180.00', deleted: false },
-  { id: 5, user: 'demo_user', date: '2025-05-30 16:00:00', total: '320.00', deleted: true },
-  { id: 6, user: 'demo_user', date: '2025-05-30 17:00:00', total: '60.00', deleted: false },
-  { id: 7, user: 'demo_user', date: '2025-05-30 18:00:00', total: '210.00', deleted: false }
+  { id: "1-10", user: 1, date: '2025-05-30 21:00:00', total: '500.00', deleted: false },
+  { id: "1-9",  user: 1, date: '2025-05-30 20:00:00', total: '90.00',  deleted: false },
+  { id: "1-8",  user: 1, date: '2025-05-30 19:00:00', total: '150.00', deleted: false },
+  { id: "1-7",  user: 1, date: '2025-05-30 18:00:00', total: '210.00', deleted: false },
+  { id: "1-6",  user: 1, date: '2025-05-30 17:00:00', total: '60.00',  deleted: false },
+  { id: "1-5",  user: 1, date: '2025-05-30 16:00:00', total: '320.00', deleted: true  },
+  { id: "1-4",  user: 1, date: '2025-05-30 15:00:00', total: '180.00', deleted: false },
+  { id: "1-3",  user: 1, date: '2025-05-30 14:00:00', total: '75.00',  deleted: false },
+  { id: "1-2",  user: 1, date: '2025-05-30 13:00:00', total: '250.00', deleted: true  },
+  { id: "1-1",  user: 1, date: '2025-05-30 12:00:00', total: '100.00', deleted: false }
 ];
 
 
