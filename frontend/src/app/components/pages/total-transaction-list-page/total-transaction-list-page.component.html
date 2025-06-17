@@ -45,8 +45,8 @@
           <tr *ngFor="let transaction of paginatedTransactions">
             <td data-label="ID">{{ transaction.id }}</td>
             <td data-label="Usuario / User">{{ transaction.user_id }}</td>
-            <td data-label="Fecha / Date">{{ transaction.date | date:'yyyy-MM-dd' }}</td>
-            <td data-label="Fecha de Creacion / Creation Date">{{ transaction.creation_date | date:'yyyy-MM-dd HH:mm:ss' }}</td>
+            <td data-label="Fecha / Date">{{ transaction.date | date:'yyyy-MM-dd':'UTC' }}</td>
+            <td data-label="Fecha de Creacion / Creation Date">{{ transaction.creation_date | date:'yyyy-MM-dd HH:mm:ss':'UTC' }}</td>
             <td data-label="# de Personas / # of People">{{ transaction.number_transactions }}</td>
             <td data-label="Total">${{ transaction.total }}</td>
             <td data-label=""><button class="btn btn-danger"  (click)="deleteTransaction(transaction.id!)">

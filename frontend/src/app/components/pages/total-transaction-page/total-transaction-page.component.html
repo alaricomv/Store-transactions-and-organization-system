@@ -31,16 +31,16 @@
               <span lang="es-ES">Fecha:</span>
               <span lang="en-GB">Date:</span>
             </strong>
-            {{ totaltransaction.date | date:'fullDate' }}
-            {{ totaltransaction.date | date:'shortTime' }}
+            {{ totaltransaction.date | date:'fullDate':'UTC' }}
+            {{ totaltransaction.date | date:'shortTime':'UTC' }}
           </p>
           <p>
             <strong>
               <span lang="es-ES">Fecha de creacion:</span>
               <span lang="en-GB">Creation Date:</span>
             </strong>
-            {{ totaltransaction.creation_date | date:'fullDate' }}
-            {{ totaltransaction.creation_date | date:'shortTime' }}
+            {{ totaltransaction.creation_date | date:'fullDate':'UTC' }}
+            {{ totaltransaction.creation_date | date:'shortTime':'UTC' }}
           </p>
           <p>
             <strong>
