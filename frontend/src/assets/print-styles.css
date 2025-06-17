@@ -109,10 +109,3 @@ body {
     font-weight: bold;
   }
   
-  html[lang="es-ES"] [lang]:not([lang="es-ES"]) {
-  display: none !important;
-}
-
-html[lang="en-GB"] [lang]:not([lang="en-GB"]) {
-  display: none !important;
-}
