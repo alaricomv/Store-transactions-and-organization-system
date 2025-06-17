@@ -36,35 +36,44 @@ export class TransactionPageComponent {
   }
 
   printPage(): void {
-    const printContent = document.getElementById('printable-section');
-    if (printContent) {
-      const printWindow = window.open('', '', 'width=800,height=600');
-      if (printWindow) {
-        printWindow.document.open();
-        printWindow.document.write(`
-          <html>
-            <head>
-              <title>Print</title>
-              <link id="print-stylesheet" rel="stylesheet" type="text/css" href="/assets/print-styles.css">
-            </head>
-            <body>
-              ${printContent.innerHTML}
-            </body>
-          </html>
-        `);
-        printWindow.document.close();
+  // Determine the language: default to Spanish ("es-ES") if the browser's language isn't English.
+  const language = window.navigator.language.includes('en') ? 'en-GB' : 'es-ES';
 
-        const stylesheet = printWindow.document.getElementById('print-stylesheet') as HTMLLinkElement;
-        if (stylesheet) {
-          stylesheet.onload = () => {
-            printWindow.focus();
-            printWindow.print();
-            printWindow.close();
-          };
-        }
+  // Select the printable content container.
+  const printContent = document.getElementById('printable-section');
+  if (printContent) {
+    // Open a new window for printing.
+    const printWindow = window.open('', '', 'width=800,height=600');
+    if (printWindow) {
+      printWindow.document.open();
+
+      // Inject the HTML content, including the lang attribute.
+      printWindow.document.write(`
+        <html lang="${language}">
+          <head>
+            <title>Print</title>
+            <link id="print-stylesheet" rel="stylesheet" type="text/css" href="/assets/print-styles.css">
+          </head>
+          <body>
+            ${printContent.innerHTML}
+          </body>
+        </html>
+      `);
+      printWindow.document.close();
+
+      // Wait for the stylesheet to load before printing.
+      const stylesheet = printWindow.document.getElementById('print-stylesheet') as HTMLLinkElement;
+      if (stylesheet) {
+        stylesheet.onload = () => {
+          printWindow.focus();
+          printWindow.print();
+          printWindow.close();
+        };
       }
     }
   }
+}
+
 
   deleteTransaction(id: string): void {
     this.transactionService.deleteTransaction(id).subscribe(() => {
