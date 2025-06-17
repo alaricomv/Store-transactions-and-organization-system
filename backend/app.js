@@ -158,7 +158,6 @@ app.put('/transactions/:id', async (req, res) => {
 
 // Total transactions by ID
 app.get('/totaltransactions/:id', async (req, res) => {
-    console.log("enters");
     const id = req.params.id;
     const userTimeZone = req.get('X-User-Timezone') || 'UTC';
     const transaction = await getTotalTransactionsbyId(id, userTimeZone);

@@ -125,12 +125,16 @@ get mockupPaginatedCortes() {
 
   this.transactionService.createTotalTransaction(newTransaction).subscribe({
     next: (transaction) => {
-      // Update the calendar's date to the transaction's creation date.
-      // Make sure transaction.creation_date is in a format JavaScript recognizes.
-      this.date.setValue(new Date(transaction.date));
+      // Ensure transaction.date is converted to an ISO string if it's a Date object.
+      const utcDateStr: string = transaction.date instanceof Date 
+        ? transaction.date.toISOString() 
+        : transaction.date;
       
-      // Optionally update your transactions list if you want to see the new record immediately.
-      this.transactions.unshift(transaction);
+      // Extract just the date portion (YYYY-MM-DD)
+      const datePart = utcDateStr.split('T')[0]; // e.g., "2025-06-16"
+      
+      // Create a new Date object from the date part, so that the timezone doesn't shift the day.
+      this.date.setValue(new Date(datePart + 'T00:00:00'));
       
       // Trigger change detection if needed.
       this.cdr.markForCheck();

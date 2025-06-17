@@ -29,7 +29,7 @@ export class TransactionService {
   const headers = new HttpHeaders({
     'X-User-Timezone': userTimeZone
   });
-  console.log(headers);
+
     return this.http.get<Transaction[]>(url, {headers});
   }
 
@@ -56,7 +56,7 @@ export class TransactionService {
   const headers = new HttpHeaders({
     'X-User-Timezone': userTimeZone
   });
-  console.log(headers);
+
     return this.http.get<Transaction[]>(url, { headers });
   }
   
@@ -105,7 +105,6 @@ export class TransactionService {
     const headers = new HttpHeaders({
       'X-User-Timezone': userTimeZone
     });
-    console.log('opens here');
     return this.http.get<Total_transaction>(TOTAL_TRANSACTIONS_BY_ID_URL + id, {headers});
   }
 
@@ -122,7 +121,6 @@ export class TransactionService {
     'X-User-Timezone': userTimeZone
   });
 
-  console.log(headers);
   
   return this.http.get<Total_transaction[]>(url, { headers });
 }

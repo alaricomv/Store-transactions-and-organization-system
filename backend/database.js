@@ -56,7 +56,6 @@ export async function getTransactions() {
 }
 
 export async function getLastTransactions(user_id, userTimeZone) {
-    console.log(userTimeZone);
   const query = `
     SELECT 
       t.id,
@@ -88,7 +87,6 @@ export async function getTransactionById(id, userTimeZone) {
     WHERE id = ?
   `;
   const [rows] = await pool.query(query, [userTimeZone, id]);
-  console.log(rows[0]);
   return rows[0];
 }
 
@@ -117,7 +115,7 @@ export async function createTransaction(user_id, total) {
         [customId, user_id, total]
     );
 
-    return getTransactionById(customId); // Return the newly created transaction
+    return getTransactionById(customId); 
 }
 
 export async function getTransactionByUserId(user_id) {
@@ -126,8 +124,6 @@ export async function getTransactionByUserId(user_id) {
 }
 
 export async function getTransactionByDate(date, id, userTimeZone) {
-  console.log(userTimeZone);
-  console.log(date);
   
   const startOfDay = `${date} 00:00:00`;
   const endOfDay = `${date} 23:59:59`;
@@ -153,7 +149,6 @@ export async function getTransactionByDate(date, id, userTimeZone) {
     id,
   ]);
 
-  console.log(rows);
   
   return rows;
 }
@@ -172,7 +167,6 @@ export async function deleteTransaction(id) {
 
 // Total transactions functions
 export async function getTotalTransactionsbyId(id, userTimeZone) {
-  console.log(userTimeZone);
   const [rows] = await pool.query(
     `SELECT 
        id, 
@@ -185,7 +179,7 @@ export async function getTotalTransactionsbyId(id, userTimeZone) {
      WHERE id = ?`,
     [userTimeZone, id]
   );
-  console.log(rows[0]);
+
   return rows[0];
 }
 
@@ -199,7 +193,7 @@ export async function getTotalTransactionsbyUserId(user_id) {
 
 // Get transactions by date and user ID
 export async function getTotalTransactionByDate(date, id, userTimeZone) {
-    console.log(userTimeZone);
+
   const [rows] = await pool.query(
     `SELECT 
         *,
@@ -215,7 +209,6 @@ export async function getTotalTransactionByDate(date, id, userTimeZone) {
       id,
     ]
   );
-  console.log(rows);
   return rows;
 }
 
@@ -272,7 +265,6 @@ export async function createTotalTransactions(user_id, date, userTimeZone) {
 
 // Get the last 3 total transactions for a user
 export async function getLastTotalTransactions(user_id, userTimeZone) {
-    console.log
   const [rows] = await pool.query(
     `SELECT 
         id,
@@ -287,7 +279,6 @@ export async function getLastTotalTransactions(user_id, userTimeZone) {
      LIMIT 5`,
     [userTimeZone, user_id]
   );
-  console.log(rows);
   return rows; // Return all 5 rows
 }
 

@@ -73,6 +73,5 @@ export class LastTotalTransactionsComponent {
   }
 
   ngOnInit(){
-    console.log('LastTotalTransactionsComponent initialized with transactions:', this.lasttransactions);
   }
 }
