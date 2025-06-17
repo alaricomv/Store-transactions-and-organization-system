@@ -164,3 +164,26 @@ ul a:focus {
     margin-left: 0 !important;
   }
 }
+
+@media screen and (max-width: 450px) {
+    .d-flex.flex-wrap.align-items-center.justify-content-between {
+        flex-wrap: wrap !important;
+        gap: 0.2rem !important; /* Reduce gap */
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+    }
+
+    .header-logo-img-link {
+        flex-grow: 0 !important; /* Prevent unwanted expansion */
+    }
+
+    .header-logo-img {
+        height: 3rem !important; /* Reduce logo size */
+        max-width: 30vw !important;
+    }
+
+    select[name="lang"] {
+        margin-left: 5px !important; /* Reduce space */
+    }
+}
+

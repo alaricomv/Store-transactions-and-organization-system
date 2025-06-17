@@ -57,7 +57,7 @@
 
 .calculator-container {
   flex: 1 1 65%;
-  min-width: 400px;                   
+  min-width: 300px;                   
   display: flex;
   justify-content: center;
 }
@@ -65,7 +65,7 @@
 .calculator-container app-calculator {
   width: 100%;
   height: auto;
-  min-width: 500px;
+  min-width: 300px;
 }
 
 /* Calculator Card with increased size */
@@ -73,10 +73,10 @@
   background: linear-gradient(135deg, #ffffff, #f0f0f0);
   border: 1px solid #ddd;
   border-radius: 15px;
-  padding: 20px;
+  padding: 10px;
   
   max-width: 600px;
-  min-width: 500px;                  
+                  
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
 }
 

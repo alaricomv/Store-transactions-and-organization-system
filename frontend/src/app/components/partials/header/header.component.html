@@ -24,12 +24,6 @@
 
         <!-- Navigation -->
         <div class="text-end">
-          <!-- Home link with language-specific text -->
-          <a routerLink="/" class="nav-link text-secondary" style="padding: 1.3rem; font-size: 1.18rem;">
-            <i class="bi bi-house"></i>
-            <span lang="es-ES"> Inicio</span>
-            <span lang="en-GB"> Home</span>
-          </a>
           <!-- Hamburger menu button always visible -->
           <button type="button" class="btn btn-outline-secondary ms-2" (click)="openSidebar()" aria-label="Menú">
             <span style="display: inline-block; width: 2rem; height: 2rem;">
@@ -58,6 +52,13 @@
     </div>
     <div class="offcanvas-body">
       <ul class="list-group mb-3">
+        <li class="list-group-item">
+          <a routerLink="/" class="text-decoration-none" (click)="closeSidebar()">
+            <i class="bi bi-house"></i>
+            <span lang="es-ES"> Inicio</span>
+            <span lang="en-GB"> Home</span>
+          </a>
+        </li>
         <!-- Calculator -->
         <li class="list-group-item">
           <a routerLink="/calculator" class="text-decoration-none" (click)="closeSidebar()">
