@@ -61,7 +61,8 @@
             <td data-label="Usuario / User">{{ corte.user_id }}</td>
             <td data-label="Fecha / Date">{{ corte.date | date:'yyyy-MM-dd HH:mm:ss':'UTC'}}</td>
             <td data-label="Fecha / Date">{{ corte.creation_date | date:'yyyy-MM-dd HH:mm:ss':'UTC' }}</td>
-            <td data-label="# de Personas / # of People">{{ corte.number_transactions }}</td>
+            <td data-label="# de Personas /">{{ corte.number_transactions }}</td>
+            <td data-label="# of People"></td>
             <td data-label="Total">${{ corte.total }}</td>
           </tr>
         </ng-template>
