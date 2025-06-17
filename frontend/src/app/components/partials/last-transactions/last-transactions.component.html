@@ -19,13 +19,13 @@
           <strong>
             <span lang="es-ES">Fecha:</span>
             <span lang="en-GB">Date:</span>
-          </strong> {{ transaction.date | date:'shortDate' }}
+          </strong> {{ transaction.date | date:'shortDate':'UTC' }}
         </p>
         <p>
           <strong>
             <span lang="es-ES">Hora:</span>
             <span lang="en-GB">Time:</span>
-          </strong> {{ transaction.date | date:'shortTime' }}
+          </strong> {{ transaction.date | date:'shortTime':'UTC' }}
         </p>
       </div>
     </li>

@@ -47,6 +47,6 @@ export class TotalTransactionPageComponent {
   }
 
   ngOnInit(){
-    console.log('TotalTransactionPageComponent initialized with transaction:', this.totaltransaction);
+    
   }
 }
