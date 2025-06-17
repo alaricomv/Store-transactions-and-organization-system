@@ -59,7 +59,8 @@
           <tr *ngFor="let corte of mockupPaginatedCortes">
             <td data-label="ID">{{ corte.id }}</td>
             <td data-label="Usuario / User">{{ corte.user_id }}</td>
-            <td data-label="Fecha / Date">{{ corte.date }}</td>
+            <td data-label="Fecha / Date">{{ corte.date | date:'yyyy-MM-dd HH:mm:ss':'UTC'}}</td>
+            <td data-label="Fecha / Date">{{ corte.creation_date | date:'yyyy-MM-dd HH:mm:ss':'UTC' }}</td>
             <td data-label="# de Personas / # of People">{{ corte.number_transactions }}</td>
             <td data-label="Total">${{ corte.total }}</td>
           </tr>
