@@ -79,30 +79,43 @@ app.get('/transactions', async (req, res) => {
 // Transaction by ID
 app.get('/transactions/:id', async (req, res) => {
     const id = req.params.id;
-    const transaction = await getTransactionById(id);
+    const userTimeZone = req.get('X-User-Timezone') || 'UTC';
+    const transaction = await getTransactionById(id,userTimeZone);
     if (transaction) {
-        res.send(transaction);
+        res.send(transaction, userTimeZone);
     } else {
         res.status(404).send('Transaction not found');
     }
 })
 
-// Transaction by date
+// Transaction by date endpoint
 app.get('/transactions/date/:date/:user_id', async (req, res) => {
-    const date = req.params.date;
-    const user_id = req.params.user_id;
-    const transactions = await getTransactionByDate(date,user_id);
+  const date = req.params.date;
+  const user_id = req.params.user_id;
+  
+  // Retrieve the user's timezone from the custom header. 
+  // If the header isn’t provided, default to UTC.
+  const userTimeZone = req.get('X-User-Timezone') || 'UTC';
+  
+  try {
+    const transactions = await getTransactionByDate(date, user_id, userTimeZone);
     if (transactions.length > 0) {
-        res.send(transactions);
+      res.send(transactions);
     } else {
-        res.status(404).send('No transactions found for this date');
+      res.status(404).send('No transactions found for this date');
     }
-})
+  } catch (error) {
+    console.error('Error fetching transactions:', error);
+    res.status(500).send('Error fetching transactions');
+  }
+});
+
 
 //Last 3 transactions by user ID
 app.get('/lasttransactions/:id', async (req, res) => {
     const id = req.params.id;
-    const transactions = await getLastTransactions(id);
+    const userTimeZone = req.get('X-User-Timezone') || 'UTC';
+    const transactions = await getLastTransactions(id,userTimeZone);
     if (transactions.length > 0) {
         res.send(transactions);
     } else {
@@ -145,8 +158,10 @@ app.put('/transactions/:id', async (req, res) => {
 
 // Total transactions by ID
 app.get('/totaltransactions/:id', async (req, res) => {
+    console.log("enters");
     const id = req.params.id;
-    const transaction = await getTotalTransactionsbyId(id);
+    const userTimeZone = req.get('X-User-Timezone') || 'UTC';
+    const transaction = await getTotalTransactionsbyId(id, userTimeZone);
     if (transaction) {
         res.send(transaction);
     } else {
@@ -158,7 +173,8 @@ app.get('/totaltransactions/:id', async (req, res) => {
 app.get('/totaltransactions/date/:date/:user_id', async (req, res) => {
     const date = req.params.date;
     const user_id = req.params.user_id;
-    const transactions = await getTotalTransactionByDate(date,user_id);
+    const userTimeZone = req.get('X-User-Timezone') || 'UTC';
+    const transactions = await getTotalTransactionByDate(date,user_id, userTimeZone);
     if (transactions.length > 0) {
         res.send(transactions);
     } else {
@@ -170,11 +186,12 @@ app.get('/totaltransactions/date/:date/:user_id', async (req, res) => {
 // Total transactions by user ID and date
 app.post('/totaltransactions', async (req, res) => {
     const { user_id, date } = req.body;
+    const userTimeZone = req.get('X-User-Timezone') || 'UTC';
     if (!user_id || !date) {
         return res.status(400).send('All fields are required');
     }
     try {
-        const newTransaction = await createTotalTransactions(user_id, date);
+        const newTransaction = await createTotalTransactions(user_id, date, userTimeZone);
         res.status(201).send(newTransaction);
     } catch (error) {
         console.error(error);
@@ -196,7 +213,8 @@ app.get('/totaltransactions/user/:user_id', async (req, res) => {
 // Last 3 total transactions by user ID
 app.get('/lasttotaltransactions/:user_id', async (req, res) => {
     const user_id = req.params.user_id;
-    const transactions = await getLastTotalTransactions(user_id);
+    const userTimeZone = req.get('X-User-Timezone') || 'UTC';
+    const transactions = await getLastTotalTransactions(user_id, userTimeZone);
     if (transactions.length > 0) {
         res.send(transactions);
     } else {

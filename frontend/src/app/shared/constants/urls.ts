@@ -1,4 +1,4 @@
-const BASE_URL = '/api';
+const BASE_URL = 'http://localhost:8080';
 
 export const TRANSACTIONS_URL = `${BASE_URL}/transactions`;
 export const LAST_TRANSACTIONS_URL = BASE_URL + '/lasttransactions';

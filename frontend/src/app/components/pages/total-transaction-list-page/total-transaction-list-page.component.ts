@@ -118,31 +118,55 @@ get mockupPaginatedCortes() {
   }
 
   createTotalTransaction() {
-    const newTransaction: Total_transaction = {
-      user_id: JSON.parse(localStorage.getItem('User') || '{}').id,
-      date: new Date(this.dateString)
-    };
+  const newTransaction: Total_transaction = {
+    user_id: JSON.parse(localStorage.getItem('User') || '{}').id,
+    date: new Date(this.dateString)
+  };
 
-    this.transactionService.createTotalTransaction(newTransaction).subscribe({
-      next: (transaction) => {
-        this.transactions.unshift(transaction);
-        this.cdr.markForCheck();
-      },
-      error: (err) => {
-        console.error('Error creating transaction:', err);
-      }
-    });
-  }
+  this.transactionService.createTotalTransaction(newTransaction).subscribe({
+    next: (transaction) => {
+      // Update the calendar's date to the transaction's creation date.
+      // Make sure transaction.creation_date is in a format JavaScript recognizes.
+      this.date.setValue(new Date(transaction.date));
+      
+      // Optionally update your transactions list if you want to see the new record immediately.
+      this.transactions.unshift(transaction);
+      
+      // Trigger change detection if needed.
+      this.cdr.markForCheck();
+
+      // Remove or comment out the reload if you want the change to happen smoothly.
+      // window.location.reload();
+    },
+    error: (err) => {
+      console.error('Error creating transaction:', err);
+    }
+  });
+}
+
 
   // Delete the transaction, then emit the close event and reload the page
   deleteTransaction(id: string): void {
-    this.transactionService.deleteTotalTransaction(id).subscribe(() => {
+  this.transactionService.deleteTotalTransaction(id).subscribe({
+    next: () => {
       console.log('Transaction deleted successfully');
-      window.location.reload();
-    }, error => {
+
+      // Option 1: Remove the transaction from the current list
+      this.transactions = this.transactions.filter(t => t.id !== id);
+
+      // Option 2: Re-fetch transactions for the current date so the list is updated correctly.
+      // This keeps the selected date in the calendar.
+      this.fetchTransactions();
+
+      // No page reload is necessary, so the calendar remains on the same date.
+      this.cdr.markForCheck();
+    },
+    error: error => {
       console.error('Error deleting transaction:', error);
-    });
-  }
+    }
+  });
+}
+
 
   onLoginClick(){
     // Redirect to login page
